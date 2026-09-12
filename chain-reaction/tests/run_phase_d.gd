@@ -57,23 +57,41 @@ func _test_game_launch_defaults() -> void:
 
 
 func _test_campaign_wrap() -> void:
-	print("-- campaign wrap")
+	print("-- campaign nav bounds")
+	_SaveAccount.reset_memory()
 	var session = _GameSession.new()
-	_check(session.start_pack(_GameLaunch.CAMPAIGN, "X-8"), "loads X-8")
-	_check(session.map_id() == "X-8", "on last campaign map")
+	_check(session.start_pack(_GameLaunch.CAMPAIGN, "1-1"), "loads 1-1")
+	_check(not session.can_goto_prev(), "first map has no prev")
+	session.goto_prev()
+	_check(session.map_id() == "1-1", "prev on first stays")
+	_check(session.can_goto_next(), "1-2 is unlocked")
 	session.goto_next()
-	_check(session.map_id() == "1-1", "wraps to 1-1")
-	_check(session.hud_progress() == "1 / 40", "progress 1 / 40")
+	_check(session.map_id() == "1-2", "next to 1-2")
+	_check(session.can_goto_prev(), "1-2 can go prev")
+	_check(session.start_pack(_GameLaunch.CAMPAIGN, "1-3"), "loads 1-3")
+	_check(not session.can_goto_next(), "locked 1-4 blocks next")
+	session.goto_next()
+	_check(session.map_id() == "1-3", "stays when next is locked")
+	_check(session.start_pack(_GameLaunch.CAMPAIGN, "X-8"), "loads X-8")
+	_check(not session.can_goto_next(), "last map has no next")
+	session.goto_next()
+	_check(session.map_id() == "X-8", "next on last stays")
 
 
 func _test_custom_wrap() -> void:
-	print("-- custom wrap")
+	print("-- custom nav bounds")
 	var session = _GameSession.new()
+	_check(session.start_pack(_GameLaunch.CUSTOM, "relay-race"), "loads relay-race")
+	_check(not session.can_goto_prev(), "first custom has no prev")
+	session.goto_prev()
+	_check(session.map_id() == "relay-race", "custom prev on first stays")
+	_check(session.can_goto_next(), "second custom is playable")
 	_check(session.start_pack(_GameLaunch.CUSTOM, "one-stroke"), "loads one-stroke")
 	_check(session.hud_progress() == "2 / 2", "progress 2 / 2")
+	_check(not session.can_goto_next(), "last custom has no next")
 	session.goto_next()
-	_check(session.map_id() == "relay-race", "wraps to relay-race")
-	_check(session.hud_progress() == "1 / 2", "progress 1 / 2")
+	_check(session.map_id() == "one-stroke", "custom next on last stays")
+	_check(session.can_goto_prev(), "last custom can go prev")
 
 
 func _test_load_all_maps() -> void:

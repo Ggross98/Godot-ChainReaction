@@ -4,6 +4,7 @@ const _GameSession := preload("res://scripts/app/game_session.gd")
 const _GameLaunch := preload("res://scripts/app/game_launch.gd")
 const _ViewTransform := preload("res://scripts/view/view_transform.gd")
 const _I18n := preload("res://scripts/app/i18n.gd")
+const _UiButtonStyle := preload("res://scripts/app/ui_button_style.gd")
 const FONT_SIZE := 60
 const FONT_COLOR := Color(0.123, 0.123, 0.123)
 
@@ -27,6 +28,8 @@ var _collapse_i: int = 0
 @onready var prev_button: Button = $CanvasLayer/HUD/DebugBar/Prev
 @onready var next_button: Button = $CanvasLayer/HUD/DebugBar/Next
 @onready var debug_bar: HBoxContainer = $CanvasLayer/HUD/DebugBar
+@onready var map_prev_button: TextureButton = $CanvasLayer/HUD/PrevButton
+@onready var map_next_button: TextureButton = $CanvasLayer/HUD/NextButton
 
 
 func _ready() -> void:
@@ -39,6 +42,13 @@ func _ready() -> void:
 	restart_button.pressed.connect(_on_restart)
 	home_button.pressed.connect(_on_home)
 	mute_button.pressed.connect(_on_mute)
+	_UiButtonStyle.bind_icon(restart_button)
+	_UiButtonStyle.bind_icon(mute_button)
+	_UiButtonStyle.bind_icon(home_button)
+	_UiButtonStyle.bind_icon(map_prev_button, _UiButtonStyle.nav_gray_palette())
+	_UiButtonStyle.bind_icon(map_next_button, _UiButtonStyle.nav_gray_palette())
+	map_prev_button.pressed.connect(_on_prev)
+	map_next_button.pressed.connect(_on_next)
 	prev_button.pressed.connect(_on_prev)
 	next_button.pressed.connect(_on_next)
 	pack_button.visible = false
@@ -76,6 +86,8 @@ func _refresh_hud() -> void:
 	var pack_name := _I18n.t("mode.custom") if session.pack_path() == _GameLaunch.CUSTOM else _I18n.t("mode.campaign")
 	map_id_label.text = "%s  %s  %s" % [pack_name, session.map_id(), session.hud_progress()]
 	pack_button.text = "Pack"
+	_UiButtonStyle.set_icon_enabled(map_prev_button, session.can_goto_prev())
+	_UiButtonStyle.set_icon_enabled(map_next_button, session.can_goto_next())
 
 
 func _drain_collapse() -> void:

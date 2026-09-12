@@ -29,6 +29,7 @@ func _init() -> void:
 	_test_mute()
 	_test_bgm_playlists()
 	_test_se_same_tick_coalesce()
+	_test_ui_hover_styles()
 	_test_debug_jump_off()
 	_delete_test_file()
 	_SaveAccount.path = _saved_path
@@ -278,6 +279,53 @@ func _test_se_same_tick_coalesce() -> void:
 	audio.play_collapse()
 	_check(audio.se_starts == before + 2, "second later-tick burst still coalesces")
 	audio.queue_free()
+
+
+func _test_ui_hover_styles() -> void:
+	print("-- ui hover")
+	var style = preload("res://scripts/app/ui_button_style.gd")
+	var base := Color(0.62, 0.90, 0.94)
+	var hover: Color = style.hover_color(base)
+	_check(hover.get_luminance() > base.get_luminance(), "cell hover is lighter")
+	var btn := Button.new()
+	style.apply_cell(btn, base, true)
+	var normal := btn.get_theme_stylebox("normal") as StyleBoxFlat
+	var hover_box := btn.get_theme_stylebox("hover") as StyleBoxFlat
+	_check(normal != null and hover_box != null, "cell has normal and hover boxes")
+	_check(not normal.bg_color.is_equal_approx(hover_box.bg_color), "cell hover box is distinct")
+	btn.queue_free()
+	var icon := TextureButton.new()
+	root.add_child(icon)
+	style.bind_icon(icon)
+	icon.mouse_entered.emit()
+	_check(icon.self_modulate.is_equal_approx(style.ICON_HOVER), "icon brightens on hover")
+	icon.mouse_exited.emit()
+	_check(icon.self_modulate.is_equal_approx(style.ICON_REST), "icon restores when pointer leaves")
+	style.set_icon_enabled(icon, false)
+	_check(icon.disabled, "disabled icon is not interactive")
+	icon.mouse_entered.emit()
+	_check(icon.self_modulate.is_equal_approx(style.ICON_DISABLED), "disabled icon does not highlight")
+	style.set_icon_enabled(icon, true)
+	var nav := TextureButton.new()
+	root.add_child(nav)
+	style.bind_icon(nav, style.nav_gray_palette())
+	_check(nav.self_modulate.is_equal_approx(style.NAV_REST), "nav rest is medium gray")
+	nav.mouse_entered.emit()
+	_check(nav.self_modulate.is_equal_approx(style.NAV_HOVER), "nav hover is lighter gray")
+	nav.button_down.emit()
+	_check(nav.self_modulate.is_equal_approx(style.NAV_PRESSED), "nav pressed is darker gray")
+	nav.button_up.emit()
+	nav.mouse_exited.emit()
+	style.set_icon_enabled(nav, false)
+	_check(nav.self_modulate.is_equal_approx(style.NAV_DISABLED), "nav disabled is pale gray")
+	_check(
+		style.NAV_PRESSED.get_luminance() < style.NAV_REST.get_luminance()
+		and style.NAV_REST.get_luminance() < style.NAV_HOVER.get_luminance()
+		and style.NAV_HOVER.get_luminance() < style.NAV_DISABLED.get_luminance(),
+		"nav grays are four distinct depths"
+	)
+	icon.queue_free()
+	nav.queue_free()
 
 
 func _test_debug_jump_off() -> void:

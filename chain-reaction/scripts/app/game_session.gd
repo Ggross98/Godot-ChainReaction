@@ -84,19 +84,36 @@ func restart_immediate() -> void:
 
 
 func goto_next() -> void:
-	if pack == null or pack.maps.is_empty():
+	if not can_goto_next():
 		return
-	map_index = (map_index + 1) % pack.maps.size()
+	map_index += 1
 	_clear_outcome()
 	_reload_current()
 
 
 func goto_prev() -> void:
-	if pack == null or pack.maps.is_empty():
+	if not can_goto_prev():
 		return
-	map_index = (map_index - 1 + pack.maps.size()) % pack.maps.size()
+	map_index -= 1
 	_clear_outcome()
 	_reload_current()
+
+
+func can_goto_next() -> bool:
+	return _adjacent_playable(1)
+
+
+func can_goto_prev() -> bool:
+	return _adjacent_playable(-1)
+
+
+func _adjacent_playable(delta: int) -> bool:
+	if pack == null:
+		return false
+	var i: int = map_index + delta
+	if i < 0 or i >= pack.maps.size():
+		return false
+	return _SaveAccount.is_playable(_SaveAccount.should_persist(_pack_path), i, pack.maps.size())
 
 
 func advance(dt: float) -> void:
@@ -174,6 +191,9 @@ func _resolve_outcome() -> void:
 	if kind == _Simulation.STATE_WIN:
 		if _SaveAccount.should_persist(_pack_path):
 			_SaveAccount.mark_cleared(map_index)
-		goto_next()
+		if can_goto_next():
+			goto_next()
+		else:
+			_reload_current()
 	else:
 		_reload_current()

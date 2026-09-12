@@ -6,15 +6,18 @@
 [ext_resource type="AudioStream" uid="uid://ddl5f7xnsfcky" path="res://assets/audio/bgm/III. Forlane.mp3" id="4_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://d6rqs773qcim" path="res://assets/sprites/ui/T_11_home_.png" id="4_home"]
 [ext_resource type="Texture2D" uid="uid://jgv122wcwp1l" path="res://assets/sprites/ui/sound_on.png" id="5_mute"]
+[ext_resource type="AudioStream" uid="uid://of2tsdjf0xvo" path="res://assets/audio/bgm/V. Menuet.mp3" id="5_vtaks"]
 [ext_resource type="Theme" path="res://assets/ui/hud_theme.tres" id="6_theme"]
 [ext_resource type="Texture2D" uid="uid://b5aydd3hs01p6" path="res://assets/sprites/ui/sound_off.png" id="7_mute_off"]
 [ext_resource type="Texture2D" uid="uid://dt7rqlqus1f08" path="res://assets/sprites/game/position_mark.png" id="8_mark"]
+[ext_resource type="Texture2D" uid="uid://diuk1m3xnmx18" path="res://assets/sprites/ui/Arrows_pointer_left.svg" id="11_dinhu"]
+[ext_resource type="Texture2D" uid="uid://bofjjws8on1ba" path="res://assets/sprites/ui/Arrows_pointer_right.svg" id="12_kvuet"]
 
 [node name="Game" type="Node2D" unique_id=1332604730]
 script = ExtResource("1_uwrxv")
 tex_sound_on = ExtResource("5_mute")
 tex_sound_off = ExtResource("7_mute_off")
-bgm_tracks = Array[AudioStream]([ExtResource("4_0tnpc")])
+bgm_tracks = Array[AudioStream]([ExtResource("4_0tnpc"), ExtResource("5_vtaks")])
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2136974943]
 zoom = Vector2(108, 108)
@@ -119,6 +122,7 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="DebugBar" type="HBoxContainer" parent="CanvasLayer/HUD" unique_id=1743908135]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -153,3 +157,25 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(80, 48)
 layout_mode = 2
 text = "Next"
+
+[node name="PrevButton" type="TextureButton" parent="CanvasLayer/HUD" unique_id=1850769134]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 0
+offset_left = 70.0
+offset_top = 504.0
+offset_right = 142.0
+offset_bottom = 576.0
+texture_normal = ExtResource("11_dinhu")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="NextButton" type="TextureButton" parent="CanvasLayer/HUD" unique_id=1073715442]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 0
+offset_left = 1778.0
+offset_top = 504.0
+offset_right = 1850.0
+offset_bottom = 576.0
+texture_normal = ExtResource("12_kvuet")
+ignore_texture_size = true
+stretch_mode = 5

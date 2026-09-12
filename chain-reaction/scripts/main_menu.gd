@@ -5,6 +5,7 @@ const _SaveAccount := preload("res://scripts/app/save_account.gd")
 const _GameLaunch := preload("res://scripts/app/game_launch.gd")
 const _MapLoader := preload("res://scripts/content/map_loader.gd")
 const _ViewTransform := preload("res://scripts/view/view_transform.gd")
+const _UiButtonStyle := preload("res://scripts/app/ui_button_style.gd")
 const FONT_SIZE := 60
 const FONT_COLOR := Color(0.123, 0.123, 0.123)
 const CELL_SIZE := Vector2(88, 88)
@@ -30,6 +31,8 @@ func _ready() -> void:
 	title_label.text = _I18n.t("menu.title")
 	mute_button.pressed.connect(_on_mute)
 	exit_button.pressed.connect(_on_exit)
+	_UiButtonStyle.bind_icon(mute_button)
+	_UiButtonStyle.bind_icon(exit_button)
 	_load_packs()
 	_rebuild_grid()
 	_sync_mute_icon()
@@ -57,27 +60,10 @@ func _rebuild_grid() -> void:
 		btn.add_theme_color_override("font_color", FONT_COLOR)
 		var playable := _SaveAccount.is_playable(true, i, count)
 		btn.disabled = not playable
-		_paint_cell(btn, state, playable)
+		_UiButtonStyle.apply_cell(btn, _SaveAccount.cell_color(state), playable)
 		var map_id: String = _campaign_pack.maps[i].id
 		btn.pressed.connect(_on_cell.bind(map_id))
 		campaign_grid.add_child(btn)
-
-
-func _paint_cell(btn: Button, state: String, playable: bool) -> void:
-	var color := Color(0.78, 0.78, 0.82)
-	if playable:
-		color = _SaveAccount.cell_color(state)
-	var box := StyleBoxFlat.new()
-	box.bg_color = color
-	box.set_corner_radius_all(10)
-	box.content_margin_left = 8
-	box.content_margin_right = 8
-	box.content_margin_top = 8
-	box.content_margin_bottom = 8
-	btn.add_theme_stylebox_override("normal", box)
-	btn.add_theme_stylebox_override("hover", box)
-	btn.add_theme_stylebox_override("pressed", box)
-	btn.add_theme_stylebox_override("disabled", box)
 
 
 func _sync_mute_icon() -> void:
