@@ -1,4 +1,4 @@
-extends "res://scripts/core/behaviors/atom_behavior.gd"
+extends AtomBehavior
 
 
 func press_action() -> String:
