@@ -113,7 +113,7 @@ enum PreviewPose { IDLE, CATCHING, MOVABLE, ENTANGLED }
 		root_scale = value
 		_on_look_changed()
 
-const ASSEMBLE_FROM := 0.85
+const ASSEMBLE_FROM := 0.5
 
 var atom_id: int = -1
 var board_cell: Vector2i = Vector2i.ZERO

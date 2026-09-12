@@ -197,10 +197,10 @@ func _test_win_delay_advances_to_next() -> void:
 		guard += 1
 	_check(session.sim.state == "win", "won 1-1")
 	_check(session.map_id() == "1-1", "still on 1-1 during delay")
-	session.advance(1.99)
-	_check(session.map_id() == "1-1", "not yet 2s")
+	session.advance(1.49)
+	_check(session.map_id() == "1-1", "not yet 1.5s")
 	session.advance(0.02)
-	_check(session.map_id() == "1-2", "after 2s loads 1-2")
+	_check(session.map_id() == "1-2", "after 1.5s loads 1-2")
 	_check(session.hud_state() == "", "state copy cleared")
 	_check(session.sim.state == "waiting", "next map waiting")
 

@@ -2,7 +2,7 @@ extends CanvasLayer
 
 const _ViewTransform := preload("res://scripts/view/view_transform.gd")
 
-const FADE_SECONDS := 0.15
+const FADE_SECONDS := 0.5
 
 enum Phase { IDLE, COVERING, SWAP, REVEALING }
 

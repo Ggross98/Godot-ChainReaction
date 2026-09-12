@@ -132,6 +132,7 @@ func _test_atom_assemble_pose() -> void:
 	view.set_assemble(0.0)
 	_check(is_equal_approx(view.assemble_k(), 0.0), "assemble_k stores 0")
 	_check(is_equal_approx(view.modulate.a, 0.0), "assemble 0 is alpha 0")
+	_check(is_equal_approx(view.scale.x, view.root_scale * 0.5), "assemble 0 starts at 50% scale")
 	var atom = _dummy_atom()
 	view.set_board_size(4, 3)
 	view.set_assemble(1.0)
@@ -160,9 +161,10 @@ func _test_board_view_transitions() -> void:
 	_check(not board.is_transitioning(), "assemble finishes after 1s")
 	session.restart_immediate()
 	board.sync(session, 0.0)
-	_check(board.is_transitioning(), "reload with leftovers starts a swap")
+	_check(board.is_transitioning(), "reload with leftovers starts enter")
+	_check(board.get_node_or_null("Ghosts") == null, "leftovers vanish with no ghost")
 	board.sync(session, 1.0)
-	_check(not board.is_transitioning(), "swap finishes after 1s")
+	_check(not board.is_transitioning(), "enter finishes after 1s")
 	board.queue_free()
 
 
@@ -176,8 +178,8 @@ func _test_session_reload_does_not_wait() -> void:
 		session.advance(1.0 / 60.0)
 		guard += 1
 	_check(session.sim.state == "win", "won 1-1")
-	session.advance(2.02)
-	_check(session.map_id() == "1-2", "after 2s loads 1-2 with no BoardView")
+	session.advance(1.52)
+	_check(session.map_id() == "1-2", "after 1.5s loads 1-2 with no BoardView")
 	_check(session.sim.state == "waiting", "next map waiting")
 	_check(session.hud_state() == "", "state copy cleared")
 
@@ -190,10 +192,12 @@ func _test_scene_fade_busy() -> void:
 	_check(not fade.is_busy(), "idle is not busy")
 	fade.go("res://scenes/main_menu.tscn")
 	_check(fade.is_busy(), "go starts busy")
-	fade._process(0.07)
-	_check(fade.is_busy(), "still covering at 0.07s")
-	fade._process(0.10)
+	fade._process(0.49)
+	_check(fade.is_busy(), "still covering at 0.49s")
+	var fade_rect := fade.get_node_or_null("Fade") as ColorRect
+	_check(fade_rect != null and fade_rect.color.a < 1.0, "cover not finished at 0.49s")
+	fade._process(0.02)
 	_check(fade.is_busy(), "busy through swap into reveal")
-	fade._process(0.16)
+	fade._process(0.50)
 	_check(not fade.is_busy(), "idle after cover+reveal")
 	fade.queue_free()

@@ -20,11 +20,9 @@ var _marks: Node2D
 var _atoms_root: Node2D
 var _neutrons_root: Node2D
 var _vfx: Node2D
-var _ghost_root: Node2D
 var _atom_views: Dictionary = {}
 var _neutron_views: Dictionary = {}
 var _fades: Array = []
-var _ghost_cells: Dictionary = {}
 var _transition = _BoardTransition.new()
 
 
@@ -67,10 +65,7 @@ func sync(session, dt: float) -> void:
 	_drain_events(sim)
 	_sync_atoms(session, dt)
 	_sync_neutrons(sim, dt)
-	_tick_ghosts()
 	_tick_fades(dt)
-	if not _transition.is_active():
-		_free_ghosts()
 
 
 func pointer_logic() -> Vector2:
@@ -80,8 +75,7 @@ func pointer_logic() -> Vector2:
 func _begin_swap(session) -> void:
 	if _transition.is_active():
 		_transition.cut()
-		_free_ghosts()
-	var exit_cells: Array[Vector2i] = _stash_ghosts()
+	_discard_atoms()
 	_epoch = session.board_epoch
 	_event_i = 0
 	_rebuild_marks(session)
@@ -99,32 +93,16 @@ func _begin_swap(session) -> void:
 		if atom.collapsed:
 			continue
 		enter_cells.append(Vector2i(atom.x, atom.y))
-	_transition.begin(enter_cells, exit_cells, _origin_cell(enter_cells))
+	var empty_exit: Array[Vector2i] = []
+	_transition.begin(enter_cells, empty_exit, _origin_cell(enter_cells))
 
 
-func _stash_ghosts() -> Array[Vector2i]:
-	var cells: Array[Vector2i] = []
-	_ghost_cells.clear()
+func _discard_atoms() -> void:
 	if _atoms_root == null:
-		return cells
-	for view in _atom_views.values():
-		if view == null or not is_instance_valid(view):
-			continue
-		if not view.visible or view.modulate.a <= 0.01:
-			continue
-		var cell: Vector2i = view.board_cell
-		cells.append(cell)
-		_ghost_cells[view] = cell
-	if cells.is_empty():
-		_atoms_root.name = "AtomsOld"
-		_atoms_root.queue_free()
-		_atoms_root = null
-		return cells
-	_ghost_root = _atoms_root
-	_ghost_root.name = "Ghosts"
-	_ghost_root.z_index = 4
+		return
+	_atoms_root.name = "AtomsOld"
+	_atoms_root.queue_free()
 	_atoms_root = null
-	return cells
 
 
 func _origin_cell(cells: Array[Vector2i]) -> Vector2i:
@@ -182,23 +160,6 @@ func _sync_atoms(session, dt: float) -> void:
 			continue
 		_atom_views[id].queue_free()
 		_atom_views.erase(id)
-
-
-func _tick_ghosts() -> void:
-	if _ghost_root == null:
-		return
-	for view in _ghost_cells.keys():
-		if view == null or not is_instance_valid(view):
-			continue
-		var cell: Vector2i = _ghost_cells[view]
-		view.set_assemble(_transition.exit_k(cell))
-
-
-func _free_ghosts() -> void:
-	if _ghost_root != null:
-		_ghost_root.queue_free()
-		_ghost_root = null
-	_ghost_cells.clear()
 
 
 func _sync_neutrons(sim, dt: float) -> void:

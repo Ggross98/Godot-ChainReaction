@@ -3,7 +3,7 @@ extends RefCounted
 
 const _HexGrid := preload("res://scripts/core/hex_grid.gd")
 
-const ATOM_IN := 0.22
+const ATOM_IN := 0.5
 const ATOM_OUT := 0.18
 const STAGGER := 0.03
 const STAGGER_CAP := 0.25

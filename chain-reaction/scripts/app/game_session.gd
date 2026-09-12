@@ -9,7 +9,7 @@ const _BehaviorRegistry := preload("res://scripts/core/behaviors/behavior_regist
 const _HudStrings := preload("res://scripts/app/hud_strings.gd")
 const _SaveAccount := preload("res://scripts/app/save_account.gd")
 
-const OUTCOME_DELAY := 2.0
+const OUTCOME_DELAY := 1.5
 
 var sim = _Simulation.new()
 var pack = null
