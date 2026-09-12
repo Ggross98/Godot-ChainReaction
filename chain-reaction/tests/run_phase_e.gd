@@ -28,6 +28,7 @@ func _init() -> void:
 	_test_campaign_win_persists()
 	_test_mute()
 	_test_bgm_playlists()
+	_test_se_same_tick_coalesce()
 	_test_debug_jump_off()
 	_delete_test_file()
 	_SaveAccount.path = _saved_path
@@ -259,6 +260,23 @@ func _test_bgm_fade_then_gap() -> void:
 	_check(not bgm.playing, "still silent before gap ends")
 	audio._process(0.2)
 	_check(bgm.stream == b, "new track starts after gap")
+	audio.queue_free()
+
+
+func _test_se_same_tick_coalesce() -> void:
+	print("-- se same-tick coalesce")
+	var audio := _make_audio()
+	audio._se_stream = _make_wav()
+	var before: int = audio.se_starts
+	audio.play_collapse()
+	audio.play_collapse()
+	audio.play_collapse()
+	_check(audio.se_starts == before + 1, "same-tick identical SE starts once (got %d)" % (audio.se_starts - before))
+	audio._process(0.016)
+	audio.play_collapse()
+	_check(audio.se_starts == before + 2, "later tick can start the same SE again")
+	audio.play_collapse()
+	_check(audio.se_starts == before + 2, "second later-tick burst still coalesces")
 	audio.queue_free()
 
 

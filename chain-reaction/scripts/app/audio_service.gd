@@ -12,6 +12,7 @@ enum Phase { IDLE, PLAYING, FADING, WAITING }
 
 var muted: bool = false
 var rng := RandomNumberGenerator.new()
+var se_starts: int = 0
 
 var _bgm: AudioStreamPlayer
 var _se_players: Array = []
@@ -27,6 +28,7 @@ var _pending_skip_gap: bool = false
 var _fade_t: float = 0.0
 var _fade_from_db: float = PLAY_DB
 var _wait_t: float = 0.0
+var _se_started_this_tick: bool = false
 
 
 func _ready() -> void:
@@ -73,6 +75,10 @@ func play_collapse() -> void:
 	_ensure_players()
 	if _se_stream == null or _se_players.is_empty():
 		return
+	if _se_started_this_tick:
+		return
+	_se_started_this_tick = true
+	se_starts += 1
 	var chosen: AudioStreamPlayer = _se_players[0]
 	for p in _se_players:
 		if not p.playing:
@@ -84,6 +90,7 @@ func play_collapse() -> void:
 
 
 func _process(dt: float) -> void:
+	_se_started_this_tick = false
 	if _bgm == null:
 		return
 	if _phase == Phase.FADING:
