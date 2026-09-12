@@ -1,15 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://v1fjjg7kupvx"]
+[gd_scene format=3 uid="uid://v1fjjg7kupvx"]
 
-[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_l6cm7"]
-[ext_resource type="Texture2D" path="res://assets/sprites/ui/sound_on.png" id="2_mute"]
-[ext_resource type="Texture2D" path="res://assets/sprites/ui/T_5_x_.png" id="3_exit"]
+[ext_resource type="Script" uid="uid://css0ynvh1pm2y" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Texture2D" uid="uid://jgv122wcwp1l" path="res://assets/sprites/ui/sound_on.png" id="2_mute"]
+[ext_resource type="Texture2D" uid="uid://dwu6eh0iraed2" path="res://assets/sprites/ui/T_5_x_.png" id="3_exit"]
+[ext_resource type="Theme" path="res://assets/ui/hud_theme.tres" id="4_theme"]
 
-[node name="MainMenu" type="Node2D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_unlocked"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.62, 0.9, 0.94, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_locked"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.78, 0.78, 0.82, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="MainMenu" type="Node2D" unique_id=852002600]
 script = ExtResource("1_l6cm7")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1094178164]
 
-[node name="HUD" type="Control" parent="CanvasLayer"]
+[node name="HUD" type="Control" parent="CanvasLayer" unique_id=213004564]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,8 +40,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("4_theme")
 
-[node name="Title" type="Label" parent="CanvasLayer/HUD"]
+[node name="Title" type="Label" parent="CanvasLayer/HUD" unique_id=1037506491]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -28,10 +52,11 @@ offset_top = 36.0
 offset_right = 500.0
 offset_bottom = 120.0
 grow_horizontal = 2
+text = "Chain Reaction"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Buttons" type="HBoxContainer" parent="CanvasLayer/HUD"]
+[node name="Buttons" type="HBoxContainer" parent="CanvasLayer/HUD" unique_id=402847644]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -44,21 +69,21 @@ grow_horizontal = 0
 theme_override_constants/separation = 20
 alignment = 2
 
-[node name="Mute" type="TextureButton" parent="CanvasLayer/HUD/Buttons"]
+[node name="Mute" type="TextureButton" parent="CanvasLayer/HUD/Buttons" unique_id=2021622194]
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
 texture_normal = ExtResource("2_mute")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Exit" type="TextureButton" parent="CanvasLayer/HUD/Buttons"]
+[node name="Exit" type="TextureButton" parent="CanvasLayer/HUD/Buttons" unique_id=471906655]
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
 texture_normal = ExtResource("3_exit")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Mode" type="Button" parent="CanvasLayer/HUD"]
+[node name="Mode" type="Button" parent="CanvasLayer/HUD" unique_id=534249450]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -68,9 +93,11 @@ offset_top = 140.0
 offset_right = 160.0
 offset_bottom = 204.0
 grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Campaign"
 flat = true
 
-[node name="CampaignGrid" type="GridContainer" parent="CanvasLayer/HUD"]
+[node name="CampaignGrid" type="GridContainer" parent="CanvasLayer/HUD" unique_id=1524832237]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -87,7 +114,60 @@ theme_override_constants/h_separation = 12
 theme_override_constants/v_separation = 12
 columns = 8
 
-[node name="CustomGrid" type="GridContainer" parent="CanvasLayer/HUD"]
+[node name="Preview1" type="Button" parent="CanvasLayer/HUD/CampaignGrid" unique_id=501761848]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_unlocked")
+text = "1"
+
+[node name="Preview2" type="Button" parent="CanvasLayer/HUD/CampaignGrid" unique_id=2115351288]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_unlocked")
+text = "2"
+
+[node name="Preview3" type="Button" parent="CanvasLayer/HUD/CampaignGrid" unique_id=1579035340]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_unlocked")
+text = "3"
+
+[node name="Preview4" type="Button" parent="CanvasLayer/HUD/CampaignGrid" unique_id=2026313594]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+theme_override_styles/disabled = SubResource("StyleBoxFlat_locked")
+disabled = true
+text = "4"
+
+[node name="Preview5" type="Button" parent="CanvasLayer/HUD/CampaignGrid" unique_id=912318585]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+theme_override_styles/disabled = SubResource("StyleBoxFlat_locked")
+disabled = true
+text = "5"
+
+[node name="Preview6" type="Button" parent="CanvasLayer/HUD/CampaignGrid" unique_id=1668538044]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+theme_override_styles/disabled = SubResource("StyleBoxFlat_locked")
+disabled = true
+text = "6"
+
+[node name="Preview7" type="Button" parent="CanvasLayer/HUD/CampaignGrid" unique_id=445985045]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+theme_override_styles/disabled = SubResource("StyleBoxFlat_locked")
+disabled = true
+text = "7"
+
+[node name="Preview8" type="Button" parent="CanvasLayer/HUD/CampaignGrid" unique_id=936930186]
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+theme_override_styles/disabled = SubResource("StyleBoxFlat_locked")
+disabled = true
+text = "8"
+
+[node name="CustomGrid" type="GridContainer" parent="CanvasLayer/HUD" unique_id=1025710595]
 visible = false
 layout_mode = 1
 anchors_preset = 8

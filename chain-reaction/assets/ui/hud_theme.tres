@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=2 format=3]
+
+[ext_resource type="FontFile" uid="uid://cuydmieucdm6p" path="res://assets/fonts/spagi.ttf" id="1_font"]
+
+[resource]
+default_font = ExtResource("1_font")
+default_font_size = 60
+Button/colors/font_color = Color(0.123, 0.123, 0.123, 1)
+Button/colors/font_disabled_color = Color(0.123, 0.123, 0.123, 0.45)
+Button/colors/font_focus_color = Color(0.123, 0.123, 0.123, 1)
+Button/colors/font_hover_color = Color(0.123, 0.123, 0.123, 1)
+Button/colors/font_pressed_color = Color(0.123, 0.123, 0.123, 1)
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_font")
+Label/colors/font_color = Color(0.123, 0.123, 0.123, 1)
+Label/font_sizes/font_size = 60
+Label/fonts/font = ExtResource("1_font")
