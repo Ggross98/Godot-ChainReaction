@@ -3,8 +3,8 @@ extends Node2D
 
 const _ViewTransform := preload("res://scripts/view/view_transform.gd")
 const _HexGrid := preload("res://scripts/core/hex_grid.gd")
-const _AtomView := preload("res://scripts/view/atom_view.gd")
-const _NeutronView := preload("res://scripts/view/neutron_view.gd")
+const ATOM_SCENE := preload("res://prefabs/atom_view.tscn")
+const NEUTRON_SCENE := preload("res://prefabs/neutron_view.tscn")
 const TEX_MARK := preload("res://assets/sprites/position_mark.png")
 
 const ORBIT_FADE_TIME := 0.1
@@ -97,7 +97,7 @@ func _sync_atoms(session, dt: float) -> void:
 		seen[atom.id] = true
 		var view: Node2D = _atom_views.get(atom.id)
 		if view == null:
-			view = _AtomView.new()
+			view = ATOM_SCENE.instantiate()
 			_atoms_root.add_child(view)
 			_atom_views[atom.id] = view
 		view.set_board_size(sim.width, sim.height)
@@ -117,10 +117,10 @@ func _sync_neutrons(sim, dt: float) -> void:
 		seen[n.id] = true
 		var view = _neutron_views.get(n.id)
 		if view == null:
-			view = _NeutronView.new()
+			view = NEUTRON_SCENE.instantiate()
 			view.neutron_id = n.id
-			view.begin_trace()
 			_neutrons_root.add_child(view)
+			view.begin_trace()
 			_neutron_views[n.id] = view
 		view.sync(n.pos, dt)
 	for id in _neutron_views.keys():

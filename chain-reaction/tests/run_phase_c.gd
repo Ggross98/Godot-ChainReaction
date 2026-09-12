@@ -9,6 +9,8 @@ const _GameLaunch := preload("res://scripts/app/game_launch.gd")
 const _HudStrings := preload("res://scripts/app/hud_strings.gd")
 const _BoardView := preload("res://scripts/view/board_view.gd")
 const _AtomView := preload("res://scripts/view/atom_view.gd")
+const ATOM_SCENE := preload("res://prefabs/atom_view.tscn")
+const NEUTRON_SCENE := preload("res://prefabs/neutron_view.tscn")
 const _SaveAccount := preload("res://scripts/app/save_account.gd")
 
 var _failures: int = 0
@@ -31,6 +33,7 @@ func _init() -> void:
 	_test_session_entangle_4_1()
 	_test_board_view_sync_smoke()
 	_test_atom_view_nuclei_keeps_ppu_scale()
+	_test_atom_view_prefab_instantiate()
 	print("=== %d failure(s) ===" % _failures)
 	_cleanup_test_save()
 	quit(1 if _failures > 0 else 0)
@@ -290,3 +293,29 @@ func _test_atom_view_nuclei_keeps_ppu_scale() -> void:
 	if view.nuclei != null:
 		_check(is_equal_approx(view.nuclei.scale.x, ppu * 1.1), "hover nuclei keeps PPU and 1.1")
 	view.queue_free()
+
+
+func _test_atom_view_prefab_instantiate() -> void:
+	print("-- atom/neutron prefabs")
+	var atom_pf = ATOM_SCENE.instantiate()
+	_check(atom_pf.get_node_or_null("Nuclei") != null, "atom prefab has Nuclei")
+	_check(atom_pf.get_node_or_null("Orbit1") != null, "atom prefab has Orbit1")
+	_check(atom_pf.get_node_or_null("Parked") != null, "atom prefab has Parked")
+	var neutron_pf = NEUTRON_SCENE.instantiate()
+	_check(neutron_pf.get_node_or_null("Body") != null, "neutron prefab has Body")
+	_check(neutron_pf.get_node_or_null("Ghost0") != null, "neutron prefab has Ghost0")
+	var session = _GameSession.new()
+	_check(session.start_pack(_GameLaunch.CAMPAIGN, "1-1"), "loads 1-1 for prefab view")
+	root.add_child(atom_pf)
+	var atom = session.sim.atoms[0]
+	atom_pf.set_board_size(session.sim.width, session.sim.height)
+	atom_pf.sync(atom, false, null, 0.0)
+	var ppu: float = 1.0 / atom_pf.ppu_default
+	_check(atom_pf.nuclei != null, "instanced nuclei sprite exists")
+	if atom_pf.nuclei != null:
+		_check(is_equal_approx(atom_pf.nuclei.scale.x, ppu), "instanced idle nuclei uses 1/PPU")
+	atom_pf.sync(atom, true, null, 0.0)
+	if atom_pf.nuclei != null:
+		_check(is_equal_approx(atom_pf.nuclei.scale.x, ppu * atom_pf.hover_scale), "instanced hover keeps PPU")
+	atom_pf.queue_free()
+	neutron_pf.queue_free()
