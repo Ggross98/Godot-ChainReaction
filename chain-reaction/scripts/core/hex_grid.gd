@@ -71,6 +71,18 @@ static func direction_vector(id: String) -> Vector2:
 			return Vector2.ZERO
 
 
+static func odd_r_to_cube(x: int, y: int) -> Vector3i:
+	var q: int = x - ((y - (y & 1)) >> 1)
+	var r: int = y
+	return Vector3i(q, r, -q - r)
+
+
+static func odd_r_distance(x0: int, y0: int, x1: int, y1: int) -> int:
+	var a: Vector3i = odd_r_to_cube(x0, y0)
+	var b: Vector3i = odd_r_to_cube(x1, y1)
+	return maxi(maxi(absi(a.x - b.x), absi(a.y - b.y)), absi(a.z - b.z))
+
+
 static func bounce_dir(id: String) -> String:
 	match id:
 		"W":

@@ -87,4 +87,4 @@ func _on_exit() -> void:
 func _on_cell(map_id: String) -> void:
 	_GameLaunch.pack_path = _GameLaunch.CAMPAIGN
 	_GameLaunch.map_id = map_id
-	get_tree().change_scene_to_file("res://scenes/game.tscn")
+	SceneFade.go("res://scenes/game.tscn")

@@ -6,6 +6,8 @@ const _HexGrid := preload("res://scripts/core/hex_grid.gd")
 const ATOM_SCENE := preload("res://prefabs/atom_view.tscn")
 const NEUTRON_SCENE := preload("res://prefabs/neutron_view.tscn")
 
+const _BoardTransition := preload("res://scripts/view/board_transition.gd")
+
 const ORBIT_FADE_TIME := 0.1
 const ORBIT_FADE_SCALE := 1.75
 const MARK_COLOR := Color(0.726, 0.726, 0.726)
@@ -18,9 +20,12 @@ var _marks: Node2D
 var _atoms_root: Node2D
 var _neutrons_root: Node2D
 var _vfx: Node2D
+var _ghost_root: Node2D
 var _atom_views: Dictionary = {}
 var _neutron_views: Dictionary = {}
 var _fades: Array = []
+var _ghost_cells: Dictionary = {}
+var _transition = _BoardTransition.new()
 
 
 func _ready() -> void:
@@ -47,33 +52,94 @@ func _ensure_layers() -> void:
 	add_child(_vfx)
 
 
+func is_transitioning() -> bool:
+	return _transition.is_active()
+
+
 func sync(session, dt: float) -> void:
 	_ensure_layers()
 	if session == null or session.sim == null:
 		return
 	if _epoch != session.board_epoch:
-		_rebuild(session)
+		_begin_swap(session)
+	_transition.tick(dt)
 	var sim = session.sim
 	_drain_events(sim)
 	_sync_atoms(session, dt)
 	_sync_neutrons(sim, dt)
+	_tick_ghosts()
 	_tick_fades(dt)
+	if not _transition.is_active():
+		_free_ghosts()
 
 
 func pointer_logic() -> Vector2:
 	return _ViewTransform.view_to_logic(to_local(get_global_mouse_position()))
 
 
-func _rebuild(session) -> void:
+func _begin_swap(session) -> void:
+	if _transition.is_active():
+		_transition.cut()
+		_free_ghosts()
+	var exit_cells: Array[Vector2i] = _stash_ghosts()
 	_epoch = session.board_epoch
 	_event_i = 0
-	_clear_children(_marks)
-	_clear_children(_atoms_root)
+	_rebuild_marks(session)
 	_clear_children(_neutrons_root)
 	_clear_children(_vfx)
-	_atom_views.clear()
 	_neutron_views.clear()
 	_fades.clear()
+	_atom_views.clear()
+	_atoms_root = Node2D.new()
+	_atoms_root.name = "Atoms"
+	_atoms_root.z_index = 1
+	add_child(_atoms_root)
+	var enter_cells: Array[Vector2i] = []
+	for atom in session.sim.atoms:
+		if atom.collapsed:
+			continue
+		enter_cells.append(Vector2i(atom.x, atom.y))
+	_transition.begin(enter_cells, exit_cells, _origin_cell(enter_cells))
+
+
+func _stash_ghosts() -> Array[Vector2i]:
+	var cells: Array[Vector2i] = []
+	_ghost_cells.clear()
+	if _atoms_root == null:
+		return cells
+	for view in _atom_views.values():
+		if view == null or not is_instance_valid(view):
+			continue
+		if not view.visible or view.modulate.a <= 0.01:
+			continue
+		var cell: Vector2i = view.board_cell
+		cells.append(cell)
+		_ghost_cells[view] = cell
+	if cells.is_empty():
+		_atoms_root.name = "AtomsOld"
+		_atoms_root.queue_free()
+		_atoms_root = null
+		return cells
+	_ghost_root = _atoms_root
+	_ghost_root.name = "Ghosts"
+	_ghost_root.z_index = 4
+	_atoms_root = null
+	return cells
+
+
+func _origin_cell(cells: Array[Vector2i]) -> Vector2i:
+	if cells.is_empty():
+		return Vector2i.ZERO
+	var sx := 0
+	var sy := 0
+	for cell in cells:
+		sx += cell.x
+		sy += cell.y
+	return Vector2i(int(round(float(sx) / float(cells.size()))), int(round(float(sy) / float(cells.size()))))
+
+
+func _rebuild_marks(session) -> void:
+	_clear_children(_marks)
 	var sim = session.sim
 	for y in range(sim.height):
 		var row_w: int = sim.width if y % 2 == 0 else sim.width - 1
@@ -89,10 +155,11 @@ func _rebuild(session) -> void:
 
 func _sync_atoms(session, dt: float) -> void:
 	var sim = session.sim
+	var busy: bool = _transition.is_active()
 	var hover = null
-	if sim.state == "waiting":
+	if not busy and sim.state == "waiting":
 		hover = session.pick_atom(session.pointer)
-	var drag = sim.get_drag_atom()
+	var drag = null if busy else sim.get_drag_atom()
 	var seen: Dictionary = {}
 	for atom in sim.atoms:
 		seen[atom.id] = true
@@ -102,12 +169,36 @@ func _sync_atoms(session, dt: float) -> void:
 			_atoms_root.add_child(view)
 			_atom_views[atom.id] = view
 		view.set_board_size(sim.width, sim.height)
+		var cell := Vector2i(atom.x, atom.y)
+		if busy:
+			view.set_assemble(_transition.enter_k(cell))
+		else:
+			view.set_assemble(1.0)
 		var drag_logic = session.pointer if drag != null and drag.id == atom.id else null
-		view.sync(atom, hover != null and hover.id == atom.id, drag_logic, dt)
+		var hovering: bool = hover != null and hover.id == atom.id
+		view.sync(atom, hovering, drag_logic, dt)
 	for id in _atom_views.keys():
-		if not seen.has(id):
-			_atom_views[id].queue_free()
-			_atom_views.erase(id)
+		if seen.has(id):
+			continue
+		_atom_views[id].queue_free()
+		_atom_views.erase(id)
+
+
+func _tick_ghosts() -> void:
+	if _ghost_root == null:
+		return
+	for view in _ghost_cells.keys():
+		if view == null or not is_instance_valid(view):
+			continue
+		var cell: Vector2i = _ghost_cells[view]
+		view.set_assemble(_transition.exit_k(cell))
+
+
+func _free_ghosts() -> void:
+	if _ghost_root != null:
+		_ghost_root.queue_free()
+		_ghost_root = null
+	_ghost_cells.clear()
 
 
 func _sync_neutrons(sim, dt: float) -> void:

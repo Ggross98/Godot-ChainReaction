@@ -33,6 +33,7 @@ var _step_ball_template: Control
 @onready var debug_bar: HBoxContainer = $CanvasLayer/HUD/DebugBar
 @onready var map_prev_button: TextureButton = $CanvasLayer/HUD/PrevButton
 @onready var map_next_button: TextureButton = $CanvasLayer/HUD/NextButton
+@onready var input_shield: Control = $InputShieldLayer/InputShield
 
 
 func _ready() -> void:
@@ -68,12 +69,16 @@ func _process(dt: float) -> void:
 	session.pointer_move(board.pointer_logic())
 	session.advance(dt)
 	board.sync(session, dt)
+	input_shield.visible = board.is_transitioning()
 	_drain_collapse()
 	_sync_launch()
 	_refresh_hud()
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if input_shield.visible:
+		get_viewport().set_input_as_handled()
+		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		var logic: Vector2 = board.pointer_logic()
 		if event.pressed:
@@ -146,7 +151,7 @@ func _on_restart() -> void:
 
 
 func _on_home() -> void:
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	SceneFade.go("res://scenes/main_menu.tscn")
 
 
 func _on_mute() -> void:

@@ -113,7 +113,10 @@ enum PreviewPose { IDLE, CATCHING, MOVABLE, ENTANGLED }
 		root_scale = value
 		_on_look_changed()
 
+const ASSEMBLE_FROM := 0.85
+
 var atom_id: int = -1
+var board_cell: Vector2i = Vector2i.ZERO
 var nuclei: Sprite2D
 var orbit0: Sprite2D
 var orbit1: Sprite2D
@@ -123,6 +126,7 @@ var arrows: Node2D
 var parked_root: Node2D
 
 var _collapse_t: float = -1.0
+var _assemble: float = 1.0
 var _parked_pool: Array = []
 var _look_ready: bool = false
 var _board_w: int = 1
@@ -251,12 +255,22 @@ func _shaft_polygon() -> PackedVector2Array:
 	])
 
 
+func set_assemble(k: float) -> void:
+	_assemble = clampf(k, 0.0, 1.0)
+	_apply_assemble()
+
+
+func assemble_k() -> float:
+	return _assemble
+
+
 func reset_collapse() -> void:
 	_collapse_t = -1.0
 	visible = true
 	modulate.a = 1.0
 	if nuclei:
 		nuclei.scale = _nuclei_ppu_scale()
+	_apply_assemble()
 
 
 func sync(atom, hovering: bool, drag_logic, dt: float) -> void:
@@ -264,6 +278,7 @@ func sync(atom, hovering: bool, drag_logic, dt: float) -> void:
 		return
 	_ensure_children()
 	atom_id = atom.id
+	board_cell = Vector2i(atom.x, atom.y)
 	if atom.collapsed:
 		_run_collapse(dt)
 		return
@@ -276,14 +291,16 @@ func sync(atom, hovering: bool, drag_logic, dt: float) -> void:
 	var group: int = atom.group if behavior.is_entangled() else 0
 	var base := _group_color(group, false)
 	var hi := _group_color(group, true)
-	if hovering and behavior.press_action() == "release":
+	var show_hover: bool = hovering and _assemble >= 1.0 and behavior.press_action() == "release"
+	if show_hover:
 		nuclei.modulate = hi
 	else:
 		nuclei.modulate = base
-	nuclei.scale = _nuclei_ppu_scale(hover_scale if hovering else 1.0)
+	nuclei.scale = _nuclei_ppu_scale(hover_scale if show_hover else 1.0)
 	_refresh_orbits(atom, behavior)
 	_refresh_parked(atom)
 	arrows.visible = behavior.can_drag()
+	_apply_assemble()
 
 
 func last_solid_orbit() -> Sprite2D:
@@ -413,6 +430,18 @@ func _apply_root_scale() -> void:
 	scale = Vector2.ONE * s
 
 
+func _apply_assemble() -> void:
+	if Engine.is_editor_hint():
+		return
+	var c := modulate
+	c.a = _assemble
+	modulate = c
+	var s: float = root_scale
+	if _assemble < 1.0:
+		s *= lerpf(ASSEMBLE_FROM, 1.0, _assemble)
+	scale = Vector2.ONE * s
+
+
 func _apply_look() -> void:
 	_ensure_children()
 	_apply_root_scale()
@@ -432,6 +461,7 @@ func _apply_look() -> void:
 		if s is Sprite2D:
 			s.modulate = neutron_color
 			s.scale = _ViewTransform.sprite_scale(ppu_default)
+	_apply_assemble()
 
 
 func _apply_preview_pose() -> void:

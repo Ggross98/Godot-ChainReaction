@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 AudioService="*res://scenes/audio_service.tscn"
+SceneFade="*res://scenes/scene_fade.tscn"
 
 [display]
 
