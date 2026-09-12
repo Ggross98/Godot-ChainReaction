@@ -72,7 +72,7 @@ func reset_collapse() -> void:
 	visible = true
 	modulate.a = 1.0
 	if nuclei:
-		nuclei.scale = Vector2.ONE
+		nuclei.scale = _nuclei_ppu_scale()
 
 
 func sync(atom, hovering: bool, drag_logic, dt: float) -> void:
@@ -94,7 +94,7 @@ func sync(atom, hovering: bool, drag_logic, dt: float) -> void:
 		nuclei.modulate = hi
 	else:
 		nuclei.modulate = base
-	nuclei.scale = Vector2.ONE * (HOVER_SCALE if hovering else 1.0)
+	nuclei.scale = _nuclei_ppu_scale(HOVER_SCALE if hovering else 1.0)
 	_refresh_orbits(atom, behavior)
 	_refresh_parked(atom)
 	arrows.visible = behavior.can_drag()
@@ -136,7 +136,7 @@ func _run_collapse(dt: float) -> void:
 		parked_root.visible = false
 	_collapse_t += dt
 	var k: float = clampf(1.0 - _collapse_t / COLLAPSE_TIME, 0.0, 1.0)
-	nuclei.scale = Vector2.ONE * k
+	nuclei.scale = _nuclei_ppu_scale(k)
 	if _collapse_t >= COLLAPSE_TIME:
 		visible = false
 
@@ -195,6 +195,10 @@ func _layer_radius(atom, layer_i: int) -> float:
 	if layer_i <= 0:
 		return _SimConstants.ORBIT_INNER
 	return _SimConstants.ORBIT_OUTER
+
+
+func _nuclei_ppu_scale(mult: float = 1.0) -> Vector2:
+	return _ViewTransform.sprite_scale(_ViewTransform.PPU_DEFAULT) * mult
 
 
 func _group_color(group: int, highlight: bool) -> Color:

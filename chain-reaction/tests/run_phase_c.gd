@@ -8,6 +8,7 @@ const _GameSession := preload("res://scripts/app/game_session.gd")
 const _GameLaunch := preload("res://scripts/app/game_launch.gd")
 const _HudStrings := preload("res://scripts/app/hud_strings.gd")
 const _BoardView := preload("res://scripts/view/board_view.gd")
+const _AtomView := preload("res://scripts/view/atom_view.gd")
 
 var _failures: int = 0
 
@@ -26,6 +27,7 @@ func _init() -> void:
 	_test_session_catch_3_1()
 	_test_session_entangle_4_1()
 	_test_board_view_sync_smoke()
+	_test_atom_view_nuclei_keeps_ppu_scale()
 	print("=== %d failure(s) ===" % _failures)
 	quit(1 if _failures > 0 else 0)
 
@@ -257,3 +259,23 @@ func _test_board_view_sync_smoke() -> void:
 	board.sync(session, 1.0 / 60.0)
 	_check(board.get_node_or_null("Neutrons") != null, "neutron layer present")
 	board.queue_free()
+
+
+func _test_atom_view_nuclei_keeps_ppu_scale() -> void:
+	print("-- atom view nuclei PPU scale")
+	var session = _GameSession.new()
+	_check(session.start_pack(_GameLaunch.CAMPAIGN, "1-1"), "loads 1-1 for atom view")
+	var view = _AtomView.new()
+	root.add_child(view)
+	var atom = session.sim.atoms[0]
+	view.set_board_size(session.sim.width, session.sim.height)
+	view.sync(atom, false, null, 0.0)
+	var ppu: float = 1.0 / _ViewTransform.PPU_DEFAULT
+	_check(view.nuclei != null, "nuclei sprite exists")
+	if view.nuclei != null:
+		_check(is_equal_approx(view.nuclei.scale.x, ppu), "idle nuclei uses 1/PPU (got %s)" % str(view.nuclei.scale.x))
+		_check(not is_equal_approx(view.nuclei.scale.x, 1.0), "idle nuclei is not world-scale 1")
+	view.sync(atom, true, null, 0.0)
+	if view.nuclei != null:
+		_check(is_equal_approx(view.nuclei.scale.x, ppu * 1.1), "hover nuclei keeps PPU and 1.1")
+	view.queue_free()
