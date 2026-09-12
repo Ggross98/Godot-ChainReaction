@@ -12,7 +12,6 @@
 [node name="AtomView" type="Node2D" unique_id=1488411104]
 scale = Vector2(0.9, 0.9)
 script = ExtResource("1")
-preview_pose = 2
 
 [node name="OrbitDotted" type="Sprite2D" parent="." unique_id=1708476231]
 visible = false
@@ -89,18 +88,19 @@ scale = Vector2(0.0078125, 0.0078125)
 texture = ExtResource("8_nuclei")
 
 [node name="Arrows" type="Node2D" parent="." unique_id=1554125443]
+visible = false
 z_index = 2
 
 [node name="Arrow0" type="Node2D" parent="Arrows" unique_id=2027736144]
 
 [node name="Shaft" type="Polygon2D" parent="Arrows/Arrow0" unique_id=499293546]
 color = Color(0.529, 0.529, 0.529, 1)
-polygon = PackedVector2Array(-0.159959, -0.008898, 0.012959, -0.008898, 0.012959, 0.008898, -0.159959, 0.008898)
+polygon = PackedVector2Array(-0.15995921, -0.008898, 0.01295921, -0.008898, 0.01295921, 0.008898, -0.15995921, 0.008898)
 
 [node name="Head" type="Sprite2D" parent="Arrows/Arrow0" unique_id=1088656651]
 modulate = Color(0.467, 0.482, 0.498, 1)
 position = Vector2(-0.184, 0)
-scale = Vector2(0.003029, 0.003029)
+scale = Vector2(0.0030273437, 0.0030273437)
 texture = ExtResource("7_arrow")
 flip_h = true
 
@@ -109,12 +109,12 @@ rotation = 1.0471976
 
 [node name="Shaft" type="Polygon2D" parent="Arrows/Arrow1" unique_id=1653609989]
 color = Color(0.529, 0.529, 0.529, 1)
-polygon = PackedVector2Array(-0.159959, -0.008898, 0.012959, -0.008898, 0.012959, 0.008898, -0.159959, 0.008898)
+polygon = PackedVector2Array(-0.15995921, -0.008898, 0.01295921, -0.008898, 0.01295921, 0.008898, -0.15995921, 0.008898)
 
 [node name="Head" type="Sprite2D" parent="Arrows/Arrow1" unique_id=1291259335]
 modulate = Color(0.467, 0.482, 0.498, 1)
 position = Vector2(-0.184, 0)
-scale = Vector2(0.003029, 0.003029)
+scale = Vector2(0.0030273437, 0.0030273437)
 texture = ExtResource("7_arrow")
 flip_h = true
 
@@ -123,12 +123,12 @@ rotation = 2.0943952
 
 [node name="Shaft" type="Polygon2D" parent="Arrows/Arrow2" unique_id=31950037]
 color = Color(0.529, 0.529, 0.529, 1)
-polygon = PackedVector2Array(-0.159959, -0.008898, 0.012959, -0.008898, 0.012959, 0.008898, -0.159959, 0.008898)
+polygon = PackedVector2Array(-0.15995921, -0.008898, 0.01295921, -0.008898, 0.01295921, 0.008898, -0.15995921, 0.008898)
 
 [node name="Head" type="Sprite2D" parent="Arrows/Arrow2" unique_id=523576730]
 modulate = Color(0.467, 0.482, 0.498, 1)
 position = Vector2(-0.184, 0)
-scale = Vector2(0.003029, 0.003029)
+scale = Vector2(0.0030273437, 0.0030273437)
 texture = ExtResource("7_arrow")
 flip_h = true
 
@@ -137,12 +137,12 @@ rotation = 3.1415927
 
 [node name="Shaft" type="Polygon2D" parent="Arrows/Arrow3" unique_id=97365436]
 color = Color(0.529, 0.529, 0.529, 1)
-polygon = PackedVector2Array(-0.159959, -0.008898, 0.012959, -0.008898, 0.012959, 0.008898, -0.159959, 0.008898)
+polygon = PackedVector2Array(-0.15995921, -0.008898, 0.01295921, -0.008898, 0.01295921, 0.008898, -0.15995921, 0.008898)
 
 [node name="Head" type="Sprite2D" parent="Arrows/Arrow3" unique_id=1269337578]
 modulate = Color(0.467, 0.482, 0.498, 1)
 position = Vector2(-0.184, 0)
-scale = Vector2(0.003029, 0.003029)
+scale = Vector2(0.0030273437, 0.0030273437)
 texture = ExtResource("7_arrow")
 flip_h = true
 
@@ -151,12 +151,12 @@ rotation = 4.1887903
 
 [node name="Shaft" type="Polygon2D" parent="Arrows/Arrow4" unique_id=1022360377]
 color = Color(0.529, 0.529, 0.529, 1)
-polygon = PackedVector2Array(-0.159959, -0.008898, 0.012959, -0.008898, 0.012959, 0.008898, -0.159959, 0.008898)
+polygon = PackedVector2Array(-0.15995921, -0.008898, 0.01295921, -0.008898, 0.01295921, 0.008898, -0.15995921, 0.008898)
 
 [node name="Head" type="Sprite2D" parent="Arrows/Arrow4" unique_id=1745714789]
 modulate = Color(0.467, 0.482, 0.498, 1)
 position = Vector2(-0.184, 0)
-scale = Vector2(0.003029, 0.003029)
+scale = Vector2(0.0030273437, 0.0030273437)
 texture = ExtResource("7_arrow")
 flip_h = true
 
@@ -165,11 +165,11 @@ rotation = 5.2359877
 
 [node name="Shaft" type="Polygon2D" parent="Arrows/Arrow5" unique_id=1444978634]
 color = Color(0.529, 0.529, 0.529, 1)
-polygon = PackedVector2Array(-0.159959, -0.008898, 0.012959, -0.008898, 0.012959, 0.008898, -0.159959, 0.008898)
+polygon = PackedVector2Array(-0.15995921, -0.008898, 0.01295921, -0.008898, 0.01295921, 0.008898, -0.15995921, 0.008898)
 
 [node name="Head" type="Sprite2D" parent="Arrows/Arrow5" unique_id=376326619]
 modulate = Color(0.467, 0.482, 0.498, 1)
 position = Vector2(-0.184, 0)
-scale = Vector2(0.003029, 0.003029)
+scale = Vector2(0.0030273437, 0.0030273437)
 texture = ExtResource("7_arrow")
 flip_h = true
