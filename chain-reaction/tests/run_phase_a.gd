@@ -224,9 +224,11 @@ func _expected_campaign_ids() -> PackedStringArray:
 func _test_generated_packs() -> void:
 	print("-- generated packs")
 	var loader := _loader()
-	var campaign := loader.load_pack_file("res://data/maps/campaign.json")
-	_check(campaign.ok, "campaign.json loads")
-	_check(campaign.errors.is_empty(), "campaign.json has no errors")
+	var campaign := loader.load_pack_file("res://data/maps/campaign")
+	_check(campaign.ok, "campaign pack loads")
+	_check(campaign.errors.is_empty(), "campaign pack has no errors")
+	_check(FileAccess.file_exists("res://data/maps/campaign/level_1-1.json"), "level_1-1.json exists")
+	_check(FileAccess.file_exists("res://data/maps/campaign/pack.json"), "campaign pack.json exists")
 	if campaign.pack == null:
 		_check(false, "campaign pack is missing")
 		return
@@ -247,9 +249,10 @@ func _test_generated_packs() -> void:
 				cells[key] = true
 			_check(not dup, "1-5 has no duplicate cells")
 
-	var custom := loader.load_pack_file("res://data/maps/custom.json")
-	_check(custom.ok, "custom.json loads")
-	_check(custom.errors.is_empty(), "custom.json has no errors")
+	var custom := loader.load_pack_file("res://data/maps/custom")
+	_check(custom.ok, "custom pack loads")
+	_check(custom.errors.is_empty(), "custom pack has no errors")
+	_check(FileAccess.file_exists("res://data/maps/custom/level_relay-race.json"), "level_relay-race.json exists")
 	if custom.pack == null:
 		_check(false, "custom pack is missing")
 		return

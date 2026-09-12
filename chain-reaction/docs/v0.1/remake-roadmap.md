@@ -27,8 +27,10 @@
 按职责拆文件，避免再长出一个 `MapController.gd`。
 
 ```text
-data/maps/campaign.json
-data/maps/custom.json
+data/maps/campaign/pack.json
+data/maps/campaign/level_1-1.json
+data/maps/custom/pack.json
+data/maps/custom/level_relay-race.json
 data/i18n/en.json
 
 assets/sprites/          # 从 Unity 导入的 PNG
@@ -68,7 +70,7 @@ tests/                                   # 无场景或最小场景的模拟测�
 
 **做：**
 
-1. 按 GDD §10 写下 `campaign.json` / `custom.json` 的加载与校验（schema 版本、合法格、同格冲突、未知 type、纠缠缺 group）
+1. 按 GDD §10 写下包目录 + `level_{id}.json` 的加载与校验（schema 版本、合法格、同格冲突、未知 type、纠缠缺 group）
 2. 写转换器：读原 `Maps.json` 与 `CustomMaps.json`
    - 数字 type / 中子数字串 → 字符串 ID
    - 生成短 `id`

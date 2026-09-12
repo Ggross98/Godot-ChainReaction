@@ -1,0 +1,49 @@
+{
+	"atoms": [
+		{
+			"orbits": [
+				[
+					"SW"
+				]
+			],
+			"type": "normal",
+			"x": 0,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"W"
+				]
+			],
+			"type": "normal",
+			"x": 2,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"W"
+				]
+			],
+			"type": "normal",
+			"x": 3,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"E"
+				]
+			],
+			"type": "normal",
+			"x": 1,
+			"y": 0
+		}
+	],
+	"height": 1,
+	"id": "1-2",
+	"name": "1-2",
+	"steps": 1,
+	"width": 4
+}

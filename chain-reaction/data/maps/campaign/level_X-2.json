@@ -1,0 +1,117 @@
+{
+	"atoms": [
+		{
+			"type": "catching",
+			"x": 1,
+			"y": 1
+		},
+		{
+			"type": "catching",
+			"x": 4,
+			"y": 1
+		},
+		{
+			"type": "catching",
+			"x": 2,
+			"y": 3
+		},
+		{
+			"group": 1,
+			"orbits": [
+				[
+					"W"
+				]
+			],
+			"type": "entangled_movable",
+			"x": 0,
+			"y": 0
+		},
+		{
+			"group": 3,
+			"orbits": [
+				[
+					"W",
+					"SE"
+				]
+			],
+			"type": "entangled_movable",
+			"x": 2,
+			"y": 0
+		},
+		{
+			"group": 1,
+			"orbits": [
+				[
+					"SE"
+				]
+			],
+			"type": "entangled_movable",
+			"x": 5,
+			"y": 2
+		},
+		{
+			"group": 3,
+			"orbits": [
+				[
+					"NE",
+					"SW"
+				]
+			],
+			"type": "entangled_movable",
+			"x": 5,
+			"y": 4
+		},
+		{
+			"orbits": [
+				[
+					"W"
+				],
+				[
+					"SE",
+					"SW"
+				]
+			],
+			"type": "normal",
+			"x": 1,
+			"y": 4
+		},
+		{
+			"orbits": [
+				[
+					"NE"
+				]
+			],
+			"type": "normal",
+			"x": 1,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"SE"
+				]
+			],
+			"type": "normal",
+			"x": 3,
+			"y": 4
+		},
+		{
+			"orbits": [
+				[
+					"NE"
+				],
+				[
+					"E"
+				]
+			],
+			"type": "movable",
+			"x": 0,
+			"y": 3
+		}
+	],
+	"height": 5,
+	"id": "X-2",
+	"name": "X-2",
+	"steps": 2,
+	"width": 6
+}

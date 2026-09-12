@@ -1,0 +1,87 @@
+{
+	"atoms": [
+		{
+			"orbits": [
+				[
+					"E"
+				],
+				[
+					"W"
+				]
+			],
+			"type": "normal",
+			"x": 3,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"W"
+				],
+				[
+					"W"
+				]
+			],
+			"type": "movable",
+			"x": 0,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"W"
+				],
+				[
+					"E"
+				]
+			],
+			"type": "movable",
+			"x": 1,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"W"
+				],
+				[
+					"E"
+				]
+			],
+			"type": "movable",
+			"x": 2,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"E"
+				],
+				[
+					"E"
+				]
+			],
+			"type": "movable",
+			"x": 5,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"E"
+				],
+				[
+					"W"
+				]
+			],
+			"type": "movable",
+			"x": 6,
+			"y": 0
+		}
+	],
+	"height": 1,
+	"id": "2-7",
+	"name": "2-7",
+	"steps": 1,
+	"width": 7
+}

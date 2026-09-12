@@ -1,0 +1,75 @@
+{
+	"atoms": [
+		{
+			"group": 1,
+			"orbits": [
+				[
+					"W"
+				]
+			],
+			"type": "entangled",
+			"x": 1,
+			"y": 0
+		},
+		{
+			"group": 1,
+			"orbits": [
+				[
+					"E"
+				]
+			],
+			"type": "entangled",
+			"x": 2,
+			"y": 1
+		},
+		{
+			"group": 2,
+			"orbits": [
+				[
+					"W"
+				]
+			],
+			"type": "entangled",
+			"x": 2,
+			"y": 0
+		},
+		{
+			"group": 2,
+			"orbits": [
+				[
+					"E"
+				]
+			],
+			"type": "entangled",
+			"x": 1,
+			"y": 2
+		},
+		{
+			"group": 3,
+			"orbits": [
+				[
+					"W"
+				]
+			],
+			"type": "entangled",
+			"x": 0,
+			"y": 1
+		},
+		{
+			"group": 3,
+			"orbits": [
+				[
+					"E"
+				]
+			],
+			"type": "entangled",
+			"x": 2,
+			"y": 2
+		}
+	],
+	"height": 3,
+	"id": "4-2",
+	"name": "4-2",
+	"steps": 1,
+	"width": 4
+}

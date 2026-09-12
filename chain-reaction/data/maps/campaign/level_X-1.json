@@ -1,0 +1,104 @@
+{
+	"atoms": [
+		{
+			"orbits": [
+				[
+					"E"
+				]
+			],
+			"type": "normal",
+			"x": 0,
+			"y": 2
+		},
+		{
+			"orbits": [
+				[
+					"NW"
+				]
+			],
+			"type": "normal",
+			"x": 1,
+			"y": 4
+		},
+		{
+			"orbits": [
+				[
+					"W"
+				]
+			],
+			"type": "normal",
+			"x": 5,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"W"
+				]
+			],
+			"type": "normal",
+			"x": 4,
+			"y": 2
+		},
+		{
+			"type": "catching_movable",
+			"x": 1,
+			"y": 1
+		},
+		{
+			"group": 3,
+			"orbits": [
+				[
+					"NW"
+				],
+				[
+					"SE"
+				]
+			],
+			"type": "entangled_movable",
+			"x": 2,
+			"y": 2
+		},
+		{
+			"group": 3,
+			"orbits": [
+				[
+					"W"
+				],
+				[
+					"E"
+				]
+			],
+			"type": "entangled_movable",
+			"x": 3,
+			"y": 0
+		},
+		{
+			"group": 2,
+			"orbits": [
+				[
+					"NE"
+				]
+			],
+			"type": "entangled_movable",
+			"x": 1,
+			"y": 0
+		},
+		{
+			"group": 2,
+			"orbits": [
+				[
+					"NW"
+				]
+			],
+			"type": "entangled",
+			"x": 4,
+			"y": 3
+		}
+	],
+	"height": 5,
+	"id": "X-1",
+	"name": "X-1",
+	"steps": 2,
+	"width": 6
+}

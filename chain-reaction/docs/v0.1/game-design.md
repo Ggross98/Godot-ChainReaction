@@ -363,11 +363,13 @@ Unity 仓库里目前往往只有 `.meta`、没有 mp3 本体。落地时从本�
 建议路径：
 
 ```text
-data/maps/campaign.json
-data/maps/custom.json
+data/maps/campaign/pack.json
+data/maps/campaign/level_1-1.json
+data/maps/custom/pack.json
+data/maps/custom/level_relay-race.json
 ```
 
-每个文件是一个包。以后若要拆成一关一文件，关卡对象形状不变，只改包的引用方式。
+每个目录是一个包。`pack.json` 只存包元数据和关卡 id 顺序；每关单独 `level_{id}.json`，关卡对象形状不变。
 
 ### 10.1 包
 
@@ -375,14 +377,14 @@ data/maps/custom.json
 {
   "schema_version": 1,
   "id": "campaign",
-  "maps": [ ]
+  "maps": ["1-1", "1-2"]
 }
 ```
 
 - 加载时若 `schema_version` 大于游戏认识的版本：失败
 - 小于当前：转换器或加载器做前向兼容（v0.1 只需要认识 1）
 - 未知字段：忽略并警告
-- `maps` 顺序 = 选关顺序 = 解锁扫描顺序
+- `maps` 为关卡 id 数组，顺序 = 选关顺序 = 解锁扫描顺序。关卡数据在同目录 `level_{id}.json`
 
 ### 10.2 关卡对象
 

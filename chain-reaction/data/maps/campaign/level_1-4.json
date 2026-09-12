@@ -1,0 +1,65 @@
+{
+	"atoms": [
+		{
+			"orbits": [
+				[
+					"W"
+				]
+			],
+			"type": "normal",
+			"x": 0,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"W"
+				],
+				[
+					"E"
+				]
+			],
+			"type": "normal",
+			"x": 1,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"E"
+				]
+			],
+			"type": "normal",
+			"x": 2,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"W"
+				],
+				[
+					"W"
+				]
+			],
+			"type": "normal",
+			"x": 3,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"W"
+				]
+			],
+			"type": "normal",
+			"x": 4,
+			"y": 0
+		}
+	],
+	"height": 1,
+	"id": "1-4",
+	"name": "1-4 Multi-Orbit",
+	"steps": 1,
+	"width": 5
+}

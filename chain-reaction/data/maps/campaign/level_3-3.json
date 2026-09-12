@@ -1,0 +1,70 @@
+{
+	"atoms": [
+		{
+			"orbits": [
+				[
+					"NW",
+					"NE"
+				]
+			],
+			"type": "normal",
+			"x": 1,
+			"y": 1
+		},
+		{
+			"orbits": [
+				[
+					"W"
+				]
+			],
+			"type": "movable",
+			"x": 0,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"NW"
+				]
+			],
+			"type": "movable",
+			"x": 0,
+			"y": 2
+		},
+		{
+			"orbits": [
+				[
+					"NE"
+				]
+			],
+			"type": "movable",
+			"x": 3,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"E"
+				]
+			],
+			"type": "movable",
+			"x": 3,
+			"y": 2
+		},
+		{
+			"type": "catching",
+			"x": 1,
+			"y": 2
+		},
+		{
+			"type": "catching",
+			"x": 2,
+			"y": 2
+		}
+	],
+	"height": 3,
+	"id": "3-3",
+	"name": "3-3",
+	"steps": 2,
+	"width": 4
+}

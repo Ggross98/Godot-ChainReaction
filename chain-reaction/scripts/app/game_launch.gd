@@ -1,8 +1,8 @@
 class_name GameLaunch
 extends RefCounted
 
-const CAMPAIGN := "res://data/maps/campaign.json"
-const CUSTOM := "res://data/maps/custom.json"
+const CAMPAIGN := "res://data/maps/campaign"
+const CUSTOM := "res://data/maps/custom"
 
 static var pack_path: String = CAMPAIGN
 static var map_id: String = "1-1"

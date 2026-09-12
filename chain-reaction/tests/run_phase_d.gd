@@ -41,8 +41,8 @@ func _expected_campaign_ids() -> PackedStringArray:
 
 func _test_game_launch_defaults() -> void:
 	print("-- GameLaunch")
-	_check(_GameLaunch.CAMPAIGN == "res://data/maps/campaign.json", "campaign path")
-	_check(_GameLaunch.CUSTOM == "res://data/maps/custom.json", "custom path")
+	_check(_GameLaunch.CAMPAIGN == "res://data/maps/campaign", "campaign path")
+	_check(_GameLaunch.CUSTOM == "res://data/maps/custom", "custom path")
 
 
 func _test_campaign_wrap() -> void:
@@ -69,6 +69,8 @@ func _test_load_all_maps() -> void:
 	print("-- load all maps")
 	_check_pack(_GameLaunch.CAMPAIGN, 40, _expected_campaign_ids())
 	_check_pack(_GameLaunch.CUSTOM, 2, PackedStringArray(["relay-race", "one-stroke"]))
+	_check(FileAccess.file_exists("res://data/maps/campaign/level_1-1.json"), "campaign level_1-1.json")
+	_check(FileAccess.file_exists("res://data/maps/custom/level_relay-race.json"), "custom level_relay-race.json")
 
 
 func _check_pack(path: String, expected_count: int, expected_ids: PackedStringArray) -> void:

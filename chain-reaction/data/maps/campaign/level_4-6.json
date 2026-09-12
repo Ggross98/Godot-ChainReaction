@@ -1,0 +1,141 @@
+{
+	"atoms": [
+		{
+			"group": 3,
+			"orbits": [
+				[
+					"W"
+				],
+				[
+					"E"
+				]
+			],
+			"type": "entangled_movable",
+			"x": 0,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"W"
+				],
+				[
+					"W"
+				]
+			],
+			"type": "movable",
+			"x": 1,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"W"
+				],
+				[
+					"W"
+				]
+			],
+			"type": "movable",
+			"x": 2,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"E"
+				],
+				[
+					"E"
+				]
+			],
+			"type": "movable",
+			"x": 3,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"W"
+				],
+				[
+					"E"
+				]
+			],
+			"type": "movable",
+			"x": 4,
+			"y": 0
+		},
+		{
+			"group": 3,
+			"orbits": [
+				[
+					"E"
+				],
+				[
+					"E"
+				]
+			],
+			"type": "entangled_movable",
+			"x": 0,
+			"y": 2
+		},
+		{
+			"orbits": [
+				[
+					"W"
+				],
+				[
+					"E"
+				]
+			],
+			"type": "normal",
+			"x": 2,
+			"y": 2
+		},
+		{
+			"orbits": [
+				[
+					"W"
+				],
+				[
+					"W"
+				]
+			],
+			"type": "movable",
+			"x": 1,
+			"y": 2
+		},
+		{
+			"orbits": [
+				[
+					"W"
+				],
+				[
+					"E"
+				]
+			],
+			"type": "movable",
+			"x": 3,
+			"y": 2
+		},
+		{
+			"orbits": [
+				[
+					"W"
+				],
+				[
+					"W"
+				]
+			],
+			"type": "movable",
+			"x": 4,
+			"y": 2
+		}
+	],
+	"height": 3,
+	"id": "4-6",
+	"name": "4-6",
+	"steps": 1,
+	"width": 5
+}

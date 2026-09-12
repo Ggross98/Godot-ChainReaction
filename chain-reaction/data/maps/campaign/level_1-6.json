@@ -1,0 +1,69 @@
+{
+	"atoms": [
+		{
+			"orbits": [
+				[
+					"NE"
+				]
+			],
+			"type": "normal",
+			"x": 0,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"NW"
+				]
+			],
+			"type": "normal",
+			"x": 0,
+			"y": 1
+		},
+		{
+			"orbits": [
+				[
+					"NW"
+				]
+			],
+			"type": "normal",
+			"x": 0,
+			"y": 2
+		},
+		{
+			"orbits": [
+				[
+					"SE"
+				]
+			],
+			"type": "normal",
+			"x": 1,
+			"y": 1
+		},
+		{
+			"orbits": [
+				[
+					"SE"
+				]
+			],
+			"type": "normal",
+			"x": 2,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"SW"
+				]
+			],
+			"type": "normal",
+			"x": 2,
+			"y": 2
+		}
+	],
+	"height": 3,
+	"id": "1-6",
+	"name": "1-6 More Steps",
+	"steps": 2,
+	"width": 3
+}

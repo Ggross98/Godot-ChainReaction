@@ -6,8 +6,8 @@ const _MapSchema := preload("res://scripts/core/map_schema.gd")
 
 const CAMPAIGN_SRC := "res://tools/unity_import/Maps.json"
 const CUSTOM_SRC := "res://tools/unity_import/CustomMaps.json"
-const CAMPAIGN_OUT := "res://data/maps/campaign.json"
-const CUSTOM_OUT := "res://data/maps/custom.json"
+const CAMPAIGN_OUT := "res://data/maps/campaign"
+const CUSTOM_OUT := "res://data/maps/custom"
 const REPORT_OUT := "res://data/maps/CONVERSION.md"
 
 
@@ -97,9 +97,9 @@ static func run_cli() -> int:
 	var campaign := convert_pack(campaign_src, "campaign")
 	var custom := convert_pack(custom_src, "custom")
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path("res://data/maps"))
-	if not _write_json(CAMPAIGN_OUT, campaign.pack):
+	if not _write_pack_dir(CAMPAIGN_OUT, campaign.pack):
 		return 1
-	if not _write_json(CUSTOM_OUT, custom.pack):
+	if not _write_pack_dir(CUSTOM_OUT, custom.pack):
 		return 1
 	if not _write_text(REPORT_OUT, _render_report(campaign.notes, custom.notes)):
 		return 1
@@ -182,6 +182,32 @@ static func _read_json(path: String) -> Dictionary:
 		push_error("invalid JSON %s" % path)
 		return {}
 	return parsed
+
+
+static func _write_pack_dir(dir_res: String, pack: Dictionary) -> bool:
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(dir_res))
+	var maps: Variant = pack.get("maps", [])
+	if typeof(maps) != TYPE_ARRAY:
+		push_error("pack maps missing: %s" % dir_res)
+		return false
+	var ids: Array = []
+	for m in maps:
+		if typeof(m) != TYPE_DICTIONARY:
+			push_error("pack map is not an object: %s" % dir_res)
+			return false
+		var map_id := str(m.get("id", "")).strip_edges()
+		if map_id == "":
+			push_error("pack map missing id: %s" % dir_res)
+			return false
+		ids.append(map_id)
+		if not _write_json("%s/level_%s.json" % [dir_res, map_id], m):
+			return false
+	var index := {
+		"schema_version": pack.get("schema_version", _MapSchema.SCHEMA_VERSION),
+		"id": pack.get("id", ""),
+		"maps": ids,
+	}
+	return _write_json("%s/pack.json" % dir_res, index)
 
 
 static func _write_json(path: String, data: Dictionary) -> bool:

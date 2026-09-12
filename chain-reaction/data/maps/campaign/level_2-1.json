@@ -1,0 +1,39 @@
+{
+	"atoms": [
+		{
+			"orbits": [
+				[
+					"E"
+				]
+			],
+			"type": "normal",
+			"x": 0,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"NE"
+				]
+			],
+			"type": "movable",
+			"x": 2,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"NE"
+				]
+			],
+			"type": "normal",
+			"x": 2,
+			"y": 2
+		}
+	],
+	"height": 3,
+	"id": "2-1",
+	"name": "2-1 Drag to Move",
+	"steps": 1,
+	"width": 3
+}

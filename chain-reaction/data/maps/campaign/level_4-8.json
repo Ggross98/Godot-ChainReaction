@@ -1,0 +1,97 @@
+{
+	"atoms": [
+		{
+			"group": 1,
+			"orbits": [
+				[
+					"SW"
+				]
+			],
+			"type": "entangled_movable",
+			"x": 0,
+			"y": 1
+		},
+		{
+			"group": 1,
+			"orbits": [
+				[
+					"SW"
+				],
+				[
+					"SW"
+				]
+			],
+			"type": "entangled_movable",
+			"x": 0,
+			"y": 2
+		},
+		{
+			"group": 2,
+			"orbits": [
+				[
+					"NW"
+				]
+			],
+			"type": "entangled_movable",
+			"x": 1,
+			"y": 0
+		},
+		{
+			"group": 2,
+			"orbits": [
+				[
+					"W"
+				],
+				[
+					"NW"
+				]
+			],
+			"type": "entangled_movable",
+			"x": 2,
+			"y": 1
+		},
+		{
+			"group": 3,
+			"orbits": [
+				[
+					"E"
+				]
+			],
+			"type": "entangled_movable",
+			"x": 2,
+			"y": 2
+		},
+		{
+			"group": 3,
+			"orbits": [
+				[
+					"W"
+				],
+				[
+					"NW"
+				]
+			],
+			"type": "entangled_movable",
+			"x": 3,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"SW"
+				],
+				[
+					"E"
+				]
+			],
+			"type": "normal",
+			"x": 1,
+			"y": 1
+		}
+	],
+	"height": 3,
+	"id": "4-8",
+	"name": "4-8",
+	"steps": 1,
+	"width": 4
+}

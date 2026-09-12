@@ -1,0 +1,111 @@
+{
+	"atoms": [
+		{
+			"orbits": [
+				[
+					"NE",
+					"SE"
+				]
+			],
+			"type": "normal",
+			"x": 0,
+			"y": 1
+		},
+		{
+			"orbits": [
+				[
+					"SW"
+				],
+				[
+					"NE"
+				]
+			],
+			"type": "normal",
+			"x": 3,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"NW"
+				],
+				[
+					"SE"
+				]
+			],
+			"type": "normal",
+			"x": 3,
+			"y": 2
+		},
+		{
+			"type": "catching",
+			"x": 3,
+			"y": 1
+		},
+		{
+			"orbits": [
+				[
+					"NE"
+				]
+			],
+			"type": "movable",
+			"x": 1,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"NE"
+				]
+			],
+			"type": "movable",
+			"x": 1,
+			"y": 1
+		},
+		{
+			"orbits": [
+				[
+					"E"
+				]
+			],
+			"type": "movable",
+			"x": 1,
+			"y": 2
+		},
+		{
+			"orbits": [
+				[
+					"E"
+				]
+			],
+			"type": "movable",
+			"x": 2,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"SE"
+				]
+			],
+			"type": "movable",
+			"x": 2,
+			"y": 1
+		},
+		{
+			"orbits": [
+				[
+					"SE"
+				]
+			],
+			"type": "movable",
+			"x": 2,
+			"y": 2
+		}
+	],
+	"height": 3,
+	"id": "X-5",
+	"name": "X-5",
+	"steps": 2,
+	"width": 5
+}

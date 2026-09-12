@@ -5,6 +5,7 @@ const _MapLoader := preload("res://scripts/content/map_loader.gd")
 const _Simulation := preload("res://scripts/core/simulation.gd")
 const _ViewTransform := preload("res://scripts/view/view_transform.gd")
 const _GameSession := preload("res://scripts/app/game_session.gd")
+const _GameLaunch := preload("res://scripts/app/game_launch.gd")
 const _HudStrings := preload("res://scripts/app/hud_strings.gd")
 const _BoardView := preload("res://scripts/view/board_view.gd")
 
@@ -38,7 +39,7 @@ func _check(cond: bool, msg: String) -> void:
 
 
 func _campaign() -> Object:
-	var result = _MapLoader.new().load_pack_file("res://data/maps/campaign.json")
+	var result = _MapLoader.new().load_pack_file(_GameLaunch.CAMPAIGN)
 	if not result.ok:
 		print("  FAIL campaign load: %s" % ",".join(result.errors))
 		_failures += 1
@@ -120,7 +121,7 @@ func _test_get_drag_atom() -> void:
 func _test_session_press_1_1() -> void:
 	print("-- session press 1-1")
 	var session = _GameSession.new()
-	_check(session.start_pack("res://data/maps/campaign.json", "1-1"), "loads 1-1")
+	_check(session.start_pack(_GameLaunch.CAMPAIGN, "1-1"), "loads 1-1")
 	_check(session.map_id() == "1-1", "current id is 1-1")
 	_check(session.hud_title() == "1-1 Click to Release", "title from map name")
 	_check(session.hud_steps() == _HudStrings.left_steps(1), "steps string")
@@ -138,7 +139,7 @@ func _test_session_press_1_1() -> void:
 func _test_reacting_ignores_press_and_drag() -> void:
 	print("-- reacting ignores input")
 	var session = _GameSession.new()
-	session.start_pack("res://data/maps/campaign.json", "1-1")
+	session.start_pack(_GameLaunch.CAMPAIGN, "1-1")
 	var world: Vector2 = _HexGrid.cell_to_world(4, 3, 1, 1)
 	session.pointer_press(world)
 	_check(session.sim.state == "reacting", "now reacting")
@@ -151,7 +152,7 @@ func _test_reacting_ignores_press_and_drag() -> void:
 func _test_session_movable_snap() -> void:
 	print("-- session movable snap")
 	var session = _GameSession.new()
-	_check(session.start_pack("res://data/maps/campaign.json", "2-1"), "loads 2-1")
+	_check(session.start_pack(_GameLaunch.CAMPAIGN, "2-1"), "loads 2-1")
 	var origin: Vector2 = _HexGrid.cell_to_world(3, 3, 2, 0)
 	_check(session.pointer_press(origin), "begin drag movable")
 	_check(session.sim.state == "dragging", "state dragging")
@@ -171,7 +172,7 @@ func _test_session_movable_snap() -> void:
 func _test_win_delay_advances_to_next() -> void:
 	print("-- win delay")
 	var session = _GameSession.new()
-	session.start_pack("res://data/maps/campaign.json", "1-1")
+	session.start_pack(_GameLaunch.CAMPAIGN, "1-1")
 	session.pointer_press(_HexGrid.cell_to_world(4, 3, 1, 1))
 	var guard := 0
 	while session.sim.state == "reacting" and guard < 600:
@@ -190,7 +191,7 @@ func _test_win_delay_advances_to_next() -> void:
 func _test_restart_cancels_delay() -> void:
 	print("-- restart cancels delay")
 	var session = _GameSession.new()
-	session.start_pack("res://data/maps/campaign.json", "1-1")
+	session.start_pack(_GameLaunch.CAMPAIGN, "1-1")
 	session.pointer_press(_HexGrid.cell_to_world(4, 3, 1, 1))
 	var guard := 0
 	while session.sim.state == "reacting" and guard < 600:
@@ -216,7 +217,7 @@ func _tick_idle(session, max_frames: int = 600) -> void:
 func _test_session_catch_3_1() -> void:
 	print("-- session 3-1 catch")
 	var session = _GameSession.new()
-	_check(session.start_pack("res://data/maps/campaign.json", "3-1"), "loads 3-1")
+	_check(session.start_pack(_GameLaunch.CAMPAIGN, "3-1"), "loads 3-1")
 	_check(session.pointer_press(_HexGrid.cell_to_world(3, 1, 1, 0)), "press shooter")
 	_tick_idle(session)
 	var catcher = session.sim.atom_at(2, 0)
@@ -232,7 +233,7 @@ func _test_session_catch_3_1() -> void:
 func _test_session_entangle_4_1() -> void:
 	print("-- session 4-1 entangle")
 	var session = _GameSession.new()
-	_check(session.start_pack("res://data/maps/campaign.json", "4-1"), "loads 4-1")
+	_check(session.start_pack(_GameLaunch.CAMPAIGN, "4-1"), "loads 4-1")
 	_check(session.pointer_press(_HexGrid.cell_to_world(3, 3, 0, 0)), "press entangled member")
 	_check(session.sim.steps == 0, "one step spent")
 	_tick_idle(session)
@@ -243,7 +244,7 @@ func _test_session_entangle_4_1() -> void:
 func _test_board_view_sync_smoke() -> void:
 	print("-- BoardView sync")
 	var session = _GameSession.new()
-	session.start_pack("res://data/maps/campaign.json", "1-1")
+	session.start_pack(_GameLaunch.CAMPAIGN, "1-1")
 	var board = _BoardView.new()
 	root.add_child(board)
 	board.sync(session, 1.0 / 60.0)

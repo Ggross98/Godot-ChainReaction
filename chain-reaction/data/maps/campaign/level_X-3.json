@@ -1,0 +1,83 @@
+{
+	"atoms": [
+		{
+			"group": 2,
+			"orbits": [
+				[
+					"NE",
+					"SW"
+				]
+			],
+			"type": "entangled",
+			"x": 1,
+			"y": 0
+		},
+		{
+			"group": 2,
+			"orbits": [
+				[
+					"NE",
+					"SW"
+				]
+			],
+			"type": "entangled_movable",
+			"x": 4,
+			"y": 2
+		},
+		{
+			"orbits": [
+				[
+					"NE",
+					"SW"
+				]
+			],
+			"type": "normal",
+			"x": 1,
+			"y": 2
+		},
+		{
+			"orbits": [
+				[
+					"NW"
+				],
+				[
+					"W"
+				]
+			],
+			"type": "movable",
+			"x": 2,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"NE"
+				],
+				[
+					"W"
+				]
+			],
+			"type": "movable",
+			"x": 3,
+			"y": 2
+		},
+		{
+			"orbits": [
+				[
+					"E"
+				],
+				[
+					"W"
+				]
+			],
+			"type": "movable",
+			"x": 3,
+			"y": 1
+		}
+	],
+	"height": 3,
+	"id": "X-3",
+	"name": "X-3",
+	"steps": 2,
+	"width": 6
+}

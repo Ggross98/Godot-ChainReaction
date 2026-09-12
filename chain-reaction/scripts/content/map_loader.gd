@@ -18,20 +18,100 @@ class MapLoadResult:
 	var warnings: PackedStringArray = PackedStringArray()
 
 
+static func level_file_name(map_id: String) -> String:
+	return "level_%s.json" % map_id
+
+
 func load_pack_file(path: String) -> MapLoadResult:
+	var cleaned := path.rstrip("/\\")
+	if cleaned.get_file() == "pack.json":
+		return load_pack_dir(cleaned.get_base_dir())
+	var dir := DirAccess.open(cleaned)
+	if dir != null:
+		return load_pack_dir(cleaned)
+	return _load_pack_json_file(cleaned)
+
+
+func load_pack_dir(dir_path: String) -> MapLoadResult:
+	var result := MapLoadResult.new()
+	var cleaned := dir_path.rstrip("/\\")
+	var index_path := "%s/pack.json" % cleaned
+	if not FileAccess.file_exists(index_path):
+		result.errors.append("file not found: %s" % index_path)
+		return result
+	var parsed := _read_json_object(index_path, result)
+	if parsed.is_empty() and not result.errors.is_empty():
+		return result
+	_warn_unknown_keys(result, parsed, _PACK_KEYS, "pack")
+	if not parsed.has("schema_version"):
+		result.errors.append("schema_version is missing")
+	else:
+		var version = _try_int(parsed["schema_version"])
+		if version == null:
+			result.errors.append("schema_version must be an integer")
+		elif int(version) != _MapSchema.SCHEMA_VERSION:
+			result.errors.append("unsupported schema_version %s (expected %d)" % [str(version), _MapSchema.SCHEMA_VERSION])
+	var pack_id := ""
+	if not parsed.has("id") or str(parsed["id"]).strip_edges() == "":
+		result.errors.append("pack id is missing")
+	else:
+		pack_id = str(parsed["id"])
+	if not parsed.has("maps") or typeof(parsed["maps"]) != TYPE_ARRAY:
+		result.errors.append("maps must be an array")
+		return _finalize(result, null)
+	var pack := _MapPack.new()
+	pack.schema_version = _MapSchema.SCHEMA_VERSION
+	pack.id = pack_id
+	var seen_ids := {}
+	var maps: Array = parsed["maps"]
+	for i in maps.size():
+		var raw_id: Variant = maps[i]
+		if typeof(raw_id) != TYPE_STRING or str(raw_id).strip_edges() == "":
+			result.errors.append("maps[%d] must be a map id string" % i)
+			continue
+		var map_id := str(raw_id)
+		if seen_ids.has(map_id):
+			result.errors.append("duplicate map id '%s'" % map_id)
+			continue
+		seen_ids[map_id] = true
+		var map_path := "%s/%s" % [cleaned, level_file_name(map_id)]
+		if not FileAccess.file_exists(map_path):
+			result.errors.append("missing %s" % map_path)
+			continue
+		var map_raw := _read_json_object(map_path, result)
+		if map_raw.is_empty():
+			continue
+		var map_obj = _load_map(result, map_raw, i)
+		if map_obj == null:
+			continue
+		if map_obj.id != map_id:
+			result.errors.append("%s id is '%s' (expected '%s')" % [level_file_name(map_id), map_obj.id, map_id])
+			continue
+		pack.maps.append(map_obj)
+	return _finalize(result, pack)
+
+
+func _load_pack_json_file(path: String) -> MapLoadResult:
 	var result := MapLoadResult.new()
 	if not FileAccess.file_exists(path):
 		result.errors.append("file not found: %s" % path)
 		return result
+	var parsed := _read_json_object(path, result)
+	if parsed.is_empty() and not result.errors.is_empty():
+		return result
+	return load_pack(parsed)
+
+
+func _read_json_object(path: String, result: MapLoadResult) -> Dictionary:
 	var file := FileAccess.open(path, FileAccess.READ)
 	if file == null:
 		result.errors.append("cannot open: %s" % path)
-		return result
+		return {}
 	var parsed: Variant = JSON.parse_string(file.get_as_text())
 	if typeof(parsed) != TYPE_DICTIONARY:
 		result.errors.append("root is not an object: %s" % path)
-		return result
-	return load_pack(parsed)
+		return {}
+	return parsed
 
 
 func load_pack(data: Variant) -> MapLoadResult:

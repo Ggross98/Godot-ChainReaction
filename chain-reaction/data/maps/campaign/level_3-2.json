@@ -1,0 +1,51 @@
+{
+	"atoms": [
+		{
+			"orbits": [
+				[
+					"NE"
+				],
+				[
+					"SW"
+				]
+			],
+			"type": "normal",
+			"x": 1,
+			"y": 2
+		},
+		{
+			"orbits": [
+				[
+					"SE"
+				],
+				[
+					"NW"
+				]
+			],
+			"type": "normal",
+			"x": 1,
+			"y": 0
+		},
+		{
+			"orbits": [
+				[
+					"NW",
+					"SW"
+				]
+			],
+			"type": "normal",
+			"x": 1,
+			"y": 1
+		},
+		{
+			"type": "catching",
+			"x": 0,
+			"y": 1
+		}
+	],
+	"height": 3,
+	"id": "3-2",
+	"name": "3-2",
+	"steps": 2,
+	"width": 3
+}
