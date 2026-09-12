@@ -71,6 +71,18 @@ enum PreviewPose { IDLE, CATCHING, MOVABLE, ENTANGLED }
 	set(value):
 		arrow_color = value
 		_on_look_changed()
+@export var shaft_color := Color(0.529, 0.529, 0.529):
+	set(value):
+		shaft_color = value
+		_on_look_changed()
+@export var arrow_radius: float = 0.184:
+	set(value):
+		arrow_radius = maxf(value, 0.01)
+		_on_look_changed()
+@export var arrow_head_scale: float = 0.775:
+	set(value):
+		arrow_head_scale = maxf(value, 0.01)
+		_on_look_changed()
 
 @export_group("Animation")
 @export var hover_scale: float = 1.1:
@@ -159,14 +171,13 @@ func _create_fallback_children() -> void:
 	add_child(parked_root)
 	arrows = Node2D.new()
 	arrows.name = "Arrows"
+	arrows.z_index = 2
 	add_child(arrows)
 	for i in range(6):
-		var arrow := _make_sprite("Arrow%d" % i, TEX_ARROW, ppu_arrow, arrows)
-		arrow.rotation = float(i) * TAU / 6.0
-		arrow.flip_h = true
-		arrow.modulate = arrow_color
+		_make_arrow_spoke(i)
 	nuclei = _make_sprite("Nuclei", TEX_NUCLEI, ppu_default)
 	_collect_parked_pool()
+	_layout_arrows()
 
 
 func _collect_parked_pool() -> void:
@@ -185,6 +196,57 @@ func _make_sprite(node_name: String, tex: Texture2D, ppu: float, parent: Node = 
 	s.scale = _ViewTransform.sprite_scale(ppu)
 	parent.add_child(s)
 	return s
+
+
+func _make_arrow_spoke(i: int) -> Node2D:
+	var spoke := Node2D.new()
+	spoke.name = "Arrow%d" % i
+	spoke.rotation = float(i) * TAU / 6.0
+	arrows.add_child(spoke)
+	var shaft := Polygon2D.new()
+	shaft.name = "Shaft"
+	spoke.add_child(shaft)
+	var head := Sprite2D.new()
+	head.name = "Head"
+	head.texture = TEX_ARROW
+	head.flip_h = true
+	spoke.add_child(head)
+	return spoke
+
+
+func _layout_arrows() -> void:
+	if arrows == null:
+		return
+	arrows.z_index = 2
+	for i in range(6):
+		var spoke: Node2D = arrows.get_node_or_null("Arrow%d" % i) as Node2D
+		if spoke == null:
+			continue
+		spoke.rotation = float(i) * TAU / 6.0
+		var head: Sprite2D = spoke.get_node_or_null("Head") as Sprite2D
+		if head:
+			head.texture = TEX_ARROW
+			head.flip_h = true
+			head.position = Vector2(-arrow_radius, 0.0)
+			head.scale = _ViewTransform.sprite_scale(ppu_arrow) * arrow_head_scale
+			head.modulate = arrow_color
+		var shaft: Polygon2D = spoke.get_node_or_null("Shaft") as Polygon2D
+		if shaft:
+			shaft.polygon = _shaft_polygon()
+			shaft.color = shaft_color
+
+
+func _shaft_polygon() -> PackedVector2Array:
+	var k: float = arrow_radius / 0.184
+	var cx: float = -0.0735 * k
+	var hx: float = 0.08645921 * k
+	var hy: float = 0.008898 * k
+	return PackedVector2Array([
+		Vector2(cx - hx, -hy),
+		Vector2(cx + hx, -hy),
+		Vector2(cx + hx, hy),
+		Vector2(cx - hx, hy),
+	])
 
 
 func reset_collapse() -> void:
@@ -363,12 +425,7 @@ func _apply_look() -> void:
 	if orbit_dotted:
 		orbit_dotted.scale = _ViewTransform.sprite_scale(ppu_default)
 	if arrows:
-		for i in range(6):
-			var arrow: Sprite2D = arrows.get_node_or_null("Arrow%d" % i) as Sprite2D
-			if arrow == null:
-				continue
-			arrow.modulate = arrow_color
-			arrow.scale = _ViewTransform.sprite_scale(ppu_arrow)
+		_layout_arrows()
 	for s in _parked_pool:
 		if s is Sprite2D:
 			s.modulate = neutron_color

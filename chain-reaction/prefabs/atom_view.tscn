@@ -83,50 +83,93 @@ modulate = Color(1, 0.733, 0, 1)
 scale = Vector2(0.0078125, 0.0078125)
 texture = ExtResource("6_neutron")
 
-[node name="Arrows" type="Node2D" parent="." unique_id=1554125443]
-
-[node name="Arrow0" type="Sprite2D" parent="Arrows" unique_id=768063560]
-modulate = Color(0.467, 0.482, 0.498, 1)
-scale = Vector2(0.00390625, 0.00390625)
-texture = ExtResource("7_arrow")
-flip_h = true
-
-[node name="Arrow1" type="Sprite2D" parent="Arrows" unique_id=643311614]
-modulate = Color(0.467, 0.482, 0.498, 1)
-rotation = 1.0471976
-scale = Vector2(0.00390625, 0.00390625)
-texture = ExtResource("7_arrow")
-flip_h = true
-
-[node name="Arrow2" type="Sprite2D" parent="Arrows" unique_id=1185482519]
-modulate = Color(0.467, 0.482, 0.498, 1)
-rotation = 2.0943952
-scale = Vector2(0.00390625, 0.00390625)
-texture = ExtResource("7_arrow")
-flip_h = true
-
-[node name="Arrow3" type="Sprite2D" parent="Arrows" unique_id=2072509249]
-modulate = Color(0.467, 0.482, 0.498, 1)
-rotation = 3.1415927
-scale = Vector2(0.00390625, 0.00390625)
-texture = ExtResource("7_arrow")
-flip_h = true
-
-[node name="Arrow4" type="Sprite2D" parent="Arrows" unique_id=1109072892]
-modulate = Color(0.467, 0.482, 0.498, 1)
-rotation = 4.1887903
-scale = Vector2(0.00390625, 0.00390625)
-texture = ExtResource("7_arrow")
-flip_h = true
-
-[node name="Arrow5" type="Sprite2D" parent="Arrows" unique_id=1887341865]
-modulate = Color(0.467, 0.482, 0.498, 1)
-rotation = 5.2359877
-scale = Vector2(0.00390625, 0.00390625)
-texture = ExtResource("7_arrow")
-flip_h = true
-
 [node name="Nuclei" type="Sprite2D" parent="." unique_id=132997540]
 modulate = Color(0.12941177, 0.12941177, 0.12941177, 1)
 scale = Vector2(0.0078125, 0.0078125)
 texture = ExtResource("8_nuclei")
+
+[node name="Arrows" type="Node2D" parent="." unique_id=1554125443]
+z_index = 2
+
+[node name="Arrow0" type="Node2D" parent="Arrows" unique_id=2027736144]
+
+[node name="Shaft" type="Polygon2D" parent="Arrows/Arrow0" unique_id=499293546]
+color = Color(0.529, 0.529, 0.529, 1)
+polygon = PackedVector2Array(-0.159959, -0.008898, 0.012959, -0.008898, 0.012959, 0.008898, -0.159959, 0.008898)
+
+[node name="Head" type="Sprite2D" parent="Arrows/Arrow0" unique_id=1088656651]
+modulate = Color(0.467, 0.482, 0.498, 1)
+position = Vector2(-0.184, 0)
+scale = Vector2(0.003029, 0.003029)
+texture = ExtResource("7_arrow")
+flip_h = true
+
+[node name="Arrow1" type="Node2D" parent="Arrows" unique_id=821059897]
+rotation = 1.0471976
+
+[node name="Shaft" type="Polygon2D" parent="Arrows/Arrow1" unique_id=1653609989]
+color = Color(0.529, 0.529, 0.529, 1)
+polygon = PackedVector2Array(-0.159959, -0.008898, 0.012959, -0.008898, 0.012959, 0.008898, -0.159959, 0.008898)
+
+[node name="Head" type="Sprite2D" parent="Arrows/Arrow1" unique_id=1291259335]
+modulate = Color(0.467, 0.482, 0.498, 1)
+position = Vector2(-0.184, 0)
+scale = Vector2(0.003029, 0.003029)
+texture = ExtResource("7_arrow")
+flip_h = true
+
+[node name="Arrow2" type="Node2D" parent="Arrows" unique_id=300426916]
+rotation = 2.0943952
+
+[node name="Shaft" type="Polygon2D" parent="Arrows/Arrow2" unique_id=31950037]
+color = Color(0.529, 0.529, 0.529, 1)
+polygon = PackedVector2Array(-0.159959, -0.008898, 0.012959, -0.008898, 0.012959, 0.008898, -0.159959, 0.008898)
+
+[node name="Head" type="Sprite2D" parent="Arrows/Arrow2" unique_id=523576730]
+modulate = Color(0.467, 0.482, 0.498, 1)
+position = Vector2(-0.184, 0)
+scale = Vector2(0.003029, 0.003029)
+texture = ExtResource("7_arrow")
+flip_h = true
+
+[node name="Arrow3" type="Node2D" parent="Arrows" unique_id=2046309724]
+rotation = 3.1415927
+
+[node name="Shaft" type="Polygon2D" parent="Arrows/Arrow3" unique_id=97365436]
+color = Color(0.529, 0.529, 0.529, 1)
+polygon = PackedVector2Array(-0.159959, -0.008898, 0.012959, -0.008898, 0.012959, 0.008898, -0.159959, 0.008898)
+
+[node name="Head" type="Sprite2D" parent="Arrows/Arrow3" unique_id=1269337578]
+modulate = Color(0.467, 0.482, 0.498, 1)
+position = Vector2(-0.184, 0)
+scale = Vector2(0.003029, 0.003029)
+texture = ExtResource("7_arrow")
+flip_h = true
+
+[node name="Arrow4" type="Node2D" parent="Arrows" unique_id=1068534786]
+rotation = 4.1887903
+
+[node name="Shaft" type="Polygon2D" parent="Arrows/Arrow4" unique_id=1022360377]
+color = Color(0.529, 0.529, 0.529, 1)
+polygon = PackedVector2Array(-0.159959, -0.008898, 0.012959, -0.008898, 0.012959, 0.008898, -0.159959, 0.008898)
+
+[node name="Head" type="Sprite2D" parent="Arrows/Arrow4" unique_id=1745714789]
+modulate = Color(0.467, 0.482, 0.498, 1)
+position = Vector2(-0.184, 0)
+scale = Vector2(0.003029, 0.003029)
+texture = ExtResource("7_arrow")
+flip_h = true
+
+[node name="Arrow5" type="Node2D" parent="Arrows" unique_id=1298113001]
+rotation = 5.2359877
+
+[node name="Shaft" type="Polygon2D" parent="Arrows/Arrow5" unique_id=1444978634]
+color = Color(0.529, 0.529, 0.529, 1)
+polygon = PackedVector2Array(-0.159959, -0.008898, 0.012959, -0.008898, 0.012959, 0.008898, -0.159959, 0.008898)
+
+[node name="Head" type="Sprite2D" parent="Arrows/Arrow5" unique_id=376326619]
+modulate = Color(0.467, 0.482, 0.498, 1)
+position = Vector2(-0.184, 0)
+scale = Vector2(0.003029, 0.003029)
+texture = ExtResource("7_arrow")
+flip_h = true
