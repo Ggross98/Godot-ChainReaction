@@ -51,20 +51,19 @@ func _ensure_children() -> void:
 	arrows.name = "Arrows"
 	add_child(arrows)
 	for i in range(6):
-		var arrow := _make_sprite("Arrow%d" % i, TEX_ARROW, _ViewTransform.PPU_ARROW)
+		var arrow := _make_sprite("Arrow%d" % i, TEX_ARROW, _ViewTransform.PPU_ARROW, arrows)
 		arrow.rotation = float(i) * TAU / 6.0
 		arrow.flip_h = true
 		arrow.modulate = Color(0.467, 0.482, 0.498)
-		arrows.add_child(arrow)
 	move_child(nuclei, get_child_count() - 1)
 
 
-func _make_sprite(node_name: String, tex: Texture2D, ppu: float) -> Sprite2D:
+func _make_sprite(node_name: String, tex: Texture2D, ppu: float, parent: Node = self) -> Sprite2D:
 	var s := Sprite2D.new()
 	s.name = node_name
 	s.texture = tex
 	s.scale = _ViewTransform.sprite_scale(ppu)
-	add_child(s)
+	parent.add_child(s)
 	return s
 
 
