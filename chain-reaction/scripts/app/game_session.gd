@@ -48,6 +48,16 @@ func map_id() -> String:
 	return current_map.id
 
 
+func pack_path() -> String:
+	return _pack_path
+
+
+func hud_progress() -> String:
+	if pack == null or pack.maps.is_empty():
+		return "0 / 0"
+	return "%d / %d" % [map_index + 1, pack.maps.size()]
+
+
 func hud_title() -> String:
 	if current_map == null:
 		return ""

@@ -88,9 +88,20 @@
 					"type": "movable",
 					"x": 2,
 					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"NE",
+							"SE"
+						]
+					],
+					"type": "movable",
+					"x": 2,
+					"y": 3
 				}
 			],
-			"height": 3,
+			"height": 4,
 			"id": "relay-race",
 			"name": "Relay Race",
 			"steps": 2,

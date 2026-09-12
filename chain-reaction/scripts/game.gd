@@ -1,13 +1,10 @@
 extends Node2D
 
 const _GameSession := preload("res://scripts/app/game_session.gd")
+const _GameLaunch := preload("res://scripts/app/game_launch.gd")
 const _ViewTransform := preload("res://scripts/view/view_transform.gd")
 const FONT := preload("res://assets/fonts/spagi.ttf")
-const TEX_RESTART := preload("res://assets/sprites/ui/T_arrow_circle.png")
-const TEX_HOME := preload("res://assets/sprites/ui/T_11_home_.png")
 
-const START_PACK := "res://data/maps/campaign.json"
-const START_MAP := "1-1"
 const FONT_SIZE := 60
 const FONT_COLOR := Color(0.123, 0.123, 0.123)
 
@@ -18,6 +15,7 @@ var session = _GameSession.new()
 @onready var state_label: Label = $CanvasLayer/HUD/StateInfo
 @onready var steps_label: Label = $CanvasLayer/HUD/LeftSteps
 @onready var map_id_label: Label = $CanvasLayer/HUD/DebugBar/MapId
+@onready var pack_button: Button = $CanvasLayer/HUD/DebugBar/Pack
 @onready var restart_button: TextureButton = $CanvasLayer/HUD/Buttons/Restart
 @onready var home_button: TextureButton = $CanvasLayer/HUD/Buttons/Home
 @onready var prev_button: Button = $CanvasLayer/HUD/DebugBar/Prev
@@ -29,12 +27,14 @@ func _ready() -> void:
 	_style_label(title_label)
 	_style_label(state_label)
 	_style_label(steps_label)
-	_style_label(map_id_label, 32)
+	_style_label(map_id_label, 28)
 	restart_button.pressed.connect(_on_restart)
 	home_button.pressed.connect(_on_home)
 	prev_button.pressed.connect(_on_prev)
 	next_button.pressed.connect(_on_next)
-	session.start_pack(START_PACK, START_MAP)
+	pack_button.pressed.connect(_on_pack)
+	session.start_pack(_GameLaunch.pack_path, _GameLaunch.map_id)
+	_sync_launch()
 	_refresh_hud()
 
 
@@ -42,6 +42,7 @@ func _process(dt: float) -> void:
 	session.pointer_move(board.pointer_logic())
 	session.advance(dt)
 	board.sync(session, dt)
+	_sync_launch()
 	_refresh_hud()
 
 
@@ -59,7 +60,14 @@ func _refresh_hud() -> void:
 	title_label.text = session.hud_title()
 	state_label.text = session.hud_state()
 	steps_label.text = session.hud_steps()
-	map_id_label.text = session.map_id()
+	var pack_name := "custom" if session.pack_path() == _GameLaunch.CUSTOM else "campaign"
+	map_id_label.text = "%s  %s  %s" % [pack_name, session.map_id(), session.hud_progress()]
+	pack_button.text = "Pack"
+
+
+func _sync_launch() -> void:
+	_GameLaunch.pack_path = session.pack_path()
+	_GameLaunch.map_id = session.map_id()
 
 
 func _style_label(label: Label, size: int = FONT_SIZE) -> void:
@@ -78,7 +86,20 @@ func _on_home() -> void:
 
 func _on_prev() -> void:
 	session.goto_prev()
+	_sync_launch()
 
 
 func _on_next() -> void:
 	session.goto_next()
+	_sync_launch()
+
+
+func _on_pack() -> void:
+	if session.pack_path() == _GameLaunch.CAMPAIGN:
+		_GameLaunch.pack_path = _GameLaunch.CUSTOM
+		_GameLaunch.map_id = "relay-race"
+	else:
+		_GameLaunch.pack_path = _GameLaunch.CAMPAIGN
+		_GameLaunch.map_id = "1-1"
+	session.start_pack(_GameLaunch.pack_path, _GameLaunch.map_id)
+	_sync_launch()
