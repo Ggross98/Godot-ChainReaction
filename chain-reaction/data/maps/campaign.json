@@ -1,0 +1,3418 @@
+{
+	"id": "campaign",
+	"maps": [
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"W",
+							"NW",
+							"NE",
+							"E",
+							"SE",
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 2
+				}
+			],
+			"height": 3,
+			"id": "1-1",
+			"name": "1-1 Click to Release",
+			"steps": 1,
+			"width": 4
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "normal",
+					"x": 3,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 0
+				}
+			],
+			"height": 1,
+			"id": "1-2",
+			"name": "1-2",
+			"steps": 1,
+			"width": 4
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "normal",
+					"x": 3,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 2
+				}
+			],
+			"height": 3,
+			"id": "1-3",
+			"name": "1-3",
+			"steps": 1,
+			"width": 4
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"W"
+						]
+					],
+					"type": "normal",
+					"x": 3,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "normal",
+					"x": 4,
+					"y": 0
+				}
+			],
+			"height": 1,
+			"id": "1-4",
+			"name": "1-4 Multi-Orbit",
+			"steps": 1,
+			"width": 5
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						],
+						[
+							"W"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						],
+						[
+							"NW"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "normal",
+					"x": 3,
+					"y": 0
+				}
+			],
+			"height": 3,
+			"id": "1-5",
+			"name": "1-5",
+			"steps": 1,
+			"width": 4
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 2
+				}
+			],
+			"height": 3,
+			"id": "1-6",
+			"name": "1-6 More Steps",
+			"steps": 2,
+			"width": 3
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "normal",
+					"x": 4,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"NW",
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 3,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"NW",
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 4,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 3
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 3
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 4
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 4
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 4,
+					"y": 4
+				}
+			],
+			"height": 5,
+			"id": "1-7",
+			"name": "1-7",
+			"steps": 3,
+			"width": 5
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						],
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						],
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"W"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "normal",
+					"x": 3,
+					"y": 0
+				}
+			],
+			"height": 3,
+			"id": "1-8",
+			"name": "1-8",
+			"steps": 2,
+			"width": 4
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "movable",
+					"x": 2,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 2
+				}
+			],
+			"height": 3,
+			"id": "2-1",
+			"name": "2-1 Drag to Move",
+			"steps": 1,
+			"width": 3
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						],
+						[
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						],
+						[
+							"NE"
+						]
+					],
+					"type": "movable",
+					"x": 1,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 2
+				}
+			],
+			"height": 3,
+			"id": "2-2",
+			"name": "2-2",
+			"steps": 2,
+			"width": 3
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"E",
+							"SE",
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "movable",
+					"x": 0,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						]
+					],
+					"type": "movable",
+					"x": 2,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "movable",
+					"x": 1,
+					"y": 1
+				}
+			],
+			"height": 3,
+			"id": "2-3",
+			"name": "2-3",
+			"steps": 1,
+			"width": 4
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						],
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"SE"
+						]
+					],
+					"type": "movable",
+					"x": 0,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"NE"
+						]
+					],
+					"type": "movable",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						],
+						[
+							"SE"
+						]
+					],
+					"type": "movable",
+					"x": 3,
+					"y": 2
+				}
+			],
+			"height": 3,
+			"id": "2-4",
+			"name": "2-4",
+			"steps": 2,
+			"width": 4
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						],
+						[
+							"NW"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						],
+						[
+							"NW"
+						]
+					],
+					"type": "movable",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "movable",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						],
+						[
+							"SW"
+						]
+					],
+					"type": "movable",
+					"x": 2,
+					"y": 0
+				}
+			],
+			"height": 3,
+			"id": "2-5",
+			"name": "2-5",
+			"steps": 1,
+			"width": 3
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						],
+						[
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 3,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						],
+						[
+							"NW"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						],
+						[
+							"NW"
+						]
+					],
+					"type": "movable",
+					"x": 0,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "movable",
+					"x": 2,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "movable",
+					"x": 3,
+					"y": 0
+				}
+			],
+			"height": 3,
+			"id": "2-6",
+			"name": "2-6",
+			"steps": 2,
+			"width": 4
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"E"
+						],
+						[
+							"W"
+						]
+					],
+					"type": "normal",
+					"x": 3,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"W"
+						]
+					],
+					"type": "movable",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"E"
+						]
+					],
+					"type": "movable",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"E"
+						]
+					],
+					"type": "movable",
+					"x": 2,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						],
+						[
+							"E"
+						]
+					],
+					"type": "movable",
+					"x": 5,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						],
+						[
+							"W"
+						]
+					],
+					"type": "movable",
+					"x": 6,
+					"y": 0
+				}
+			],
+			"height": 1,
+			"id": "2-7",
+			"name": "2-7",
+			"steps": 1,
+			"width": 7
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "normal",
+					"x": 3,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "normal",
+					"x": 3,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "movable",
+					"x": 0,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "movable",
+					"x": 2,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						],
+						[
+							"NE"
+						]
+					],
+					"type": "movable",
+					"x": 1,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"W"
+						]
+					],
+					"type": "movable",
+					"x": 2,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"E"
+						]
+					],
+					"type": "movable",
+					"x": 2,
+					"y": 0
+				}
+			],
+			"height": 3,
+			"id": "2-8",
+			"name": "2-8",
+			"steps": 1,
+			"width": 4
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"type": "catching",
+					"x": 2,
+					"y": 0
+				}
+			],
+			"height": 1,
+			"id": "3-1",
+			"name": "3-1 Catch",
+			"steps": 2,
+			"width": 3
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"NE"
+						],
+						[
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						],
+						[
+							"NW"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"NW",
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 1
+				},
+				{
+					"type": "catching",
+					"x": 0,
+					"y": 1
+				}
+			],
+			"height": 3,
+			"id": "3-2",
+			"name": "3-2",
+			"steps": 2,
+			"width": 3
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"NW",
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "movable",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "movable",
+					"x": 0,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "movable",
+					"x": 3,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "movable",
+					"x": 3,
+					"y": 2
+				},
+				{
+					"type": "catching",
+					"x": 1,
+					"y": 2
+				},
+				{
+					"type": "catching",
+					"x": 2,
+					"y": 2
+				}
+			],
+			"height": 3,
+			"id": "3-3",
+			"name": "3-3",
+			"steps": 2,
+			"width": 4
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 1
+				},
+				{
+					"type": "catching_movable",
+					"x": 0,
+					"y": 2
+				}
+			],
+			"height": 3,
+			"id": "3-4",
+			"name": "3-4 Move and Catch",
+			"steps": 2,
+			"width": 3
+		},
+		{
+			"atoms": [
+				{
+					"type": "catching_movable",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"type": "catching_movable",
+					"x": 2,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"E",
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"W",
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"W",
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 0
+				}
+			],
+			"height": 3,
+			"id": "3-5",
+			"name": "3-5",
+			"steps": 2,
+			"width": 4
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"NE",
+							"E",
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"NE",
+							"E",
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 4,
+					"y": 2
+				},
+				{
+					"type": "catching_movable",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"type": "catching_movable",
+					"x": 2,
+					"y": 0
+				},
+				{
+					"type": "catching_movable",
+					"x": 4,
+					"y": 0
+				}
+			],
+			"height": 3,
+			"id": "3-6",
+			"name": "3-6",
+			"steps": 2,
+			"width": 5
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"W",
+							"NW",
+							"NE",
+							"E",
+							"SE",
+							"SW"
+						],
+						[
+							"W",
+							"NW",
+							"NE",
+							"E",
+							"SE",
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						],
+						[
+							"W"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 4
+				},
+				{
+					"type": "catching_movable",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"type": "catching_movable",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"type": "catching_movable",
+					"x": 0,
+					"y": 1
+				},
+				{
+					"type": "catching_movable",
+					"x": 0,
+					"y": 3
+				},
+				{
+					"type": "catching_movable",
+					"x": 0,
+					"y": 4
+				},
+				{
+					"type": "catching_movable",
+					"x": 1,
+					"y": 4
+				},
+				{
+					"type": "catching_movable",
+					"x": 3,
+					"y": 0
+				},
+				{
+					"type": "catching_movable",
+					"x": 4,
+					"y": 0
+				},
+				{
+					"type": "catching_movable",
+					"x": 3,
+					"y": 1
+				},
+				{
+					"type": "catching_movable",
+					"x": 3,
+					"y": 3
+				},
+				{
+					"type": "catching_movable",
+					"x": 3,
+					"y": 4
+				},
+				{
+					"type": "catching_movable",
+					"x": 4,
+					"y": 4
+				}
+			],
+			"height": 5,
+			"id": "3-7",
+			"name": "3-7",
+			"steps": 3,
+			"width": 5
+		},
+		{
+			"atoms": [
+				{
+					"type": "catching_movable",
+					"x": 0,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						],
+						[
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 3,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 3,
+					"y": 2
+				}
+			],
+			"height": 3,
+			"id": "3-8",
+			"name": "3-8",
+			"steps": 2,
+			"width": 4
+		},
+		{
+			"atoms": [
+				{
+					"group": 1,
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "entangled",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"group": 1,
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "entangled",
+					"x": 2,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 2
+				}
+			],
+			"height": 3,
+			"id": "4-1",
+			"name": "4-1 Quantum Entanglement",
+			"steps": 1,
+			"width": 3
+		},
+		{
+			"atoms": [
+				{
+					"group": 1,
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "entangled",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"group": 1,
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "entangled",
+					"x": 2,
+					"y": 1
+				},
+				{
+					"group": 2,
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "entangled",
+					"x": 2,
+					"y": 0
+				},
+				{
+					"group": 2,
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "entangled",
+					"x": 1,
+					"y": 2
+				},
+				{
+					"group": 3,
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "entangled",
+					"x": 0,
+					"y": 1
+				},
+				{
+					"group": 3,
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "entangled",
+					"x": 2,
+					"y": 2
+				}
+			],
+			"height": 3,
+			"id": "4-2",
+			"name": "4-2",
+			"steps": 1,
+			"width": 4
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 2
+				},
+				{
+					"group": 2,
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 1,
+					"y": 2
+				},
+				{
+					"group": 2,
+					"orbits": [
+						[
+							"NW"
+						],
+						[
+							"W",
+							"NE",
+							"E"
+						]
+					],
+					"type": "entangled",
+					"x": 1,
+					"y": 0
+				}
+			],
+			"height": 3,
+			"id": "4-3",
+			"name": "4-3",
+			"steps": 1,
+			"width": 3
+		},
+		{
+			"atoms": [
+				{
+					"group": 1,
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"group": 1,
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "movable",
+					"x": 0,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "movable",
+					"x": 1,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 2
+				}
+			],
+			"height": 3,
+			"id": "4-4",
+			"name": "4-4",
+			"steps": 1,
+			"width": 3
+		},
+		{
+			"atoms": [
+				{
+					"group": 2,
+					"orbits": [
+						[
+							"E"
+						],
+						[
+							"NW"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"group": 2,
+					"orbits": [
+						[
+							"SE"
+						],
+						[
+							"SE"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 2,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 3,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 0
+				}
+			],
+			"height": 3,
+			"id": "4-5",
+			"name": "4-5",
+			"steps": 2,
+			"width": 4
+		},
+		{
+			"atoms": [
+				{
+					"group": 3,
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"E"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"W"
+						]
+					],
+					"type": "movable",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"W"
+						]
+					],
+					"type": "movable",
+					"x": 2,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						],
+						[
+							"E"
+						]
+					],
+					"type": "movable",
+					"x": 3,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"E"
+						]
+					],
+					"type": "movable",
+					"x": 4,
+					"y": 0
+				},
+				{
+					"group": 3,
+					"orbits": [
+						[
+							"E"
+						],
+						[
+							"E"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 0,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"W"
+						]
+					],
+					"type": "movable",
+					"x": 1,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"E"
+						]
+					],
+					"type": "movable",
+					"x": 3,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"W"
+						]
+					],
+					"type": "movable",
+					"x": 4,
+					"y": 2
+				}
+			],
+			"height": 3,
+			"id": "4-6",
+			"name": "4-6",
+			"steps": 1,
+			"width": 5
+		},
+		{
+			"atoms": [
+				{
+					"group": 1,
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 2,
+					"y": 2
+				},
+				{
+					"group": 1,
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 0,
+					"y": 1
+				},
+				{
+					"group": 2,
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"group": 2,
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 4,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 3,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 3,
+					"y": 0
+				}
+			],
+			"height": 3,
+			"id": "4-7",
+			"name": "4-7",
+			"steps": 1,
+			"width": 5
+		},
+		{
+			"atoms": [
+				{
+					"group": 1,
+					"orbits": [
+						[
+							"SW"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 0,
+					"y": 1
+				},
+				{
+					"group": 1,
+					"orbits": [
+						[
+							"SW"
+						],
+						[
+							"SW"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 0,
+					"y": 2
+				},
+				{
+					"group": 2,
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"group": 2,
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"NW"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 2,
+					"y": 1
+				},
+				{
+					"group": 3,
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 2,
+					"y": 2
+				},
+				{
+					"group": 3,
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"NW"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 3,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						],
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 1
+				}
+			],
+			"height": 3,
+			"id": "4-8",
+			"name": "4-8",
+			"steps": 1,
+			"width": 4
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 4
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "normal",
+					"x": 5,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "normal",
+					"x": 4,
+					"y": 2
+				},
+				{
+					"type": "catching_movable",
+					"x": 1,
+					"y": 1
+				},
+				{
+					"group": 3,
+					"orbits": [
+						[
+							"NW"
+						],
+						[
+							"SE"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 2,
+					"y": 2
+				},
+				{
+					"group": 3,
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"E"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 3,
+					"y": 0
+				},
+				{
+					"group": 2,
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"group": 2,
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "entangled",
+					"x": 4,
+					"y": 3
+				}
+			],
+			"height": 5,
+			"id": "X-1",
+			"name": "X-1",
+			"steps": 2,
+			"width": 6
+		},
+		{
+			"atoms": [
+				{
+					"type": "catching",
+					"x": 1,
+					"y": 1
+				},
+				{
+					"type": "catching",
+					"x": 4,
+					"y": 1
+				},
+				{
+					"type": "catching",
+					"x": 2,
+					"y": 3
+				},
+				{
+					"group": 1,
+					"orbits": [
+						[
+							"W"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"group": 3,
+					"orbits": [
+						[
+							"W",
+							"SE"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 2,
+					"y": 0
+				},
+				{
+					"group": 1,
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 5,
+					"y": 2
+				},
+				{
+					"group": 3,
+					"orbits": [
+						[
+							"NE",
+							"SW"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 5,
+					"y": 4
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"SE",
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 4
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 3,
+					"y": 4
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						],
+						[
+							"E"
+						]
+					],
+					"type": "movable",
+					"x": 0,
+					"y": 3
+				}
+			],
+			"height": 5,
+			"id": "X-2",
+			"name": "X-2",
+			"steps": 2,
+			"width": 6
+		},
+		{
+			"atoms": [
+				{
+					"group": 2,
+					"orbits": [
+						[
+							"NE",
+							"SW"
+						]
+					],
+					"type": "entangled",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"group": 2,
+					"orbits": [
+						[
+							"NE",
+							"SW"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 4,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"NE",
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						],
+						[
+							"W"
+						]
+					],
+					"type": "movable",
+					"x": 2,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						],
+						[
+							"W"
+						]
+					],
+					"type": "movable",
+					"x": 3,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						],
+						[
+							"W"
+						]
+					],
+					"type": "movable",
+					"x": 3,
+					"y": 1
+				}
+			],
+			"height": 3,
+			"id": "X-3",
+			"name": "X-3",
+			"steps": 2,
+			"width": 6
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"NE"
+						],
+						[
+							"W"
+						]
+					],
+					"type": "movable",
+					"x": 0,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						],
+						[
+							"W"
+						]
+					],
+					"type": "movable",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						],
+						[
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						],
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						],
+						[
+							"E"
+						]
+					],
+					"type": "movable",
+					"x": 2,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						],
+						[
+							"SW"
+						]
+					],
+					"type": "movable",
+					"x": 2,
+					"y": 2
+				}
+			],
+			"height": 3,
+			"id": "X-4",
+			"name": "X-4",
+			"steps": 2,
+			"width": 4
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"NE",
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						],
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 3,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						],
+						[
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 3,
+					"y": 2
+				},
+				{
+					"type": "catching",
+					"x": 3,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "movable",
+					"x": 1,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "movable",
+					"x": 1,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "movable",
+					"x": 1,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"E"
+						]
+					],
+					"type": "movable",
+					"x": 2,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "movable",
+					"x": 2,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "movable",
+					"x": 2,
+					"y": 2
+				}
+			],
+			"height": 3,
+			"id": "X-5",
+			"name": "X-5",
+			"steps": 2,
+			"width": 5
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "movable",
+					"x": 4,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "movable",
+					"x": 4,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 3
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 1,
+					"y": 4
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						],
+						[
+							"NW"
+						]
+					],
+					"type": "movable",
+					"x": 0,
+					"y": 4
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						],
+						[
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 3,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "normal",
+					"x": 3,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						]
+					],
+					"type": "movable",
+					"x": 1,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "movable",
+					"x": 2,
+					"y": 3
+				}
+			],
+			"height": 5,
+			"id": "X-6",
+			"name": "X-6",
+			"steps": 1,
+			"width": 5
+		},
+		{
+			"atoms": [
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 0,
+					"y": 0
+				},
+				{
+					"group": 1,
+					"orbits": [
+						[
+							"NE"
+						],
+						[
+							"E"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 2,
+					"y": 1
+				},
+				{
+					"group": 1,
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"NW",
+							"NE"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 5,
+					"y": 3
+				},
+				{
+					"type": "catching",
+					"x": 0,
+					"y": 4
+				},
+				{
+					"type": "catching",
+					"x": 5,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"NE"
+						],
+						[
+							"NE"
+						]
+					],
+					"type": "normal",
+					"x": 2,
+					"y": 4
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						]
+					],
+					"type": "movable",
+					"x": 3,
+					"y": 4
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						]
+					],
+					"type": "movable",
+					"x": 3,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"NW"
+						],
+						[
+							"E"
+						]
+					],
+					"type": "movable",
+					"x": 4,
+					"y": 1
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 5,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 4,
+					"y": 4
+				},
+				{
+					"orbits": [
+						[
+							"SW"
+						]
+					],
+					"type": "normal",
+					"x": 6,
+					"y": 4
+				}
+			],
+			"height": 5,
+			"id": "X-7",
+			"name": "X-7",
+			"steps": 2,
+			"width": 7
+		},
+		{
+			"atoms": [
+				{
+					"type": "catching",
+					"x": 2,
+					"y": 2
+				},
+				{
+					"type": "catching_movable",
+					"x": 3,
+					"y": 2
+				},
+				{
+					"type": "catching",
+					"x": 4,
+					"y": 2
+				},
+				{
+					"type": "catching_movable",
+					"x": 5,
+					"y": 2
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 3,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 5,
+					"y": 4
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 5,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 7,
+					"y": 0
+				},
+				{
+					"orbits": [
+						[
+							"SE"
+						]
+					],
+					"type": "normal",
+					"x": 3,
+					"y": 4
+				},
+				{
+					"group": 1,
+					"orbits": [
+						[
+							"NE"
+						],
+						[
+							"E"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 2,
+					"y": 1
+				},
+				{
+					"group": 1,
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"NW",
+							"NE"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 5,
+					"y": 3
+				},
+				{
+					"group": 2,
+					"orbits": [
+						[
+							"NE"
+						],
+						[
+							"E"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 1,
+					"y": 1
+				},
+				{
+					"group": 2,
+					"orbits": [
+						[
+							"W"
+						],
+						[
+							"NW",
+							"NE"
+						]
+					],
+					"type": "entangled_movable",
+					"x": 4,
+					"y": 3
+				}
+			],
+			"height": 5,
+			"id": "X-8",
+			"name": "X-8",
+			"steps": 3,
+			"width": 8
+		}
+	],
+	"schema_version": 1
+}
