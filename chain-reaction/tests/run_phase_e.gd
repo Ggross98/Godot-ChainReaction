@@ -30,6 +30,7 @@ func _init() -> void:
 	_test_bgm_playlists()
 	_test_se_same_tick_coalesce()
 	_test_ui_hover_styles()
+	_test_step_balls()
 	_test_debug_jump_off()
 	_delete_test_file()
 	_SaveAccount.path = _saved_path
@@ -326,6 +327,30 @@ func _test_ui_hover_styles() -> void:
 	)
 	icon.queue_free()
 	nav.queue_free()
+
+
+func _test_step_balls() -> void:
+	print("-- step balls")
+	var balls = preload("res://scripts/app/ui_step_balls.gd")
+	_check(balls.inner_visible(0, 3, 3) and balls.inner_visible(2, 3, 3), "all inners visible at start")
+	_check(not balls.inner_visible(0, 3, 2) and balls.inner_visible(1, 3, 2), "spend hides leftmost inner")
+	_check(not balls.inner_visible(0, 3, 0) and not balls.inner_visible(2, 3, 0), "all spent hides every inner")
+	var parent := HBoxContainer.new()
+	root.add_child(parent)
+	var template := Control.new()
+	var inner := TextureRect.new()
+	inner.name = "Inner"
+	inner.visible = true
+	template.add_child(inner)
+	balls.sync(parent, template, 3, 2)
+	_check(parent.get_child_count() == 3, "ball count matches initial steps")
+	_check(not (parent.get_child(0).get_node("Inner") as CanvasItem).visible, "left inner hidden after one spend")
+	_check((parent.get_child(1).get_node("Inner") as CanvasItem).visible, "remaining inners stay visible")
+	balls.sync(parent, template, 1, 1)
+	_check(parent.get_child_count() == 1, "rebuilds down to new map step count")
+	_check((parent.get_child(0).get_node("Inner") as CanvasItem).visible, "new map starts with inner visible")
+	parent.queue_free()
+	template.queue_free()
 
 
 func _test_debug_jump_off() -> void:

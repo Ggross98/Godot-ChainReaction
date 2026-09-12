@@ -10,6 +10,7 @@
 [ext_resource type="Theme" path="res://assets/ui/hud_theme.tres" id="6_theme"]
 [ext_resource type="Texture2D" uid="uid://b5aydd3hs01p6" path="res://assets/sprites/ui/sound_off.png" id="7_mute_off"]
 [ext_resource type="Texture2D" uid="uid://dt7rqlqus1f08" path="res://assets/sprites/game/position_mark.png" id="8_mark"]
+[ext_resource type="Texture2D" uid="uid://cquuhrya3hhq4" path="res://assets/sprites/game/Nuclei.png" id="9_kvuet"]
 [ext_resource type="Texture2D" uid="uid://diuk1m3xnmx18" path="res://assets/sprites/ui/Arrows_pointer_left.svg" id="11_dinhu"]
 [ext_resource type="Texture2D" uid="uid://bofjjws8on1ba" path="res://assets/sprites/ui/Arrows_pointer_right.svg" id="12_kvuet"]
 
@@ -70,7 +71,51 @@ text = "Completed!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LeftSteps" type="Label" parent="CanvasLayer/HUD" unique_id=1500403264]
+[node name="LeftStepsParent" type="HBoxContainer" parent="CanvasLayer/HUD" unique_id=1229869973]
+layout_mode = 0
+offset_left = 650.0
+offset_top = 977.0
+offset_right = 1270.0
+offset_bottom = 1049.0
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="StepBall1" type="TextureRect" parent="CanvasLayer/HUD/LeftStepsParent" unique_id=1221303159]
+self_modulate = Color(0.41981313, 0.41981313, 0.4198131, 1)
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+texture = ExtResource("9_kvuet")
+expand_mode = 1
+
+[node name="Inner" type="TextureRect" parent="CanvasLayer/HUD/LeftStepsParent/StepBall1" unique_id=286668899]
+self_modulate = Color(0.8784314, 0.88235295, 0.93333334, 1)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 62.0
+offset_bottom = 62.0
+texture = ExtResource("9_kvuet")
+expand_mode = 1
+
+[node name="StepBall2" type="TextureRect" parent="CanvasLayer/HUD/LeftStepsParent" unique_id=999753546]
+self_modulate = Color(0.41981313, 0.41981313, 0.4198131, 1)
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+texture = ExtResource("9_kvuet")
+expand_mode = 1
+
+[node name="Inner" type="TextureRect" parent="CanvasLayer/HUD/LeftStepsParent/StepBall2" unique_id=877749620]
+self_modulate = Color(0.8784314, 0.88235295, 0.93333334, 1)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 62.0
+offset_bottom = 62.0
+texture = ExtResource("9_kvuet")
+expand_mode = 1
+
+[node name="LeftStepLabel" type="Label" parent="CanvasLayer/HUD" unique_id=1500403264]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -162,9 +207,9 @@ text = "Next"
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 0
 offset_left = 70.0
-offset_top = 504.0
+offset_top = 484.0
 offset_right = 142.0
-offset_bottom = 576.0
+offset_bottom = 556.0
 texture_normal = ExtResource("11_dinhu")
 ignore_texture_size = true
 stretch_mode = 5
@@ -173,9 +218,9 @@ stretch_mode = 5
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 0
 offset_left = 1778.0
-offset_top = 504.0
+offset_top = 484.0
 offset_right = 1850.0
-offset_bottom = 576.0
+offset_bottom = 556.0
 texture_normal = ExtResource("12_kvuet")
 ignore_texture_size = true
 stretch_mode = 5

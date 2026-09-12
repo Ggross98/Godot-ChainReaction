@@ -5,8 +5,10 @@ const _GameLaunch := preload("res://scripts/app/game_launch.gd")
 const _ViewTransform := preload("res://scripts/view/view_transform.gd")
 const _I18n := preload("res://scripts/app/i18n.gd")
 const _UiButtonStyle := preload("res://scripts/app/ui_button_style.gd")
+const _UiStepBalls := preload("res://scripts/app/ui_step_balls.gd")
 const FONT_SIZE := 60
 const FONT_COLOR := Color(0.123, 0.123, 0.123)
+const BOARD_SCREEN_NUDGE_PX := 20.0
 
 @export var tex_sound_on: Texture2D
 @export var tex_sound_off: Texture2D
@@ -15,11 +17,12 @@ const FONT_COLOR := Color(0.123, 0.123, 0.123)
 var session = _GameSession.new()
 var _collapse_epoch: int = -1
 var _collapse_i: int = 0
+var _step_ball_template: Control
 
 @onready var board: Node2D = $Board
 @onready var title_label: Label = $CanvasLayer/HUD/Title
 @onready var state_label: Label = $CanvasLayer/HUD/StateInfo
-@onready var steps_label: Label = $CanvasLayer/HUD/LeftSteps
+@onready var steps_parent: HBoxContainer = $CanvasLayer/HUD/LeftStepsParent
 @onready var map_id_label: Label = $CanvasLayer/HUD/DebugBar/MapId
 @onready var pack_button: Button = $CanvasLayer/HUD/DebugBar/Pack
 @onready var restart_button: TextureButton = $CanvasLayer/HUD/Buttons/Restart
@@ -37,8 +40,8 @@ func _ready() -> void:
 	_I18n.load_locale("en")
 	_style_label(title_label)
 	_style_label(state_label)
-	_style_label(steps_label)
 	_style_label(map_id_label, 28)
+	_cache_step_ball_template()
 	restart_button.pressed.connect(_on_restart)
 	home_button.pressed.connect(_on_home)
 	mute_button.pressed.connect(_on_mute)
@@ -53,6 +56,7 @@ func _ready() -> void:
 	next_button.pressed.connect(_on_next)
 	pack_button.visible = false
 	debug_bar.visible = _GameLaunch.DEBUG_JUMP
+	board.position.y = -BOARD_SCREEN_NUDGE_PX / _ViewTransform.CAMERA_ZOOM
 	session.start_pack(_GameLaunch.pack_path, _GameLaunch.map_id)
 	_sync_launch()
 	_sync_mute_icon()
@@ -82,7 +86,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _refresh_hud() -> void:
 	title_label.text = session.hud_title()
 	state_label.text = session.hud_state()
-	steps_label.text = session.hud_steps()
+	_sync_step_balls()
 	var pack_name := _I18n.t("mode.custom") if session.pack_path() == _GameLaunch.CUSTOM else _I18n.t("mode.campaign")
 	map_id_label.text = "%s  %s  %s" % [pack_name, session.map_id(), session.hud_progress()]
 	pack_button.text = "Pack"
@@ -102,6 +106,25 @@ func _drain_collapse() -> void:
 		_collapse_i += 1
 		if ev.begins_with("collapse:"):
 			AudioService.play_collapse()
+
+
+func _cache_step_ball_template() -> void:
+	if steps_parent.get_child_count() == 0:
+		return
+	_step_ball_template = steps_parent.get_child(0).duplicate()
+	var inner: CanvasItem = _step_ball_template.get_node_or_null("Inner") as CanvasItem
+	if inner:
+		inner.visible = true
+
+
+func _sync_step_balls() -> void:
+	var initial := 0
+	if session.current_map != null:
+		initial = session.current_map.steps
+	var remaining := 0
+	if session.sim != null:
+		remaining = session.sim.steps
+	_UiStepBalls.sync(steps_parent, _step_ball_template, initial, remaining)
 
 
 func _sync_launch() -> void:
