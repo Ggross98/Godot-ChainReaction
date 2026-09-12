@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0yhc2bc5aykv"
-path="res://.godot/imported/Orbit0.png-c438a51132a3e0e33d24e8972e5da3a6.ctex"
+uid="uid://lmtkwlm8wqwr"
+path="res://.godot/imported/Orbit2.png-ea8e438bc19d9364f8f153fdd45688c9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Orbit0.png"
-dest_files=["res://.godot/imported/Orbit0.png-c438a51132a3e0e33d24e8972e5da3a6.ctex"]
+source_file="res://assets/sprites/game/Orbit2.png"
+dest_files=["res://.godot/imported/Orbit2.png-ea8e438bc19d9364f8f153fdd45688c9.ctex"]
 
 [params]
 

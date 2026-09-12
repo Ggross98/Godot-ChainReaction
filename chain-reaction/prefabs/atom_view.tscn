@@ -1,17 +1,24 @@
 [gd_scene format=3 uid="uid://celgp606l6t17"]
 
 [ext_resource type="Script" uid="uid://co1ad16rqgub" path="res://scripts/view/atom_view.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://duodnkfnbmesd" path="res://assets/sprites/Orbit1_Dotted.png" id="2_dotted"]
-[ext_resource type="Texture2D" uid="uid://d0yhc2bc5aykv" path="res://assets/sprites/Orbit0.png" id="3_orbit0"]
-[ext_resource type="Texture2D" uid="uid://du4maab751ucf" path="res://assets/sprites/Orbit1.png" id="4_orbit1"]
-[ext_resource type="Texture2D" uid="uid://lmtkwlm8wqwr" path="res://assets/sprites/Orbit2.png" id="5_orbit2"]
-[ext_resource type="Texture2D" uid="uid://vuw5nt7pmj2d" path="res://assets/sprites/Neutron0.png" id="6_neutron"]
-[ext_resource type="Texture2D" uid="uid://57aowrmwjmes" path="res://assets/sprites/Arrow.png" id="7_arrow"]
-[ext_resource type="Texture2D" uid="uid://cquuhrya3hhq4" path="res://assets/sprites/Nuclei.png" id="8_nuclei"]
+[ext_resource type="Texture2D" uid="uid://duodnkfnbmesd" path="res://assets/sprites/game/Orbit1_Dotted.png" id="2_dotted"]
+[ext_resource type="Texture2D" uid="uid://d0yhc2bc5aykv" path="res://assets/sprites/game/Orbit0.png" id="3_orbit0"]
+[ext_resource type="Texture2D" uid="uid://du4maab751ucf" path="res://assets/sprites/game/Orbit1.png" id="4_orbit1"]
+[ext_resource type="Texture2D" uid="uid://lmtkwlm8wqwr" path="res://assets/sprites/game/Orbit2.png" id="5_orbit2"]
+[ext_resource type="Texture2D" uid="uid://vuw5nt7pmj2d" path="res://assets/sprites/game/Neutron0.png" id="6_neutron"]
+[ext_resource type="Texture2D" uid="uid://57aowrmwjmes" path="res://assets/sprites/game/Arrow.png" id="7_arrow"]
+[ext_resource type="Texture2D" uid="uid://cquuhrya3hhq4" path="res://assets/sprites/game/Nuclei.png" id="8_nuclei"]
 
 [node name="AtomView" type="Node2D" unique_id=1488411104]
 scale = Vector2(0.9, 0.9)
 script = ExtResource("1")
+tex_nuclei = ExtResource("8_nuclei")
+tex_orbit0 = ExtResource("3_orbit0")
+tex_orbit1 = ExtResource("4_orbit1")
+tex_orbit2 = ExtResource("5_orbit2")
+tex_orbit_dotted = ExtResource("2_dotted")
+tex_arrow = ExtResource("7_arrow")
+tex_neutron = ExtResource("6_neutron")
 
 [node name="OrbitDotted" type="Sprite2D" parent="." unique_id=1708476231]
 visible = false

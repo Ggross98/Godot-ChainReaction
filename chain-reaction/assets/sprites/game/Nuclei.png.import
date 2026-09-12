@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cquuhrya3hhq4"
-path="res://.godot/imported/Nuclei.png-4b008fd300a4ac220efcaef21dd7aeca.ctex"
+path="res://.godot/imported/Nuclei.png-7e8707d7eadf3b8499d542a9c3175c18.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Nuclei.png"
-dest_files=["res://.godot/imported/Nuclei.png-4b008fd300a4ac220efcaef21dd7aeca.ctex"]
+source_file="res://assets/sprites/game/Nuclei.png"
+dest_files=["res://.godot/imported/Nuclei.png-7e8707d7eadf3b8499d542a9c3175c18.ctex"]
 
 [params]
 

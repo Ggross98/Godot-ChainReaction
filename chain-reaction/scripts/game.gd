@@ -4,12 +4,11 @@ const _GameSession := preload("res://scripts/app/game_session.gd")
 const _GameLaunch := preload("res://scripts/app/game_launch.gd")
 const _ViewTransform := preload("res://scripts/view/view_transform.gd")
 const _I18n := preload("res://scripts/app/i18n.gd")
-const FONT := preload("res://assets/fonts/spagi.ttf")
-const TEX_SOUND_ON := preload("res://assets/sprites/ui/sound_on.png")
-const TEX_SOUND_OFF := preload("res://assets/sprites/ui/sound_off.png")
-
 const FONT_SIZE := 60
 const FONT_COLOR := Color(0.123, 0.123, 0.123)
+
+@export var tex_sound_on: Texture2D
+@export var tex_sound_off: Texture2D
 
 var session = _GameSession.new()
 var _collapse_epoch: int = -1
@@ -41,7 +40,7 @@ func _ready() -> void:
 	mute_button.pressed.connect(_on_mute)
 	prev_button.pressed.connect(_on_prev)
 	next_button.pressed.connect(_on_next)
-	pack_button.pressed.connect(_on_pack)
+	pack_button.visible = false
 	debug_bar.visible = _GameLaunch.DEBUG_JUMP
 	session.start_pack(_GameLaunch.pack_path, _GameLaunch.map_id)
 	_sync_launch()
@@ -97,11 +96,10 @@ func _sync_launch() -> void:
 
 
 func _sync_mute_icon() -> void:
-	mute_button.texture_normal = TEX_SOUND_OFF if AudioService.muted else TEX_SOUND_ON
+	mute_button.texture_normal = tex_sound_off if AudioService.muted else tex_sound_on
 
 
 func _style_label(label: Label, size: int = FONT_SIZE) -> void:
-	label.add_theme_font_override("font", FONT)
 	label.add_theme_font_size_override("font_size", size)
 	label.add_theme_color_override("font_color", FONT_COLOR)
 
@@ -126,15 +124,4 @@ func _on_prev() -> void:
 
 func _on_next() -> void:
 	session.goto_next()
-	_sync_launch()
-
-
-func _on_pack() -> void:
-	if session.pack_path() == _GameLaunch.CAMPAIGN:
-		_GameLaunch.pack_path = _GameLaunch.CUSTOM
-		_GameLaunch.map_id = "relay-race"
-	else:
-		_GameLaunch.pack_path = _GameLaunch.CAMPAIGN
-		_GameLaunch.map_id = "1-1"
-	session.start_pack(_GameLaunch.pack_path, _GameLaunch.map_id)
 	_sync_launch()

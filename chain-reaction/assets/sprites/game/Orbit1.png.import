@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vuw5nt7pmj2d"
-path="res://.godot/imported/Neutron0.png-945fd4b57102bec7cc4d22263321e3bc.ctex"
+uid="uid://du4maab751ucf"
+path="res://.godot/imported/Orbit1.png-1d981e67ceabd1cbaa3a643ce5f715c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Neutron0.png"
-dest_files=["res://.godot/imported/Neutron0.png-945fd4b57102bec7cc4d22263321e3bc.ctex"]
+source_file="res://assets/sprites/game/Orbit1.png"
+dest_files=["res://.godot/imported/Orbit1.png-1d981e67ceabd1cbaa3a643ce5f715c2.ctex"]
 
 [params]
 

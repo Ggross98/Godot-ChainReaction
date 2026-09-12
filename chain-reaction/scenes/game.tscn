@@ -6,15 +6,20 @@
 [ext_resource type="Texture2D" uid="uid://d6rqs773qcim" path="res://assets/sprites/ui/T_11_home_.png" id="4_home"]
 [ext_resource type="Texture2D" uid="uid://jgv122wcwp1l" path="res://assets/sprites/ui/sound_on.png" id="5_mute"]
 [ext_resource type="Theme" path="res://assets/ui/hud_theme.tres" id="6_theme"]
+[ext_resource type="Texture2D" uid="uid://b5aydd3hs01p6" path="res://assets/sprites/ui/sound_off.png" id="7_mute_off"]
+[ext_resource type="Texture2D" uid="uid://dt7rqlqus1f08" path="res://assets/sprites/game/position_mark.png" id="8_mark"]
 
 [node name="Game" type="Node2D" unique_id=1332604730]
 script = ExtResource("1_uwrxv")
+tex_sound_on = ExtResource("5_mute")
+tex_sound_off = ExtResource("7_mute_off")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2136974943]
 zoom = Vector2(108, 108)
 
 [node name="Board" type="Node2D" parent="." unique_id=480485624]
 script = ExtResource("2_board")
+tex_mark = ExtResource("8_mark")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1716961451]
 
@@ -38,6 +43,7 @@ offset_top = 20.0
 offset_right = 97.0
 offset_bottom = 100.0
 grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
 text = "1-1 Click to Release"
 vertical_alignment = 1
 
@@ -54,6 +60,7 @@ offset_right = 400.0
 offset_bottom = 70.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 72
 text = "Completed!"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -71,6 +78,7 @@ offset_right = -103.0
 offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_font_sizes/font_size = 48
 text = "Left Steps : 1"
 vertical_alignment = 1
 

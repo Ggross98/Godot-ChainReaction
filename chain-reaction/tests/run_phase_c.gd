@@ -34,6 +34,7 @@ func _init() -> void:
 	_test_board_view_sync_smoke()
 	_test_atom_view_nuclei_keeps_ppu_scale()
 	_test_atom_view_prefab_instantiate()
+	_test_scripts_do_not_path_preload_assets()
 	print("=== %d failure(s) ===" % _failures)
 	_cleanup_test_save()
 	quit(1 if _failures > 0 else 0)
@@ -319,3 +320,27 @@ func _test_atom_view_prefab_instantiate() -> void:
 		_check(is_equal_approx(atom_pf.nuclei.scale.x, ppu * atom_pf.hover_scale), "instanced hover keeps PPU")
 	atom_pf.queue_free()
 	neutron_pf.queue_free()
+
+
+func _test_scripts_do_not_path_preload_assets() -> void:
+	print("-- no path-preload assets")
+	var hits := PackedStringArray()
+	_collect_asset_preloads("res://scripts", hits)
+	_check(hits.is_empty(), "scripts do not preload res://assets by path (%s)" % ",".join(hits))
+
+
+func _collect_asset_preloads(dir_path: String, hits: PackedStringArray) -> void:
+	var dir := DirAccess.open(dir_path)
+	if dir == null:
+		return
+	dir.list_dir_begin()
+	var name := dir.get_next()
+	while name != "":
+		if dir.current_is_dir() and name != "." and name != "..":
+			_collect_asset_preloads("%s/%s" % [dir_path, name], hits)
+		elif name.ends_with(".gd"):
+			var path := "%s/%s" % [dir_path, name]
+			var text := FileAccess.get_file_as_string(path)
+			if text.find("preload(\"res://assets/") != -1 or text.find("preload('res://assets/") != -1:
+				hits.append(path)
+		name = dir.get_next()

@@ -7,14 +7,6 @@ const _HexGrid := preload("res://scripts/core/hex_grid.gd")
 const _SimConstants := preload("res://scripts/core/sim_constants.gd")
 const _BehaviorRegistry := preload("res://scripts/core/behaviors/behavior_registry.gd")
 
-const TEX_NUCLEI := preload("res://assets/sprites/Nuclei.png")
-const TEX_ORBIT0 := preload("res://assets/sprites/Orbit0.png")
-const TEX_ORBIT1 := preload("res://assets/sprites/Orbit1.png")
-const TEX_ORBIT2 := preload("res://assets/sprites/Orbit2.png")
-const TEX_ORBIT_DOTTED := preload("res://assets/sprites/Orbit1_Dotted.png")
-const TEX_ARROW := preload("res://assets/sprites/Arrow.png")
-const TEX_NEUTRON := preload("res://assets/sprites/Neutron0.png")
-
 const EDITOR_PREVIEW_ZOOM := 108.0
 const PREVIEW_DIRS: PackedStringArray = ["W", "NE", "E", "SW"]
 
@@ -94,6 +86,15 @@ enum PreviewPose { IDLE, CATCHING, MOVABLE, ENTANGLED }
 		collapse_time = maxf(value, 0.001)
 		_on_look_changed()
 
+@export_group("Textures")
+@export var tex_nuclei: Texture2D
+@export var tex_orbit0: Texture2D
+@export var tex_orbit1: Texture2D
+@export var tex_orbit2: Texture2D
+@export var tex_orbit_dotted: Texture2D
+@export var tex_arrow: Texture2D
+@export var tex_neutron: Texture2D
+
 @export_group("Pixels")
 @export var ppu_default: float = 128.0:
 	set(value):
@@ -162,10 +163,10 @@ func _ensure_children() -> void:
 
 
 func _create_fallback_children() -> void:
-	orbit_dotted = _make_sprite("OrbitDotted", TEX_ORBIT_DOTTED, ppu_default)
-	orbit0 = _make_sprite("Orbit0", TEX_ORBIT0, ppu_orbit0)
-	orbit1 = _make_sprite("Orbit1", TEX_ORBIT1, ppu_default)
-	orbit2 = _make_sprite("Orbit2", TEX_ORBIT2, ppu_default)
+	orbit_dotted = _make_sprite("OrbitDotted", tex_orbit_dotted, ppu_default)
+	orbit0 = _make_sprite("Orbit0", tex_orbit0, ppu_orbit0)
+	orbit1 = _make_sprite("Orbit1", tex_orbit1, ppu_default)
+	orbit2 = _make_sprite("Orbit2", tex_orbit2, ppu_default)
 	parked_root = Node2D.new()
 	parked_root.name = "Parked"
 	add_child(parked_root)
@@ -175,7 +176,7 @@ func _create_fallback_children() -> void:
 	add_child(arrows)
 	for i in range(6):
 		_make_arrow_spoke(i)
-	nuclei = _make_sprite("Nuclei", TEX_NUCLEI, ppu_default)
+	nuclei = _make_sprite("Nuclei", tex_nuclei, ppu_default)
 	_collect_parked_pool()
 	_layout_arrows()
 
@@ -208,7 +209,7 @@ func _make_arrow_spoke(i: int) -> Node2D:
 	spoke.add_child(shaft)
 	var head := Sprite2D.new()
 	head.name = "Head"
-	head.texture = TEX_ARROW
+	head.texture = tex_arrow
 	head.flip_h = true
 	spoke.add_child(head)
 	return spoke
@@ -225,7 +226,8 @@ func _layout_arrows() -> void:
 		spoke.rotation = float(i) * TAU / 6.0
 		var head: Sprite2D = spoke.get_node_or_null("Head") as Sprite2D
 		if head:
-			head.texture = TEX_ARROW
+			if tex_arrow:
+				head.texture = tex_arrow
 			head.flip_h = true
 			head.position = Vector2(-arrow_radius, 0.0)
 			head.scale = _ViewTransform.sprite_scale(ppu_arrow) * arrow_head_scale
@@ -347,7 +349,7 @@ func _refresh_parked(atom) -> void:
 	var needed: int = atom.parked_count()
 	while _parked_pool.size() < needed:
 		var s := Sprite2D.new()
-		s.texture = TEX_NEUTRON
+		s.texture = tex_neutron
 		s.scale = _ViewTransform.sprite_scale(ppu_default)
 		s.modulate = neutron_color
 		parked_root.add_child(s)
@@ -476,7 +478,7 @@ func _pose_idle_parked() -> void:
 	var radius: float = _SimConstants.ORBIT_MID
 	while _parked_pool.size() < PREVIEW_DIRS.size():
 		var s := Sprite2D.new()
-		s.texture = TEX_NEUTRON
+		s.texture = tex_neutron
 		parked_root.add_child(s)
 		_parked_pool.append(s)
 	for s in _parked_pool:

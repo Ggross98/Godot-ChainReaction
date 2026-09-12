@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://du4maab751ucf"
-path="res://.godot/imported/Orbit1.png-9bb21dce02ea4bec394f8228271125d4.ctex"
+uid="uid://57aowrmwjmes"
+path="res://.godot/imported/Arrow.png-0e751a1d4d474da325963418b0020608.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Orbit1.png"
-dest_files=["res://.godot/imported/Orbit1.png-9bb21dce02ea4bec394f8228271125d4.ctex"]
+source_file="res://assets/sprites/game/Arrow.png"
+dest_files=["res://.godot/imported/Arrow.png-0e751a1d4d474da325963418b0020608.ctex"]
 
 [params]
 

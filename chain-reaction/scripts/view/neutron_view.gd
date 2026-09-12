@@ -3,7 +3,6 @@ class_name NeutronView
 extends Node2D
 
 const _ViewTransform := preload("res://scripts/view/view_transform.gd")
-const TEX_NEUTRON := preload("res://assets/sprites/Neutron0.png")
 const EDITOR_PREVIEW_ZOOM := 108.0
 
 enum PreviewPose { IDLE, CATCHING, MOVABLE, ENTANGLED }
@@ -13,6 +12,9 @@ enum PreviewPose { IDLE, CATCHING, MOVABLE, ENTANGLED }
 	set(value):
 		preview_pose = value
 		_on_look_changed()
+
+@export_group("Textures")
+@export var tex_neutron: Texture2D
 
 @export_group("Look")
 @export var neutron_color := Color(1.0, 0.733, 0.0):
@@ -101,7 +103,7 @@ func _ensure_children() -> void:
 func _create_fallback_children() -> void:
 	body = Sprite2D.new()
 	body.name = "Body"
-	body.texture = TEX_NEUTRON
+	body.texture = tex_neutron
 	body.scale = _ViewTransform.sprite_scale(ppu_default)
 	body.modulate = neutron_color
 	add_child(body)
@@ -113,7 +115,7 @@ func _ensure_ghost_count() -> void:
 	while _ghosts.size() < trace_count:
 		var g := Sprite2D.new()
 		g.name = "Ghost%d" % _ghosts.size()
-		g.texture = TEX_NEUTRON
+		g.texture = _neutron_texture()
 		g.scale = _ViewTransform.sprite_scale(ppu_default)
 		g.modulate = neutron_color
 		g.visible = false
@@ -174,6 +176,14 @@ func _refresh_ghosts() -> void:
 		g.scale = _ViewTransform.sprite_scale(ppu_default) * sc
 
 
+func _neutron_texture() -> Texture2D:
+	if tex_neutron:
+		return tex_neutron
+	if body:
+		return body.texture
+	return null
+
+
 func _on_look_changed() -> void:
 	if not _look_ready:
 		return
@@ -197,7 +207,7 @@ func _apply_look() -> void:
 		body.modulate = neutron_color
 		body.scale = _ViewTransform.sprite_scale(ppu_default)
 	for g in _ghosts:
-		g.texture = TEX_NEUTRON
+		g.texture = _neutron_texture()
 		g.scale = _ViewTransform.sprite_scale(ppu_default)
 		if not tracing:
 			g.visible = false

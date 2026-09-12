@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duodnkfnbmesd"
-path="res://.godot/imported/Orbit1_Dotted.png-6373f24cd80254b52c9c7e86a5cca986.ctex"
+uid="uid://cyrtxfujjroqw"
+path="res://.godot/imported/cross.png-a9c8b9b055fad48678f1c8a37002b1a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Orbit1_Dotted.png"
-dest_files=["res://.godot/imported/Orbit1_Dotted.png-6373f24cd80254b52c9c7e86a5cca986.ctex"]
+source_file="res://assets/sprites/ui/cross.png"
+dest_files=["res://.godot/imported/cross.png-a9c8b9b055fad48678f1c8a37002b1a3.ctex"]
 
 [params]
 

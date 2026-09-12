@@ -5,11 +5,12 @@ const _ViewTransform := preload("res://scripts/view/view_transform.gd")
 const _HexGrid := preload("res://scripts/core/hex_grid.gd")
 const ATOM_SCENE := preload("res://prefabs/atom_view.tscn")
 const NEUTRON_SCENE := preload("res://prefabs/neutron_view.tscn")
-const TEX_MARK := preload("res://assets/sprites/position_mark.png")
 
 const ORBIT_FADE_TIME := 0.1
 const ORBIT_FADE_SCALE := 1.75
 const MARK_COLOR := Color(0.726, 0.726, 0.726)
+
+@export var tex_mark: Texture2D
 
 var _epoch: int = -1
 var _event_i: int = 0
@@ -78,7 +79,7 @@ func _rebuild(session) -> void:
 		var row_w: int = sim.width if y % 2 == 0 else sim.width - 1
 		for x in range(row_w):
 			var mark := Sprite2D.new()
-			mark.texture = TEX_MARK
+			mark.texture = tex_mark
 			mark.modulate = MARK_COLOR
 			var world: Vector2 = _HexGrid.cell_to_world(sim.width, sim.height, x, y)
 			mark.position = _ViewTransform.logic_to_view(world)
