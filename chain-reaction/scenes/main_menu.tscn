@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://css0ynvh1pm2y" path="res://scripts/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="Texture2D" uid="uid://jgv122wcwp1l" path="res://assets/sprites/ui/sound_on.png" id="2_mute"]
+[ext_resource type="AudioStream" uid="uid://of2tsdjf0xvo" path="res://assets/audio/bgm/V. Menuet.mp3" id="4_rtw2f"]
 [ext_resource type="Theme" path="res://assets/ui/hud_theme.tres" id="4_theme"]
 [ext_resource type="Texture2D" uid="uid://cyrtxfujjroqw" path="res://assets/sprites/ui/cross.png" id="4_wu84c"]
 [ext_resource type="Texture2D" uid="uid://b5aydd3hs01p6" path="res://assets/sprites/ui/sound_off.png" id="5_mute_off"]
@@ -32,6 +33,7 @@ corner_radius_bottom_left = 10
 script = ExtResource("1_l6cm7")
 tex_sound_on = ExtResource("2_mute")
 tex_sound_off = ExtResource("5_mute_off")
+bgm_tracks = Array[AudioStream]([ExtResource("4_rtw2f")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1094178164]
 

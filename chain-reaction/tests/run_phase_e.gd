@@ -27,6 +27,7 @@ func _init() -> void:
 	_test_custom_win_does_not_persist()
 	_test_campaign_win_persists()
 	_test_mute()
+	_test_bgm_playlists()
 	_test_debug_jump_off()
 	_delete_test_file()
 	_SaveAccount.path = _saved_path
@@ -149,6 +150,116 @@ func _test_mute() -> void:
 	_check(not audio.muted, "unmuted flag")
 	_check(is_equal_approx(AudioServer.get_bus_volume_db(bus), before) or AudioServer.get_bus_volume_db(bus) > -1.0, "master bus restored")
 	audio.free()
+
+
+func _test_bgm_playlists() -> void:
+	print("-- bgm playlists")
+	var project := FileAccess.get_file_as_string("res://project.godot")
+	_check(project.contains("AudioService=\"*res://scenes/audio_service.tscn\""), "autoload is audio_service scene")
+	var src := FileAccess.get_file_as_string("res://scripts/app/audio_service.gd")
+	_check(src.find("BGM_DIR") == -1, "does not scan BGM folder")
+	_check(FileAccess.get_file_as_string("res://scripts/main_menu.gd").contains("play_playlist(bgm_tracks, false)"), "menu requests unshuffled playlist")
+	_check(FileAccess.get_file_as_string("res://scripts/game.gd").contains("play_playlist(bgm_tracks, true)"), "game requests shuffled playlist")
+	_test_bgm_empty()
+	_test_bgm_loop_first()
+	_test_bgm_shuffle_cycle()
+	_test_bgm_first_play_skips_gap()
+	_test_bgm_fade_then_gap()
+
+
+func _make_wav() -> AudioStreamWAV:
+	var stream := AudioStreamWAV.new()
+	stream.format = AudioStreamWAV.FORMAT_8_BITS
+	stream.mix_rate = 8000
+	var data := PackedByteArray()
+	data.resize(160)
+	stream.data = data
+	return stream
+
+
+func _make_audio() -> Node:
+	var audio = preload("res://scripts/app/audio_service.gd").new()
+	root.add_child(audio)
+	if audio.get_node_or_null("Bgm") == null:
+		audio._ready()
+	return audio
+
+
+func _bgm_player(audio: Node) -> AudioStreamPlayer:
+	return audio.get_node("Bgm") as AudioStreamPlayer
+
+
+func _test_bgm_empty() -> void:
+	var audio := _make_audio()
+	var bgm := _bgm_player(audio)
+	audio.play_playlist([], false)
+	_check(bgm.stream == null or not bgm.playing, "empty playlist does not play")
+	audio.queue_free()
+
+
+func _test_bgm_loop_first() -> void:
+	var audio := _make_audio()
+	var bgm := _bgm_player(audio)
+	var a := _make_wav()
+	var b := _make_wav()
+	audio.play_playlist([a, b], false)
+	_check(bgm.stream == a, "unshuffled plays first stream only")
+	bgm.finished.emit()
+	_check(bgm.stream == a, "unshuffled loops the first stream")
+	audio.queue_free()
+
+
+func _test_bgm_shuffle_cycle() -> void:
+	var audio := _make_audio()
+	var bgm := _bgm_player(audio)
+	var a := _make_wav()
+	var b := _make_wav()
+	var c := _make_wav()
+	audio.rng.seed = 7
+	audio.play_playlist([a, b, c], true)
+	var order: Array = []
+	order.append(bgm.stream)
+	bgm.finished.emit()
+	order.append(bgm.stream)
+	bgm.finished.emit()
+	order.append(bgm.stream)
+	_check(order.size() == 3, "shuffle yields three plays")
+	_check(order[0] != order[1] or order[1] != order[2] or order[0] != order[2], "shuffle is a permutation (not all identical)")
+	_check(order.has(a) and order.has(b) and order.has(c), "shuffle keeps every stream")
+	bgm.finished.emit()
+	_check(bgm.stream == order[0], "wrap repeats the shuffled order")
+	audio.queue_free()
+
+
+func _test_bgm_first_play_skips_gap() -> void:
+	var audio := _make_audio()
+	var bgm := _bgm_player(audio)
+	audio.fade_seconds = 1.0
+	audio.gap_seconds = 2.0
+	audio.play_playlist([_make_wav()], false)
+	_check(bgm.playing or bgm.stream != null, "first play starts without waiting")
+	audio.queue_free()
+
+
+func _test_bgm_fade_then_gap() -> void:
+	var audio := _make_audio()
+	var bgm := _bgm_player(audio)
+	audio.fade_seconds = 1.0
+	audio.gap_seconds = 2.0
+	var a := _make_wav()
+	var b := _make_wav()
+	audio.play_playlist([a], false)
+	audio.play_playlist([b], false)
+	audio._process(0.5)
+	_check(bgm.volume_db < -1.0, "volume falls during fade")
+	audio._process(0.5)
+	_check(not bgm.playing, "player stops after fade")
+	_check(bgm.stream != b or not bgm.playing, "new track not started during gap")
+	audio._process(1.9)
+	_check(not bgm.playing, "still silent before gap ends")
+	audio._process(0.2)
+	_check(bgm.stream == b, "new track starts after gap")
+	audio.queue_free()
 
 
 func _test_debug_jump_off() -> void:

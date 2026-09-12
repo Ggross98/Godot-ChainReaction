@@ -9,6 +9,7 @@ const FONT_COLOR := Color(0.123, 0.123, 0.123)
 
 @export var tex_sound_on: Texture2D
 @export var tex_sound_off: Texture2D
+@export var bgm_tracks: Array[AudioStream] = []
 
 var session = _GameSession.new()
 var _collapse_epoch: int = -1
@@ -46,6 +47,7 @@ func _ready() -> void:
 	_sync_launch()
 	_sync_mute_icon()
 	_refresh_hud()
+	AudioService.play_playlist(bgm_tracks, true)
 
 
 func _process(dt: float) -> void:

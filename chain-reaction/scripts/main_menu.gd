@@ -11,6 +11,7 @@ const CELL_SIZE := Vector2(88, 88)
 
 @export var tex_sound_on: Texture2D
 @export var tex_sound_off: Texture2D
+@export var bgm_tracks: Array[AudioStream] = []
 
 var _campaign_pack = null
 
@@ -32,6 +33,7 @@ func _ready() -> void:
 	_load_packs()
 	_rebuild_grid()
 	_sync_mute_icon()
+	AudioService.play_playlist(bgm_tracks, false)
 
 
 func _load_packs() -> void:

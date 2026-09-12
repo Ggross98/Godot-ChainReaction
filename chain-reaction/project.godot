@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-AudioService="*res://scripts/app/audio_service.gd"
+AudioService="*res://scenes/audio_service.tscn"
 
 [display]
 

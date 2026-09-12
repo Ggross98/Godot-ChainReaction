@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://ce2v8re04ryyy"]
+
+[ext_resource type="Script" uid="uid://ceghvbsuccpqb" path="res://scripts/app/audio_service.gd" id="1_audio"]
+
+[node name="AudioService" type="Node"]
+script = ExtResource("1_audio")
+fade_seconds = 1.0
+gap_seconds = 2.0
