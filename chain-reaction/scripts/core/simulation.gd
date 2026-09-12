@@ -1,12 +1,12 @@
 class_name Simulation
 extends RefCounted
 
-const HexGrid := preload("res://scripts/core/hex_grid.gd")
-const SimConstants := preload("res://scripts/core/sim_constants.gd")
-const AtomRuntime := preload("res://scripts/core/atom_runtime.gd")
-const NeutronRuntime := preload("res://scripts/core/neutron_runtime.gd")
-const BehaviorRegistry := preload("res://scripts/core/behaviors/behavior_registry.gd")
-const MapSchema := preload("res://scripts/core/map_schema.gd")
+const _HexGrid := preload("res://scripts/core/hex_grid.gd")
+const _SimConstants := preload("res://scripts/core/sim_constants.gd")
+const _AtomRuntime := preload("res://scripts/core/atom_runtime.gd")
+const _NeutronRuntime := preload("res://scripts/core/neutron_runtime.gd")
+const _BehaviorRegistry := preload("res://scripts/core/behaviors/behavior_registry.gd")
+const _MapSchema := preload("res://scripts/core/map_schema.gd")
 
 const STATE_WAITING := "waiting"
 const STATE_DRAGGING := "dragging"
@@ -24,7 +24,7 @@ var atoms: Array = []
 var flying: Array = []
 var _occupancy: Dictionary = {}
 var _next_neutron_id: int = 0
-var _drag_atom: AtomRuntime
+var _drag_atom: _AtomRuntime
 var _drag_origin: Vector2i = Vector2i.ZERO
 
 
@@ -42,7 +42,7 @@ func setup(map: Object) -> void:
 	_drag_atom = null
 	var i := 0
 	for src in map.atoms:
-		var atom := AtomRuntime.new()
+		var atom := _AtomRuntime.new()
 		atom.id = i
 		atom.x = src.x
 		atom.y = src.y
@@ -60,7 +60,7 @@ func setup(map: Object) -> void:
 		i += 1
 
 
-func atom_at(x: int, y: int) -> AtomRuntime:
+func atom_at(x: int, y: int) -> _AtomRuntime:
 	return _occupancy.get(_cell_key(x, y), null)
 
 
@@ -70,7 +70,7 @@ func press_cell(x: int, y: int) -> bool:
 	var atom := atom_at(x, y)
 	if atom == null or atom.collapsed:
 		return false
-	var action: String = BehaviorRegistry.of(atom.type).press_action()
+	var action: String = _BehaviorRegistry.of(atom.type).press_action()
 	if action != "release":
 		return false
 	steps -= 1
@@ -87,7 +87,7 @@ func begin_drag_cell(x: int, y: int) -> bool:
 	var atom := atom_at(x, y)
 	if atom == null or atom.collapsed:
 		return false
-	if not BehaviorRegistry.of(atom.type).can_drag():
+	if not _BehaviorRegistry.of(atom.type).can_drag():
 		return false
 	state = STATE_DRAGGING
 	_drag_atom = atom
@@ -101,7 +101,7 @@ func end_drag_cell(x: int, y: int) -> bool:
 	var atom := _drag_atom
 	var dest := Vector2i(x, y)
 	var moved := false
-	if dest != _drag_origin and HexGrid.is_in_map(width, height, x, y) and atom_at(x, y) == null:
+	if dest != _drag_origin and _HexGrid.is_in_map(width, height, x, y) and atom_at(x, y) == null:
 		_occupancy.erase(_cell_key(atom.x, atom.y))
 		atom.x = x
 		atom.y = y
@@ -130,22 +130,22 @@ func run_until_idle() -> void:
 		guard += 1
 
 
-func _release_atom(atom: AtomRuntime, released: Dictionary) -> void:
+func _release_atom(atom: _AtomRuntime, released: Dictionary) -> void:
 	if atom == null or atom.collapsed:
 		return
 	if released.has(atom.id):
 		return
 	released[atom.id] = true
 	_emit_outer(atom)
-	if BehaviorRegistry.of(atom.type).is_entangled():
+	if _BehaviorRegistry.of(atom.type).is_entangled():
 		for other in atoms:
 			if other.id == atom.id or other.collapsed:
 				continue
-			if other.group == atom.group and BehaviorRegistry.of(other.type).is_entangled():
+			if other.group == atom.group and _BehaviorRegistry.of(other.type).is_entangled():
 				_release_atom(other, released)
 
 
-func _emit_outer(atom: AtomRuntime) -> void:
+func _emit_outer(atom: _AtomRuntime) -> void:
 	if atom.collapsed:
 		return
 	events.append("release:%d" % atom.id)
@@ -166,23 +166,23 @@ func _emit_outer(atom: AtomRuntime) -> void:
 		_collapse(atom)
 
 
-func _spawn_radius(atom: AtomRuntime, layer_i: int) -> float:
+func _spawn_radius(atom: _AtomRuntime, layer_i: int) -> float:
 	if atom.parked.size() <= 1:
-		return SimConstants.ORBIT_MID
+		return _SimConstants.ORBIT_MID
 	if layer_i <= 0:
-		return SimConstants.ORBIT_INNER
-	return SimConstants.ORBIT_OUTER
+		return _SimConstants.ORBIT_INNER
+	return _SimConstants.ORBIT_OUTER
 
 
-func _spawn_neutron(atom: AtomRuntime, origin: Vector2, dir_id: String, radius: float) -> void:
-	var raw := HexGrid.direction_vector(dir_id)
+func _spawn_neutron(atom: _AtomRuntime, origin: Vector2, dir_id: String, radius: float) -> void:
+	var raw := _HexGrid.direction_vector(dir_id)
 	if raw == Vector2.ZERO:
 		return
-	var n := NeutronRuntime.new()
+	var n := _NeutronRuntime.new()
 	n.id = _next_neutron_id
 	_next_neutron_id += 1
 	n.dir_id = dir_id
-	n.vel = raw.normalized() * SimConstants.NEUTRON_SPEED
+	n.vel = raw.normalized() * _SimConstants.NEUTRON_SPEED
 	n.pos = origin + raw.normalized() * radius
 	n.ignore_atom_id = atom.id
 	n.alive = true
@@ -190,7 +190,7 @@ func _spawn_neutron(atom: AtomRuntime, origin: Vector2, dir_id: String, radius: 
 	events.append("spawn:%d:%s:%d" % [n.id, dir_id, atom.id])
 
 
-func _collapse(atom: AtomRuntime) -> void:
+func _collapse(atom: _AtomRuntime) -> void:
 	if atom.collapsed:
 		return
 	atom.collapsed = true
@@ -230,7 +230,7 @@ func _refresh_ignore() -> void:
 			n.ignore_atom_id = -1
 			continue
 		var dist: float = n.pos.distance_to(_atom_world(src))
-		if dist > SimConstants.NUCLEI_RADIUS + SimConstants.NEUTRON_RADIUS:
+		if dist > _SimConstants.NUCLEI_RADIUS + _SimConstants.NEUTRON_RADIUS:
 			n.ignore_atom_id = -1
 
 
@@ -245,9 +245,9 @@ func _next_event_group(horizon: float) -> Array:
 				continue
 			var p: Vector2 = n.pos - _atom_world(atom)
 			if _is_catchable(atom):
-				var tc := _time_to_circle(p, n.vel, SimConstants.CATCH_ORBIT_RADIUS + SimConstants.NEUTRON_RADIUS)
+				var tc := _time_to_circle(p, n.vel, _SimConstants.CATCH_ORBIT_RADIUS + _SimConstants.NEUTRON_RADIUS)
 				_push_candidate(candidates, tc, horizon, {"kind": "catch", "neutron": n, "atom": atom})
-			var tn := _time_to_circle(p, n.vel, SimConstants.NUCLEI_RADIUS + SimConstants.NEUTRON_RADIUS)
+			var tn := _time_to_circle(p, n.vel, _SimConstants.NUCLEI_RADIUS + _SimConstants.NEUTRON_RADIUS)
 			_push_candidate(candidates, tn, horizon, {"kind": "nuclei", "neutron": n, "atom": atom})
 	for atom in atoms:
 		if atom.collapsed or atom.catch_window_end < 0.0:
@@ -283,8 +283,8 @@ func _event_less(a: Dictionary, b: Dictionary) -> bool:
 	var bid := _event_neutron_id(b)
 	if aid != bid:
 		return aid < bid
-	var aa: AtomRuntime = a.atom
-	var ba: AtomRuntime = b.atom
+	var aa: _AtomRuntime = a.atom
+	var ba: _AtomRuntime = b.atom
 	if aa == null and ba == null:
 		return false
 	if aa == null:
@@ -308,14 +308,14 @@ func _apply_event(ev: Dictionary) -> void:
 	if kind == "catch_window":
 		_end_catch_window(ev.atom)
 		return
-	var n: NeutronRuntime = ev.neutron
+	var n: _NeutronRuntime = ev.neutron
 	if n == null or not n.alive:
 		return
 	if kind == "wall":
 		n.alive = false
 		events.append("wall:%d" % n.id)
 		return
-	var atom: AtomRuntime = ev.atom
+	var atom: _AtomRuntime = ev.atom
 	if atom == null or atom.collapsed:
 		return
 	if kind == "catch":
@@ -329,10 +329,10 @@ func _apply_event(ev: Dictionary) -> void:
 		_release_atom(atom, {})
 
 
-func _catch(n: NeutronRuntime, atom: AtomRuntime) -> void:
+func _catch(n: _NeutronRuntime, atom: _AtomRuntime) -> void:
 	n.alive = false
 	events.append("catch:%d:%d" % [n.id, atom.id])
-	var bounced := HexGrid.bounce_dir(n.dir_id)
+	var bounced := _HexGrid.bounce_dir(n.dir_id)
 	if atom.parked.is_empty():
 		atom.parked.append([])
 		atom.current_layer = 0
@@ -340,29 +340,29 @@ func _catch(n: NeutronRuntime, atom: AtomRuntime) -> void:
 	layer.append(bounced)
 	atom.parked[0] = layer
 	if atom.catch_window_end < 0.0:
-		atom.catch_window_end = time + SimConstants.CATCH_WINDOW
+		atom.catch_window_end = time + _SimConstants.CATCH_WINDOW
 
 
-func _end_catch_window(atom: AtomRuntime) -> void:
+func _end_catch_window(atom: _AtomRuntime) -> void:
 	if atom == null or atom.collapsed or atom.catch_window_end < 0.0:
 		return
 	if time + 1e-9 < atom.catch_window_end:
 		return
-	var next_type: String = str(BehaviorRegistry.of(atom.type).type_after_catch())
+	var next_type: String = str(_BehaviorRegistry.of(atom.type).type_after_catch())
 	atom.catch_window_end = -1.0
 	if next_type != "":
 		atom.type = next_type
 	events.append("catch_end:%d:%s" % [atom.id, atom.type])
 
 
-func _is_catchable(atom: AtomRuntime) -> bool:
+func _is_catchable(atom: _AtomRuntime) -> bool:
 	if atom.collapsed:
 		return false
 	if atom.catch_window_end >= 0.0 and time >= atom.catch_window_end:
 		return false
-	if MapSchema.is_catching_type(atom.type):
+	if _MapSchema.is_catching_type(atom.type):
 		return true
-	return BehaviorRegistry.of(atom.type).can_catch()
+	return _BehaviorRegistry.of(atom.type).can_catch()
 
 
 func _advance_windows(dt: float) -> void:
@@ -405,11 +405,11 @@ func _uncollapsed_count() -> int:
 	return n
 
 
-func _atom_world(atom: AtomRuntime) -> Vector2:
-	return HexGrid.cell_to_world(width, height, atom.x, atom.y)
+func _atom_world(atom: _AtomRuntime) -> Vector2:
+	return _HexGrid.cell_to_world(width, height, atom.x, atom.y)
 
 
-func _atom_by_id(id: int) -> AtomRuntime:
+func _atom_by_id(id: int) -> _AtomRuntime:
 	for atom in atoms:
 		if atom.id == id:
 			return atom
@@ -434,28 +434,28 @@ func _time_to_circle(p: Vector2, v: Vector2, radius: float) -> float:
 	var root := sqrt(disc)
 	var t1 := (-b - root) / (2.0 * a)
 	var t2 := (-b + root) / (2.0 * a)
-	if t1 > SimConstants.TOI_EPS:
+	if t1 > _SimConstants.TOI_EPS:
 		return t1
-	if t2 > SimConstants.TOI_EPS:
+	if t2 > _SimConstants.TOI_EPS:
 		return t2
 	return INF
 
 
-func _time_to_wall(n: NeutronRuntime) -> float:
-	var r := SimConstants.NEUTRON_RADIUS
+func _time_to_wall(n: _NeutronRuntime) -> float:
+	var r := _SimConstants.NEUTRON_RADIUS
 	var pos := n.pos
 	var vel := n.vel
-	if pos.x <= SimConstants.WALL_MIN.x + r or pos.x >= SimConstants.WALL_MAX.x - r or pos.y <= SimConstants.WALL_MIN.y + r or pos.y >= SimConstants.WALL_MAX.y - r:
+	if pos.x <= _SimConstants.WALL_MIN.x + r or pos.x >= _SimConstants.WALL_MAX.x - r or pos.y <= _SimConstants.WALL_MIN.y + r or pos.y >= _SimConstants.WALL_MAX.y - r:
 		return 0.0
 	var t := INF
 	if vel.x > 1e-12:
-		t = minf(t, (SimConstants.WALL_MAX.x - r - pos.x) / vel.x)
+		t = minf(t, (_SimConstants.WALL_MAX.x - r - pos.x) / vel.x)
 	elif vel.x < -1e-12:
-		t = minf(t, (SimConstants.WALL_MIN.x + r - pos.x) / vel.x)
+		t = minf(t, (_SimConstants.WALL_MIN.x + r - pos.x) / vel.x)
 	if vel.y > 1e-12:
-		t = minf(t, (SimConstants.WALL_MAX.y - r - pos.y) / vel.y)
+		t = minf(t, (_SimConstants.WALL_MAX.y - r - pos.y) / vel.y)
 	elif vel.y < -1e-12:
-		t = minf(t, (SimConstants.WALL_MIN.y + r - pos.y) / vel.y)
+		t = minf(t, (_SimConstants.WALL_MIN.y + r - pos.y) / vel.y)
 	if t < 0.0:
 		return 0.0
 	return t

@@ -1,8 +1,8 @@
 extends SceneTree
 
-const HexGrid := preload("res://scripts/core/hex_grid.gd")
-const MapLoader := preload("res://scripts/content/map_loader.gd")
-const Simulation := preload("res://scripts/core/simulation.gd")
+const _HexGrid := preload("res://scripts/core/hex_grid.gd")
+const _MapLoader := preload("res://scripts/content/map_loader.gd")
+const _Simulation := preload("res://scripts/core/simulation.gd")
 
 var _failures: int = 0
 
@@ -46,7 +46,7 @@ func _map(width: int, height: int, steps: int, atoms: Array) -> Object:
 			"atoms": atoms,
 		}],
 	}
-	var result = MapLoader.new().load_pack(pack)
+	var result = _MapLoader.new().load_pack(pack)
 	if not result.ok:
 		print("  FAIL map load: %s" % ",".join(result.errors))
 		_failures += 1
@@ -58,26 +58,26 @@ func _sim(width: int, height: int, steps: int, atoms: Array) -> Object:
 	var map = _map(width, height, steps, atoms)
 	if map == null:
 		return null
-	var sim = Simulation.new()
+	var sim = _Simulation.new()
 	sim.setup(map)
 	return sim
 
 
 func _test_hex_spacing_and_roundtrip() -> void:
 	print("-- HexGrid world")
-	_check(is_equal_approx(HexGrid.spacing(4, 3), 3.0), "small map spacing 3")
-	_check(is_equal_approx(HexGrid.spacing(6, 3), 1.8), "wide map spacing 1.8")
-	_check(is_equal_approx(HexGrid.spacing(4, 5), 1.8), "tall map spacing 1.8")
-	var w := HexGrid.cell_to_world(4, 3, 1, 0)
-	var back := HexGrid.world_to_cell(4, 3, w)
+	_check(is_equal_approx(_HexGrid.spacing(4, 3), 3.0), "small map spacing 3")
+	_check(is_equal_approx(_HexGrid.spacing(6, 3), 1.8), "wide map spacing 1.8")
+	_check(is_equal_approx(_HexGrid.spacing(4, 5), 1.8), "tall map spacing 1.8")
+	var w := _HexGrid.cell_to_world(4, 3, 1, 0)
+	var back := _HexGrid.world_to_cell(4, 3, w)
 	_check(back == Vector2i(1, 0), "even-row roundtrip")
-	var w_odd := HexGrid.cell_to_world(4, 3, 1, 1)
-	var even := HexGrid.cell_to_world(4, 3, 1, 0)
+	var w_odd := _HexGrid.cell_to_world(4, 3, 1, 1)
+	var even := _HexGrid.cell_to_world(4, 3, 1, 0)
 	_check(w_odd.x > even.x, "odd row is shifted right")
-	_check(HexGrid.world_to_cell(4, 3, w_odd) == Vector2i(1, 1), "odd-row roundtrip")
-	var e := HexGrid.direction_vector("E")
+	_check(_HexGrid.world_to_cell(4, 3, w_odd) == Vector2i(1, 1), "odd-row roundtrip")
+	var e := _HexGrid.direction_vector("E")
 	_check(is_equal_approx(e.x, 1.0) and is_equal_approx(e.y, 0.0), "E is +x")
-	var nw := HexGrid.direction_vector("NW")
+	var nw := _HexGrid.direction_vector("NW")
 	_check(nw.x < 0.0 and nw.y > 0.0, "NW is -x +y (y up)")
 
 
