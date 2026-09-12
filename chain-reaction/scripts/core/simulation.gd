@@ -64,6 +64,10 @@ func atom_at(x: int, y: int) -> _AtomRuntime:
 	return _occupancy.get(_cell_key(x, y), null)
 
 
+func get_drag_atom() -> _AtomRuntime:
+	return _drag_atom
+
+
 func press_cell(x: int, y: int) -> bool:
 	if state != STATE_WAITING:
 		return false

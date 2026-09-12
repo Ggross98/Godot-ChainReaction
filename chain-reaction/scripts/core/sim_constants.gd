@@ -4,6 +4,7 @@ extends RefCounted
 const NEUTRON_SPEED := 6.0
 const NEUTRON_RADIUS := 0.091
 const NUCLEI_RADIUS := 0.189
+const ATOM_ROOT_RADIUS := 0.363
 const CATCH_ORBIT_RADIUS := 0.680
 const ORBIT_INNER := 0.536
 const ORBIT_MID := 0.666

@@ -8,6 +8,13 @@ var id: String = ""
 var maps: Array = []
 
 
+func map_by_id(map_id: String):
+	for m in maps:
+		if m.id == map_id:
+			return m
+	return null
+
+
 class MapData:
 	extends RefCounted
 	var id: String = ""
