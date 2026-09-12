@@ -1,3 +1,9 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# Licensed / third-party BGM stays local; playlist still scans this folder.
+assets/audio/bgm/*.mp3
+assets/audio/bgm/*.ogg
+assets/audio/bgm/*.wav
+assets/audio/bgm/*.import

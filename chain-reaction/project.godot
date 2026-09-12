@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="ChainReaction"
-run/main_scene="uid://ddmtdjkp4osy3"
+run/main_scene="uid://v1fjjg7kupvx"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+AudioService="*res://scripts/app/audio_service.gd"
 
 [display]
 

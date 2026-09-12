@@ -1,9 +1,18 @@
 class_name HudStrings
 extends RefCounted
 
-const COMPLETED := "Completed!"
-const FAILED := "Failed!"
+const _I18n := preload("res://scripts/app/i18n.gd")
+
+
+static var COMPLETED: String:
+	get:
+		return _I18n.t("hud.completed")
+
+
+static var FAILED: String:
+	get:
+		return _I18n.t("hud.failed")
 
 
 static func left_steps(n: int) -> String:
-	return "Left Steps : %d" % n
+	return _I18n.t("hud.left_steps", {"n": n})

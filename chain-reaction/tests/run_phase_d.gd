@@ -7,11 +7,14 @@ const _SimConstants := preload("res://scripts/core/sim_constants.gd")
 const _GameSession := preload("res://scripts/app/game_session.gd")
 const _GameLaunch := preload("res://scripts/app/game_launch.gd")
 const _BehaviorRegistry := preload("res://scripts/core/behaviors/behavior_registry.gd")
+const _SaveAccount := preload("res://scripts/app/save_account.gd")
 
 var _failures: int = 0
 
 
 func _init() -> void:
+	_SaveAccount.path = "user://phase_d_test.cfg"
+	_SaveAccount.reset_memory()
 	print("=== Phase D tests ===")
 	_test_game_launch_defaults()
 	_test_campaign_wrap()
@@ -20,7 +23,15 @@ func _init() -> void:
 	_test_one_five_smoke()
 	_test_relay_race_smoke()
 	print("=== %d failure(s) ===" % _failures)
+	_cleanup_test_save()
 	quit(1 if _failures > 0 else 0)
+
+
+func _cleanup_test_save() -> void:
+	if FileAccess.file_exists(_SaveAccount.path):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(_SaveAccount.path))
+	_SaveAccount.path = _SaveAccount.DEFAULT_PATH
+	_SaveAccount.reset_memory()
 
 
 func _check(cond: bool, msg: String) -> void:

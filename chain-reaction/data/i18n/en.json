@@ -1,0 +1,9 @@
+{
+	"mode.campaign": "Campaign",
+	"mode.custom": "Custom",
+	"hud.left_steps": "Left Steps : {n}",
+	"hud.completed": "Completed!",
+	"hud.failed": "Failed!",
+	"menu.exit": "Exit",
+	"menu.title": "Chain Reaction"
+}

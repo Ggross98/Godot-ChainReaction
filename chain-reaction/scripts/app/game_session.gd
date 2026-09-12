@@ -7,6 +7,7 @@ const _HexGrid := preload("res://scripts/core/hex_grid.gd")
 const _SimConstants := preload("res://scripts/core/sim_constants.gd")
 const _BehaviorRegistry := preload("res://scripts/core/behaviors/behavior_registry.gd")
 const _HudStrings := preload("res://scripts/app/hud_strings.gd")
+const _SaveAccount := preload("res://scripts/app/save_account.gd")
 
 const OUTCOME_DELAY := 2.0
 
@@ -23,6 +24,7 @@ var _outcome_armed: bool = false
 
 
 func start_pack(path: String, target_id: String) -> bool:
+	_SaveAccount.load_from_disk()
 	var result = _MapLoader.new().load_pack_file(path)
 	if not result.ok:
 		push_error("GameSession: failed to load %s: %s" % [path, ",".join(result.errors)])
@@ -170,6 +172,8 @@ func _resolve_outcome() -> void:
 	var kind: String = sim.state
 	_clear_outcome()
 	if kind == _Simulation.STATE_WIN:
+		if _SaveAccount.should_persist(_pack_path):
+			_SaveAccount.mark_cleared(map_index)
 		goto_next()
 	else:
 		_reload_current()

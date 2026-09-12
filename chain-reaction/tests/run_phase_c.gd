@@ -9,11 +9,14 @@ const _GameLaunch := preload("res://scripts/app/game_launch.gd")
 const _HudStrings := preload("res://scripts/app/hud_strings.gd")
 const _BoardView := preload("res://scripts/view/board_view.gd")
 const _AtomView := preload("res://scripts/view/atom_view.gd")
+const _SaveAccount := preload("res://scripts/app/save_account.gd")
 
 var _failures: int = 0
 
 
 func _init() -> void:
+	_SaveAccount.path = "user://phase_c_test.cfg"
+	_SaveAccount.reset_memory()
 	print("=== Phase C tests ===")
 	_test_view_transform_roundtrip()
 	_test_cell_roundtrip_through_view()
@@ -29,7 +32,15 @@ func _init() -> void:
 	_test_board_view_sync_smoke()
 	_test_atom_view_nuclei_keeps_ppu_scale()
 	print("=== %d failure(s) ===" % _failures)
+	_cleanup_test_save()
 	quit(1 if _failures > 0 else 0)
+
+
+func _cleanup_test_save() -> void:
+	if FileAccess.file_exists(_SaveAccount.path):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(_SaveAccount.path))
+	_SaveAccount.path = _SaveAccount.DEFAULT_PATH
+	_SaveAccount.reset_memory()
 
 
 func _check(cond: bool, msg: String) -> void:
