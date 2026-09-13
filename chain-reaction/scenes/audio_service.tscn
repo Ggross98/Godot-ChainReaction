@@ -1,8 +1,10 @@
-[gd_scene format=3 uid="uid://ce2v8re04ryyy"]
+[gd_scene load_steps=3 format=3 uid="uid://ce2v8re04ryyy"]
 
 [ext_resource type="Script" uid="uid://ceghvbsuccpqb" path="res://scripts/app/audio_service.gd" id="1_audio"]
+[ext_resource type="AudioStream" uid="uid://b1os6tbtm74ty" path="res://assets/audio/se/bop2.mp3" id="2_se"]
 
 [node name="AudioService" type="Node"]
 script = ExtResource("1_audio")
 fade_seconds = 1.0
 gap_seconds = 2.0
+collapse_se = ExtResource("2_se")

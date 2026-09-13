@@ -1,6 +1,5 @@
 extends Node
 
-const SE_PATH := "res://assets/audio/se/bop2.mp3"
 const MAX_SE := 3
 const MUTE_DB := -80.0
 const PLAY_DB := 0.0
@@ -9,6 +8,7 @@ enum Phase { IDLE, PLAYING, FADING, WAITING }
 
 @export var fade_seconds: float = 1.0
 @export var gap_seconds: float = 2.0
+@export var collapse_se: AudioStream
 
 var muted: bool = false
 var rng := RandomNumberGenerator.new()
@@ -117,8 +117,8 @@ func _ensure_players() -> void:
 		p.name = "Se%d" % i
 		add_child(p)
 		_se_players.append(p)
-	if FileAccess.file_exists(SE_PATH):
-		_se_stream = load(SE_PATH)
+	if _se_stream == null:
+		_se_stream = collapse_se
 
 
 func _normalize(tracks: Array) -> Array:
