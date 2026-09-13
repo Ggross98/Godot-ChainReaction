@@ -13,6 +13,9 @@ const SIDEBAR_WIDTH_PX := 420.0
 const CAMPAIGN_DIR := _GameLaunch.CAMPAIGN
 const CUSTOM_DIR := _GameLaunch.CUSTOM
 const ID_PATTERN := "^[A-Za-z0-9][A-Za-z0-9_-]*$"
+const ZOOM_MIN := 36.0
+const ZOOM_MAX := 324.0
+const ZOOM_STEP := 1.12
 
 var session = _GameSession.new()
 var draft = _MapPack.MapData.new()
@@ -22,6 +25,7 @@ var _loader := _MapLoader.new()
 var _suppress: bool = false
 var _orbit_boxes: Array = []
 
+@onready var camera: Camera2D = $Camera2D
 @onready var board: Node2D = $Board
 @onready var side_panel: Control = $CanvasLayer/HUD/SidePanel
 @onready var load_option: OptionButton = $CanvasLayer/HUD/SidePanel/VBox/LoadOption
@@ -74,12 +78,29 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		return
 	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			_zoom_at_pointer(ZOOM_STEP)
+			get_viewport().set_input_as_handled()
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			_zoom_at_pointer(1.0 / ZOOM_STEP)
+			get_viewport().set_input_as_handled()
+		elif event.button_index == MOUSE_BUTTON_LEFT:
 			_on_board_left()
 			get_viewport().set_input_as_handled()
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
 			_on_board_right()
 			get_viewport().set_input_as_handled()
+
+
+func _zoom_at_pointer(factor: float) -> void:
+	var old_zoom: float = camera.zoom.x
+	var new_zoom: float = clampf(old_zoom * factor, ZOOM_MIN, ZOOM_MAX)
+	if is_equal_approx(old_zoom, new_zoom):
+		return
+	var world_before: Vector2 = get_global_mouse_position()
+	camera.zoom = Vector2(new_zoom, new_zoom)
+	var world_after: Vector2 = get_global_mouse_position()
+	camera.position += world_before - world_after
 
 
 func _nudge_board_for_sidebar() -> void:
