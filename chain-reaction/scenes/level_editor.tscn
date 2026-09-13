@@ -1,30 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://bv60paabf4vs8"]
+[gd_scene format=3 uid="uid://bv60paabf4vs8"]
 
-[ext_resource type="Script" path="res://scripts/dev/level_editor.gd" id="1_editor"]
-[ext_resource type="Script" path="res://scripts/view/board_view.gd" id="2_board"]
+[ext_resource type="Script" uid="uid://rn2g8vckxc87" path="res://scripts/dev/level_editor.gd" id="1_editor"]
+[ext_resource type="Script" uid="uid://j4fqj6w7veog" path="res://scripts/view/board_view.gd" id="2_board"]
 [ext_resource type="Theme" path="res://assets/ui/hud_theme.tres" id="3_theme"]
 [ext_resource type="Texture2D" uid="uid://dt7rqlqus1f08" path="res://assets/sprites/game/position_mark.png" id="4_mark"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
-bg_color = Color(0.92, 0.922, 0.95, 0.96)
 content_margin_left = 16.0
 content_margin_top = 16.0
 content_margin_right = 16.0
 content_margin_bottom = 16.0
+bg_color = Color(0.92, 0.922, 0.95, 0.96)
 
-[node name="LevelEditor" type="Node2D"]
+[node name="LevelEditor" type="Node2D" unique_id=1119331794]
 script = ExtResource("1_editor")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2087737430]
 zoom = Vector2(108, 108)
 
-[node name="Board" type="Node2D" parent="."]
+[node name="Board" type="Node2D" parent="." unique_id=1259601736]
 script = ExtResource("2_board")
 tex_mark = ExtResource("4_mark")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1071061278]
 
-[node name="HUD" type="Control" parent="CanvasLayer"]
+[node name="HUD" type="Control" parent="CanvasLayer" unique_id=1349030101]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,7 +34,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("3_theme")
 
-[node name="SidePanel" type="PanelContainer" parent="CanvasLayer/HUD"]
+[node name="SidePanel" type="PanelContainer" parent="CanvasLayer/HUD" unique_id=225807114]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -43,135 +43,133 @@ anchor_bottom = 1.0
 offset_left = -420.0
 grow_horizontal = 0
 grow_vertical = 2
-mouse_filter = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
-[node name="VBox" type="VBoxContainer" parent="CanvasLayer/HUD/SidePanel"]
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/HUD/SidePanel" unique_id=707563237]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Title" type="Label" parent="CanvasLayer/HUD/SidePanel/VBox"]
+[node name="Title" type="Label" parent="CanvasLayer/HUD/SidePanel/VBox" unique_id=1542577089]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Level Editor"
 
-[node name="LoadOption" type="OptionButton" parent="CanvasLayer/HUD/SidePanel/VBox"]
+[node name="LoadOption" type="OptionButton" parent="CanvasLayer/HUD/SidePanel/VBox" unique_id=2110204085]
 layout_mode = 2
 fit_to_longest_item = false
 
-[node name="IdLabel" type="Label" parent="CanvasLayer/HUD/SidePanel/VBox"]
+[node name="IdLabel" type="Label" parent="CanvasLayer/HUD/SidePanel/VBox" unique_id=583958040]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "id"
 
-[node name="IdEdit" type="LineEdit" parent="CanvasLayer/HUD/SidePanel/VBox"]
+[node name="IdEdit" type="LineEdit" parent="CanvasLayer/HUD/SidePanel/VBox" unique_id=1263734203]
 layout_mode = 2
 placeholder_text = "map-id"
 
-[node name="NameLabel" type="Label" parent="CanvasLayer/HUD/SidePanel/VBox"]
+[node name="NameLabel" type="Label" parent="CanvasLayer/HUD/SidePanel/VBox" unique_id=691195986]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "name"
 
-[node name="NameEdit" type="LineEdit" parent="CanvasLayer/HUD/SidePanel/VBox"]
+[node name="NameEdit" type="LineEdit" parent="CanvasLayer/HUD/SidePanel/VBox" unique_id=1338043377]
 layout_mode = 2
 placeholder_text = "Display name"
 
-[node name="SizeRow" type="HBoxContainer" parent="CanvasLayer/HUD/SidePanel/VBox"]
+[node name="SizeRow" type="HBoxContainer" parent="CanvasLayer/HUD/SidePanel/VBox" unique_id=417262380]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="WidthLabel" type="Label" parent="CanvasLayer/HUD/SidePanel/VBox/SizeRow"]
+[node name="WidthLabel" type="Label" parent="CanvasLayer/HUD/SidePanel/VBox/SizeRow" unique_id=1642016411]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "W"
 
-[node name="WidthSpin" type="SpinBox" parent="CanvasLayer/HUD/SidePanel/VBox/SizeRow"]
+[node name="WidthSpin" type="SpinBox" parent="CanvasLayer/HUD/SidePanel/VBox/SizeRow" unique_id=803393379]
 layout_mode = 2
 min_value = 1.0
 max_value = 20.0
 value = 5.0
 
-[node name="HeightLabel" type="Label" parent="CanvasLayer/HUD/SidePanel/VBox/SizeRow"]
+[node name="HeightLabel" type="Label" parent="CanvasLayer/HUD/SidePanel/VBox/SizeRow" unique_id=986540149]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "H"
 
-[node name="HeightSpin" type="SpinBox" parent="CanvasLayer/HUD/SidePanel/VBox/SizeRow"]
+[node name="HeightSpin" type="SpinBox" parent="CanvasLayer/HUD/SidePanel/VBox/SizeRow" unique_id=1015431208]
 layout_mode = 2
 min_value = 1.0
 max_value = 20.0
 value = 4.0
 
-[node name="StepsLabel" type="Label" parent="CanvasLayer/HUD/SidePanel/VBox"]
+[node name="StepsLabel" type="Label" parent="CanvasLayer/HUD/SidePanel/VBox" unique_id=554935843]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "steps"
 
-[node name="StepsSpin" type="SpinBox" parent="CanvasLayer/HUD/SidePanel/VBox"]
+[node name="StepsSpin" type="SpinBox" parent="CanvasLayer/HUD/SidePanel/VBox" unique_id=213994278]
 layout_mode = 2
 min_value = 1.0
 max_value = 20.0
 value = 1.0
 
-[node name="TypeLabel" type="Label" parent="CanvasLayer/HUD/SidePanel/VBox"]
+[node name="TypeLabel" type="Label" parent="CanvasLayer/HUD/SidePanel/VBox" unique_id=172195514]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "type"
 
-[node name="TypeOption" type="OptionButton" parent="CanvasLayer/HUD/SidePanel/VBox"]
+[node name="TypeOption" type="OptionButton" parent="CanvasLayer/HUD/SidePanel/VBox" unique_id=756718887]
 layout_mode = 2
 fit_to_longest_item = false
 
-[node name="GroupLabel" type="Label" parent="CanvasLayer/HUD/SidePanel/VBox"]
+[node name="GroupLabel" type="Label" parent="CanvasLayer/HUD/SidePanel/VBox" unique_id=1251400469]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "group"
 
-[node name="GroupSpin" type="SpinBox" parent="CanvasLayer/HUD/SidePanel/VBox"]
+[node name="GroupSpin" type="SpinBox" parent="CanvasLayer/HUD/SidePanel/VBox" unique_id=449445713]
 layout_mode = 2
 min_value = 1.0
 max_value = 99.0
 value = 1.0
 
-[node name="Orbit0Label" type="Label" parent="CanvasLayer/HUD/SidePanel/VBox"]
+[node name="Orbit0Label" type="Label" parent="CanvasLayer/HUD/SidePanel/VBox" unique_id=613572454]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "orbit 0"
 
-[node name="OrbitRow0" type="HBoxContainer" parent="CanvasLayer/HUD/SidePanel/VBox"]
+[node name="OrbitRow0" type="HBoxContainer" parent="CanvasLayer/HUD/SidePanel/VBox" unique_id=1617872566]
 layout_mode = 2
 
-[node name="Orbit1Label" type="Label" parent="CanvasLayer/HUD/SidePanel/VBox"]
+[node name="Orbit1Label" type="Label" parent="CanvasLayer/HUD/SidePanel/VBox" unique_id=1497001175]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "orbit 1"
 
-[node name="OrbitRow1" type="HBoxContainer" parent="CanvasLayer/HUD/SidePanel/VBox"]
+[node name="OrbitRow1" type="HBoxContainer" parent="CanvasLayer/HUD/SidePanel/VBox" unique_id=968402070]
 layout_mode = 2
 
-[node name="ButtonRow" type="HBoxContainer" parent="CanvasLayer/HUD/SidePanel/VBox"]
+[node name="ButtonRow" type="HBoxContainer" parent="CanvasLayer/HUD/SidePanel/VBox" unique_id=1618496010]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="NewButton" type="Button" parent="CanvasLayer/HUD/SidePanel/VBox/ButtonRow"]
+[node name="NewButton" type="Button" parent="CanvasLayer/HUD/SidePanel/VBox/ButtonRow" unique_id=133745480]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "New"
 
-[node name="ValidateButton" type="Button" parent="CanvasLayer/HUD/SidePanel/VBox/ButtonRow"]
+[node name="ValidateButton" type="Button" parent="CanvasLayer/HUD/SidePanel/VBox/ButtonRow" unique_id=881599445]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Validate"
 
-[node name="SaveButton" type="Button" parent="CanvasLayer/HUD/SidePanel/VBox/ButtonRow"]
+[node name="SaveButton" type="Button" parent="CanvasLayer/HUD/SidePanel/VBox/ButtonRow" unique_id=667132700]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Save"
 
-[node name="Status" type="Label" parent="CanvasLayer/HUD/SidePanel/VBox"]
+[node name="Status" type="Label" parent="CanvasLayer/HUD/SidePanel/VBox" unique_id=17224879]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 20
-text = ""
 autowrap_mode = 3

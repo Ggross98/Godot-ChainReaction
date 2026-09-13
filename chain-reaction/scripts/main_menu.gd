@@ -53,15 +53,15 @@ func _rebuild_grid() -> void:
 	var count: int = _campaign_pack.maps.size()
 	for i in range(count):
 		var state := _SaveAccount.campaign_cell_state(i, count)
+		var map_id: String = _campaign_pack.maps[i].id
 		var btn := Button.new()
 		btn.custom_minimum_size = CELL_SIZE
-		btn.text = str(i + 1)
+		btn.text = map_id
 		btn.add_theme_font_size_override("font_size", 32)
 		btn.add_theme_color_override("font_color", FONT_COLOR)
 		var playable := _SaveAccount.is_playable(true, i, count)
 		btn.disabled = not playable
 		_UiButtonStyle.apply_cell(btn, _SaveAccount.cell_color(state), playable)
-		var map_id: String = _campaign_pack.maps[i].id
 		btn.pressed.connect(_on_cell.bind(map_id))
 		campaign_grid.add_child(btn)
 
