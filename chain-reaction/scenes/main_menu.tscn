@@ -13,6 +13,9 @@ font_size = 108
 font_color = Color(0, 0, 0, 1)
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0.69965345, 0.6996535, 0.6996533, 1)
+shadow_offset = Vector2(8, 8)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_unlocked"]
 content_margin_left = 8.0
