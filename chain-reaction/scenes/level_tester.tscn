@@ -1,3 +1,90 @@
-[gd_scene format=3 uid="uid://rjynkf3wf10v"]
+[gd_scene load_steps=6 format=3 uid="uid://rjynkf3wf10v"]
 
-[node name="LevelTester" type="Node2D" unique_id=962488804]
+[ext_resource type="Script" path="res://scripts/dev/level_tester.gd" id="1_tester"]
+[ext_resource type="Script" path="res://scripts/view/board_view.gd" id="2_board"]
+[ext_resource type="Texture2D" uid="uid://b7n4f6pufikuf" path="res://assets/sprites/ui/T_arrow_circle.png" id="3_restart"]
+[ext_resource type="Theme" path="res://assets/ui/hud_theme.tres" id="4_theme"]
+[ext_resource type="Texture2D" uid="uid://dt7rqlqus1f08" path="res://assets/sprites/game/position_mark.png" id="5_mark"]
+[ext_resource type="Texture2D" uid="uid://cquuhrya3hhq4" path="res://assets/sprites/game/Nuclei.png" id="6_nuclei"]
+
+[node name="LevelTester" type="Node2D"]
+script = ExtResource("1_tester")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(108, 108)
+
+[node name="Board" type="Node2D" parent="."]
+script = ExtResource("2_board")
+tex_mark = ExtResource("5_mark")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("4_theme")
+
+[node name="Title" type="Label" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -903.0
+offset_top = 20.0
+offset_right = 97.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "Level Tester"
+vertical_alignment = 1
+
+[node name="LeftStepsParent" type="HBoxContainer" parent="CanvasLayer/HUD"]
+layout_mode = 0
+offset_left = 650.0
+offset_top = 977.0
+offset_right = 1270.0
+offset_bottom = 1049.0
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="StepBall1" type="TextureRect" parent="CanvasLayer/HUD/LeftStepsParent"]
+self_modulate = Color(0.41981313, 0.41981313, 0.4198131, 1)
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+texture = ExtResource("6_nuclei")
+expand_mode = 1
+
+[node name="Inner" type="TextureRect" parent="CanvasLayer/HUD/LeftStepsParent/StepBall1"]
+self_modulate = Color(0.8784314, 0.88235295, 0.93333334, 1)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 62.0
+offset_bottom = 62.0
+texture = ExtResource("6_nuclei")
+expand_mode = 1
+
+[node name="Buttons" type="HBoxContainer" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = 104.0
+grow_horizontal = 0
+theme_override_constants/separation = 20
+alignment = 2
+
+[node name="Restart" type="TextureButton" parent="CanvasLayer/HUD/Buttons"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+texture_normal = ExtResource("3_restart")
+ignore_texture_size = true
+stretch_mode = 5

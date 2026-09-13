@@ -204,6 +204,8 @@ tests/                                   # 无场景或最小场景的模拟测�
 
 **出口：** 改一关 JSON → 游戏运行读到同样数据；试玩胜负与游戏一致。未做模组、多模式、联网。
 
+实施形态：开发场景 `scenes/level_editor.tscn` / `scenes/level_tester.tscn`（F6），不是 EditorPlugin。`export_presets.cfg` 的 `exclude_filter` 排除这两个场景和 `scripts/dev/*`。主菜单无入口。
+
 ---
 
 ## 2. 阶段依赖

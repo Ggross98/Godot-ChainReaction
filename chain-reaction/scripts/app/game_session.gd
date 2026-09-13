@@ -2,6 +2,7 @@ class_name GameSession
 extends RefCounted
 
 const _MapLoader := preload("res://scripts/content/map_loader.gd")
+const _MapPack := preload("res://scripts/core/map_data.gd")
 const _Simulation := preload("res://scripts/core/simulation.gd")
 const _HexGrid := preload("res://scripts/core/hex_grid.gd")
 const _SimConstants := preload("res://scripts/core/sim_constants.gd")
@@ -42,6 +43,26 @@ func start_pack(path: String, target_id: String) -> bool:
 	map_index = found
 	_reload_current()
 	return true
+
+
+func start_map(map_data) -> bool:
+	if map_data == null:
+		push_error("GameSession: map is missing")
+		return false
+	var pack_inst := _MapPack.new()
+	pack_inst.schema_version = 1
+	pack_inst.id = "draft"
+	pack_inst.maps = [map_data]
+	pack = pack_inst
+	_pack_path = "draft"
+	map_index = 0
+	_clear_outcome()
+	_reload_current()
+	return true
+
+
+func should_persist() -> bool:
+	return _SaveAccount.should_persist(_pack_path)
 
 
 func map_id() -> String:
