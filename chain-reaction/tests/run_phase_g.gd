@@ -21,6 +21,7 @@ func _init() -> void:
 	_test_illegal_cell_rejected()
 	_test_duplicate_cell_rejected()
 	_test_start_map_does_not_persist()
+	_test_campaign_load_and_overwrite()
 	_test_dev_scenes()
 	_test_player_shell_has_no_editor()
 	_cleanup()
@@ -173,6 +174,35 @@ func _test_start_map_does_not_persist() -> void:
 	_check(session.current_map != null, "start_map sets current_map")
 	_check(session.pack_path() != _GameLaunch.CAMPAIGN, "draft pack is not campaign")
 	_check(not session.should_persist(), "start_map should_persist is false")
+
+
+func _test_campaign_load_and_overwrite() -> void:
+	print("-- campaign load and pack upsert")
+	var campaign_ids: PackedStringArray = _loader.list_pack_ids(_GameLaunch.CAMPAIGN)
+	_check(campaign_ids.has("1-1"), "campaign pack lists 1-1")
+	_check(campaign_ids.has("X-8"), "campaign pack lists X-8")
+	_check(campaign_ids.size() == 40, "campaign pack has 40 maps")
+	var loaded = _loader.load_map_file("res://data/maps/campaign/level_1-1.json")
+	_check(loaded.ok and loaded.map != null, "campaign 1-1 file loads")
+	if loaded.map != null:
+		_check(loaded.map.id == "1-1", "campaign 1-1 keeps id")
+	var map = _load_relay()
+	if map == null:
+		return
+	map.id = "keep-me"
+	map.name = "First"
+	_check(_loader.upsert_custom_map(map, TEST_DIR).ok, "first upsert keep-me")
+	map.name = "Second"
+	_check(_loader.upsert_custom_map(map, TEST_DIR).ok, "overwrite keep-me")
+	var ids: PackedStringArray = _loader.list_pack_ids(TEST_DIR)
+	var count := 0
+	for item in ids:
+		if item == "keep-me":
+			count += 1
+	_check(count == 1, "overwrite does not duplicate pack id")
+	var pack_result = _loader.load_pack_file(TEST_DIR)
+	var again = pack_result.pack.map_by_id("keep-me") if pack_result.ok else null
+	_check(again != null and again.name == "Second", "overwrite updates map name")
 
 
 func _test_dev_scenes() -> void:

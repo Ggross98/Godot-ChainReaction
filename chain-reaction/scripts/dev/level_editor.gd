@@ -10,12 +10,14 @@ const _GameLaunch := preload("res://scripts/app/game_launch.gd")
 
 const BOARD_SCREEN_NUDGE_PX := 20.0
 const SIDEBAR_WIDTH_PX := 420.0
+const CAMPAIGN_DIR := _GameLaunch.CAMPAIGN
 const CUSTOM_DIR := _GameLaunch.CUSTOM
 const ID_PATTERN := "^[A-Za-z0-9][A-Za-z0-9_-]*$"
 
 var session = _GameSession.new()
 var draft = _MapPack.MapData.new()
 var selected = null
+var _source_dir: String = CUSTOM_DIR
 var _loader := _MapLoader.new()
 var _suppress: bool = false
 var _orbit_boxes: Array = []
@@ -123,8 +125,11 @@ func _on_new() -> void:
 	draft.height = 4
 	draft.steps = 1
 	selected = null
+	_source_dir = CUSTOM_DIR
+	_suppress = true
 	if load_option.item_count > 0:
 		load_option.select(0)
+	_suppress = false
 	_sync_fields_from_draft("New map")
 	_push_board()
 
@@ -143,29 +148,40 @@ func _on_save() -> void:
 	if not _id_ok(draft.id):
 		_set_status("id must match %s" % ID_PATTERN)
 		return
-	var result = _loader.upsert_custom_map(draft, CUSTOM_DIR)
+	var target_dir := _source_dir if not _source_dir.is_empty() else CUSTOM_DIR
+	var result = _loader.upsert_custom_map(draft, target_dir)
 	if not result.ok:
 		_set_status("\n".join(result.errors))
 		return
 	draft = result.map
+	_source_dir = target_dir
 	selected = null
 	_refresh_load_option()
-	_sync_fields_from_draft("Saved %s/%s" % [CUSTOM_DIR, _MapLoader.level_file_name(draft.id)])
+	_sync_fields_from_draft("Saved %s/%s" % [target_dir, _MapLoader.level_file_name(draft.id)])
 	_push_board()
 
 
 func _on_load_selected(index: int) -> void:
-	if index <= 0:
+	if _suppress or index <= 0:
 		return
-	var map_id := load_option.get_item_text(index)
-	var path := "%s/%s" % [CUSTOM_DIR, _MapLoader.level_file_name(map_id)]
+	if load_option.is_item_disabled(index):
+		return
+	var meta: Variant = load_option.get_item_metadata(index)
+	if typeof(meta) != TYPE_DICTIONARY:
+		return
+	var dir := str(meta.get("dir", "")).strip_edges()
+	var map_id := str(meta.get("id", "")).strip_edges()
+	if dir == "" or map_id == "":
+		return
+	var path := "%s/%s" % [dir, _MapLoader.level_file_name(map_id)]
 	var result = _loader.load_map_file(path)
 	if not result.ok or result.map == null:
 		_set_status("\n".join(result.errors))
 		return
 	draft = result.map
+	_source_dir = dir
 	selected = null
-	_sync_fields_from_draft("Loaded %s" % map_id)
+	_sync_fields_from_draft("Loaded %s/%s" % [dir, map_id])
 	_push_board()
 
 
@@ -400,18 +416,30 @@ func _refresh_group_enabled() -> void:
 
 
 func _refresh_load_option() -> void:
-	var keep := ""
-	if load_option.item_count > 0 and load_option.selected > 0:
-		keep = load_option.get_item_text(load_option.selected)
+	var keep_dir := _source_dir
+	var keep_id: String = draft.id
+	_suppress = true
 	load_option.clear()
-	load_option.add_item("Load custom…")
-	var ids: PackedStringArray = _loader.list_custom_ids(CUSTOM_DIR)
+	load_option.add_item("Load map…")
 	var select_i := 0
-	for i in range(ids.size()):
-		load_option.add_item(ids[i])
-		if ids[i] == keep or ids[i] == draft.id:
-			select_i = i + 1
+	select_i = _add_pack_items("Campaign", CAMPAIGN_DIR, keep_dir, keep_id, select_i)
+	select_i = _add_pack_items("Custom", CUSTOM_DIR, keep_dir, keep_id, select_i)
 	load_option.select(select_i)
+	_suppress = false
+
+
+func _add_pack_items(title: String, dir: String, keep_dir: String, keep_id: String, select_i: int) -> int:
+	var header_i: int = load_option.item_count
+	load_option.add_item("— %s —" % title)
+	load_option.set_item_disabled(header_i, true)
+	var ids: PackedStringArray = _loader.list_pack_ids(dir)
+	for map_id in ids:
+		load_option.add_item(map_id)
+		var i: int = load_option.item_count - 1
+		load_option.set_item_metadata(i, {"dir": dir, "id": map_id})
+		if dir == keep_dir and map_id == keep_id:
+			select_i = i
+	return select_i
 
 
 func _push_board() -> void:

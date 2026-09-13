@@ -209,7 +209,7 @@ func upsert_custom_map(map, pack_dir: String = "res://data/maps/custom") -> MapL
 	return result
 
 
-func list_custom_ids(pack_dir: String = "res://data/maps/custom") -> PackedStringArray:
+func list_pack_ids(pack_dir: String) -> PackedStringArray:
 	var ids := PackedStringArray()
 	var index_path := "%s/pack.json" % pack_dir.rstrip("/\\")
 	if not FileAccess.file_exists(index_path):
@@ -223,6 +223,10 @@ func list_custom_ids(pack_dir: String = "res://data/maps/custom") -> PackedStrin
 		if map_id != "":
 			ids.append(map_id)
 	return ids
+
+
+func list_custom_ids(pack_dir: String = "res://data/maps/custom") -> PackedStringArray:
+	return list_pack_ids(pack_dir)
 
 
 func load_pack(data: Variant) -> MapLoadResult:

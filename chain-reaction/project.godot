@@ -12,7 +12,6 @@ config_version=5
 
 config/name="ChainReaction"
 run/main_scene="uid://v1fjjg7kupvx"
-; Dev-only editor/tester scenes are excluded from player export (see export_presets.cfg).
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
