@@ -73,10 +73,12 @@ func _test_empty_unlock() -> void:
 	_check(_SaveAccount.campaign_cell_state(0, 40, empty) == _SaveAccount.STATE_UNLOCKED, "index 0 unlocked")
 	_check(_SaveAccount.campaign_cell_state(1, 40, empty) == _SaveAccount.STATE_UNLOCKED, "index 1 unlocked")
 	_check(_SaveAccount.campaign_cell_state(2, 40, empty) == _SaveAccount.STATE_UNLOCKED, "index 2 unlocked")
-	_check(_SaveAccount.campaign_cell_state(3, 40, empty) == _SaveAccount.STATE_LOCKED, "index 3 locked")
+	_check(_SaveAccount.campaign_cell_state(3, 40, empty) == _SaveAccount.STATE_UNLOCKED, "index 3 unlocked")
+	_check(_SaveAccount.campaign_cell_state(4, 40, empty) == _SaveAccount.STATE_UNLOCKED, "index 4 unlocked")
+	_check(_SaveAccount.campaign_cell_state(5, 40, empty) == _SaveAccount.STATE_LOCKED, "index 5 locked")
 	_check(_SaveAccount.is_playable(true, 0, 40, empty), "0 playable")
-	_check(_SaveAccount.is_playable(true, 2, 40, empty), "2 playable")
-	_check(not _SaveAccount.is_playable(true, 3, 40, empty), "3 not playable")
+	_check(_SaveAccount.is_playable(true, 4, 40, empty), "4 playable")
+	_check(not _SaveAccount.is_playable(true, 5, 40, empty), "5 not playable")
 
 
 func _test_cleared_unlocks_next() -> void:
@@ -84,8 +86,8 @@ func _test_cleared_unlocks_next() -> void:
 	_SaveAccount.reset_memory()
 	_SaveAccount.mark_cleared(0)
 	_check(_SaveAccount.campaign_cell_state(0, 40) == _SaveAccount.STATE_CLEARED, "0 cleared color state")
-	_check(_SaveAccount.campaign_cell_state(3, 40) == _SaveAccount.STATE_UNLOCKED, "3 unlocked after clearing 0")
-	_check(_SaveAccount.is_playable(true, 3, 40), "3 playable after clearing 0")
+	_check(_SaveAccount.campaign_cell_state(5, 40) == _SaveAccount.STATE_UNLOCKED, "5 unlocked after clearing 0")
+	_check(_SaveAccount.is_playable(true, 5, 40), "5 playable after clearing 0")
 	_check(_SaveAccount.cell_color(_SaveAccount.STATE_CLEARED).is_equal_approx(Color(0.10, 0.63, 0.60)), "cleared color")
 	_check(_SaveAccount.cell_color(_SaveAccount.STATE_UNLOCKED).is_equal_approx(Color(0.62, 0.90, 0.94)), "unlocked color")
 

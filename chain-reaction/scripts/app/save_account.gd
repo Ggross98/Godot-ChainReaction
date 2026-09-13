@@ -5,7 +5,7 @@ const _GameLaunch := preload("res://scripts/app/game_launch.gd")
 
 const DEFAULT_PATH := "user://account.cfg"
 const SLOT := "Player"
-const UNLOCK_BUDGET := 3
+const UNLOCK_BUDGET := 5
 const STATE_CLEARED := "cleared"
 const STATE_UNLOCKED := "unlocked"
 const STATE_LOCKED := "locked"
