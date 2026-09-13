@@ -87,6 +87,25 @@ func hud_title() -> String:
 	return current_map.name
 
 
+func hud_level_number() -> String:
+	if current_map == null:
+		return ""
+	return current_map.id
+
+
+func hud_level_description() -> String:
+	if current_map == null:
+		return ""
+	var map_name: String = current_map.name
+	var map_id: String = current_map.id
+	if map_name == map_id:
+		return ""
+	var prefix := "%s " % map_id
+	if map_name.begins_with(prefix):
+		return map_name.substr(prefix.length())
+	return map_name
+
+
 func hud_steps() -> String:
 	return _HudStrings.left_steps(sim.steps)
 

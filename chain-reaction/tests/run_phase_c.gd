@@ -141,6 +141,8 @@ func _test_session_press_1_1() -> void:
 	_check(session.start_pack(_GameLaunch.CAMPAIGN, "1-1"), "loads 1-1")
 	_check(session.map_id() == "1-1", "current id is 1-1")
 	_check(session.hud_title() == "1-1 Click to Release", "title from map name")
+	_check(session.hud_level_number() == "1-1", "level number is 1-1")
+	_check(session.hud_level_description() == "Click to Release", "level description after id")
 	_check(session.hud_steps() == _HudStrings.left_steps(1), "steps string")
 	var world: Vector2 = _HexGrid.cell_to_world(4, 3, 1, 1)
 	_check(session.pointer_press(world), "press on 1-1 nucleus")

@@ -20,7 +20,8 @@ var _collapse_i: int = 0
 var _step_ball_template: Control
 
 @onready var board: Node2D = $Board
-@onready var title_label: Label = $CanvasLayer/HUD/Title
+@onready var level_number_label: Label = $CanvasLayer/HUD/TitleRow/LevelNumber
+@onready var level_description_label: Label = $CanvasLayer/HUD/TitleRow/LevelDescription
 @onready var state_label: Label = $CanvasLayer/HUD/StateInfo
 @onready var steps_parent: HBoxContainer = $CanvasLayer/HUD/LeftStepsParent
 @onready var map_id_label: Label = $CanvasLayer/HUD/DebugBar/MapId
@@ -39,7 +40,6 @@ var _step_ball_template: Control
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(_ViewTransform.CLEAR_COLOR)
 	_I18n.load_locale("en")
-	_style_label(title_label)
 	_style_label(state_label)
 	_style_label(map_id_label, 28)
 	_cache_step_ball_template()
@@ -89,7 +89,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _refresh_hud() -> void:
-	title_label.text = session.hud_title()
+	level_number_label.text = session.hud_level_number()
+	level_description_label.text = session.hud_level_description()
+	level_description_label.visible = not level_description_label.text.is_empty()
 	state_label.text = session.hud_state()
 	_sync_step_balls()
 	var pack_name := _I18n.t("mode.custom") if session.pack_path() == _GameLaunch.CUSTOM else _I18n.t("mode.campaign")

@@ -39,7 +39,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("6_theme")
 
-[node name="Title" type="Label" parent="CanvasLayer/HUD" unique_id=1022264561]
+[node name="TitleRow" type="HBoxContainer" parent="CanvasLayer/HUD"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -49,8 +49,21 @@ offset_top = 20.0
 offset_right = 97.0
 offset_bottom = 100.0
 grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/separation = 24
+
+[node name="LevelNumber" type="Label" parent="CanvasLayer/HUD/TitleRow" unique_id=1022264561]
+layout_mode = 2
+size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 48
-text = "1-1 Click to Release"
+text = "1-1"
+vertical_alignment = 1
+
+[node name="LevelDescription" type="Label" parent="CanvasLayer/HUD/TitleRow" unique_id=1504280177]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Click to Release"
 vertical_alignment = 1
 
 [node name="StateInfo" type="Label" parent="CanvasLayer/HUD" unique_id=2002662140]
@@ -225,10 +238,10 @@ texture_normal = ExtResource("12_kvuet")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="InputShieldLayer" type="CanvasLayer" parent="."]
+[node name="InputShieldLayer" type="CanvasLayer" parent="." unique_id=1980786220]
 layer = 80
 
-[node name="InputShield" type="Control" parent="InputShieldLayer"]
+[node name="InputShield" type="Control" parent="InputShieldLayer" unique_id=546650960]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -236,4 +249,3 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 0
